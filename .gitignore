@@ -6,3 +6,7 @@ __pycache__/
 # temporary files
 temp/
 temp*
+
+# example output
+example.pdf
+example.tex

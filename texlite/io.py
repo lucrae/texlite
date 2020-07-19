@@ -1,8 +1,8 @@
-def read_md_lines(file_path):
+def read_md_lines(path):
 
     # create list of markdown file lines
     lines = []
-    with open(f'{file_path}', 'r', encoding='utf-8') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         for i, raw_line in enumerate(f.readlines()):
 
             # remove newline markers
@@ -16,9 +16,9 @@ def read_md_lines(file_path):
     return lines
 
 
-def write_tex_lines(lines, file_path):
+def write_tex_lines(path, lines):
 
     # write tex lines in file
-    with open(f'{file_path}', 'w', encoding='utf-8') as f:
+    with open(path, 'w', encoding='utf-8') as f:
         for line in lines:
             f.write(f'{line}\n')
