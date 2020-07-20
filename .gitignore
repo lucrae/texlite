@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 # environment files
+docs/
 venv/
 
 # temporary files
