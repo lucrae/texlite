@@ -1,10 +1,13 @@
-from texlite.components import Meta, DocumentBegin, DocumentEnd, MakeTitle, Section, Text
+from texlite.components import (
+    Meta, DocumentBegin, DocumentEnd, MakeTitle, Section, Text
+)
 
 
 def parse(md_lines):
 
     # set up initial components
     meta = Meta()
+
     components = [
         DocumentBegin(),
     ]
@@ -25,6 +28,10 @@ def parse(md_lines):
             meta.author = body
         elif prefix == 'date:':
             meta.date = body
+        elif prefix == 'fontsize:':
+            meta.fontsize = body
+        elif prefix == 'margin:':
+            meta.margin = body
 
         # handle component prefixes
         elif prefix == '#':
