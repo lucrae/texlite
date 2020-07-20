@@ -5,3 +5,8 @@ clean:
 
 	# remove example output
 	rm -rf examples/*.pdf examples/*.tex
+
+remove-git-cache:
+
+	# remove all from index
+	git rm -r --cached .
