@@ -14,3 +14,7 @@ temp.*
 # output of examples
 examples/*.tex
 examples/*.pdf
+
+# auxillary/log files
+*.aux
+*.log
