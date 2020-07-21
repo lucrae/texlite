@@ -5,15 +5,16 @@ from texlite.components import (
 
 
 # useful constants and string sets
-UNORDERED_LIST_PREFIXES = ['-', '+', '*']
 NUMBERS = '0123456789'
 LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+UNORDERED_LIST_PREFIXES = ['-', '+', '*']
+ORDERED_LIST_PREFIXES = [f'{n}.' for n in NUMBERS]
 
 
-def parse(md_lines):
+def parse(md_lines, graphics_path=None):
 
     # set up meta object and initial components
-    meta = Meta()
+    meta = Meta(graphics_path=graphics_path)
     components = [
         DocumentBegin(),
     ]
@@ -62,7 +63,7 @@ def parse(md_lines):
                 # break if line is not item
                 if get_line_prefix(md_lines[i]) not in UNORDERED_LIST_PREFIXES:
 
-                    # decrement index to counter end-of-loop increment and break
+                    # go back to align with end-of-loop increment and break
                     i -= 1
                     break
 
@@ -73,15 +74,15 @@ def parse(md_lines):
             components.append(UnorderedList(items))
 
         # handle ordered list
-        elif prefix in [f'{n}.' for n in NUMBERS]:
+        elif prefix in ORDERED_LIST_PREFIXES:
 
             items = []
             while i < n_lines:
 
                 # break if line is not item
-                if get_line_prefix(md_lines[i]) not in [f'{n}.' for n in NUMBERS]:
+                if get_line_prefix(md_lines[i]) not in ORDERED_LIST_PREFIXES:
 
-                    # decrement index to counter end-of-loop increment and break
+                    # go back to align with end-of-loop increment and break
                     i -= 1
                     break
 

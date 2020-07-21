@@ -24,11 +24,13 @@ if __name__ == '__main__':
     # parse command-line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('source', type=str,
-                        help='path to source markdown (.md) file to parse and compile')
+                        help='path to source markdown (.md) file to parse and'
+                        'compile')
     parser.add_argument('--save-tex', action='store_true', default=False,
                         help='save TeX (.tex) file used in compilation')
-    parser.add_argument('--show-tex-output', action='store_true', default=False,
-                        help='show output for TeX and pdfLaTeX processes')
+    parser.add_argument('--show-tex-output', action='store_true',
+                        default=False, help='show output for TeX and pdfLaTeX'
+                        'processes')
     args = parser.parse_args()
 
     # check source file
@@ -38,15 +40,16 @@ if __name__ == '__main__':
         print(error)
         exit()
 
-    # get base path
-    base_path = source_path.parents[0] / source_path.stem
+    # get directory path and base path (stem of files)
+    dir_path = source_path.parents[0]
+    base_path = dir_path / source_path.stem
 
     # read in markdown lines from file
     md_path = base_path.with_suffix('.md')
     md_lines = read_md_lines(path=md_path)
 
     # translate markdown to tex
-    tex_lines = parse(md_lines)
+    tex_lines = parse(md_lines, graphics_path=dir_path)
 
     # write out tex lines to file
     tex_path = base_path.with_suffix('.tex')
