@@ -1,3 +1,3 @@
 # TeXLite
 
-A tool for writing standard LaTeX documents in Markdown syntax
+A tool for writing standard LaTeX documents in Markdown-style syntax

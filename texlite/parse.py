@@ -5,7 +5,7 @@ from texlite.components import (
 
 
 # useful constants and string sets
-UNORDERED_LIST_PREFIXES = r'-+*'
+UNORDERED_LIST_PREFIXES = ['-', '+', '*']
 NUMBERS = '0123456789'
 LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -18,7 +18,7 @@ def parse(md_lines):
         DocumentBegin(),
     ]
 
-    # parse lines
+    # iteratively parse lines
     i, n_lines = 0, len(md_lines)
     while i < n_lines:
 
@@ -53,17 +53,15 @@ def parse(md_lines):
             components.append(Section(body, section_type='subsubsection*'))
 
         # handle unordered list
-        elif prefix in UNORDERED_LIST_PREFIXES and not is_empty(prefix):
-            # XXX: the not is_empty condition prevents tabbed lines from
-            # being interpreted as items in an ordered list, but I really
-            # don't know why it even does that in the first place
+        elif prefix in UNORDERED_LIST_PREFIXES:
+            # XXX: Will not handle nested lists (lists within lists)
 
             items = []
             while i < n_lines:
 
                 # break if line is not item
                 if get_line_prefix(md_lines[i]) not in UNORDERED_LIST_PREFIXES:
-                    
+
                     # decrement index to counter end-of-loop increment and break
                     i -= 1
                     break
@@ -82,7 +80,7 @@ def parse(md_lines):
 
                 # break if line is not item
                 if get_line_prefix(md_lines[i]) not in [f'{n}.' for n in NUMBERS]:
-                    
+
                     # decrement index to counter end-of-loop increment and break
                     i -= 1
                     break

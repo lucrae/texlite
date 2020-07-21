@@ -1,7 +1,6 @@
 # cache/dll files
 __pycache__/
 *.py[cod]
-*$py.class
 
 # environment files
 docs/

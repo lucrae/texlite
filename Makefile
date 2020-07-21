@@ -1,7 +1,7 @@
 clean:
 
-	# remove cache files
-	rm -rf **/__pycache__ **/.pytest_cache
+	# remove all cache files
+	find . | grep -E "(__pycache__|\.pyc|\.pyo)" | xargs rm -rf
 
 	# remove example output
 	rm -rf examples/*.pdf examples/*.tex
