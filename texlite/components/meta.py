@@ -1,4 +1,4 @@
-from texlite.components.common import BACKSLASH, BANNER_LINE, FONT_SIZES
+from texlite.components.common import is_float, BACKSLASH, BANNER_LINE, FONT_SIZES
 from texlite.messages import warning
 
 
@@ -6,7 +6,7 @@ class Meta:
 
     def __init__(self, title=None, author=None, date=None,
                  fontsize='10pt', margin='1.6in', pagenumbers=True,
-                 graphics_path=None):
+                 linespread=1.0, graphics_path=None):
 
         # document details
         self.title = title
@@ -16,6 +16,7 @@ class Meta:
         # document setup
         self.fontsize = fontsize # (default: 10pt)
         self.margin = margin # (default: 1.6in)
+        self.linespread = linespread # (default: 1.0)
 
         # graphics setup
         self.graphics_path = graphics_path
@@ -38,6 +39,13 @@ class Meta:
             *self._packages(),
         ]
 
+        # add preamble commands
+        lines += [
+            r'',
+            r'% preamble commands',
+            *self._preamble_commands(),
+        ]
+
         # add optional title details
         lines += [
             r'',
@@ -50,15 +58,26 @@ class Meta:
 
     def _check_options(self):
 
-        # check warnings
+        # check fontsize
         if self.fontsize not in FONT_SIZES:
             # extarticle font sizes can only be 8, 9, 10, 11, 12, 14, 17, 20
 
-            self.fontsize = '10pt' # reset to default
+            
             warning(
-                'article fontsize must be one of [8pt, 9pt, 10pt, 11pt, 12pt, '
-                '14pt, 17pt, 20pt], defaulting to 10pt'
+                'Option "fontsize" must be one of [8pt, 9pt, 10pt, 11pt, '
+                '12pt, 14pt, 17pt, 20pt], defaulting to 10pt.'
             )
+            self.fontsize = '10pt' # reset to default
+
+        # check linespread
+        if not is_float(self.linespread):
+
+            warning(
+                'Option "linespread" must be a float (e.g. 1.6), '
+                'defaulting to 1.0.'
+            )
+            self.linespread = 1.0
+        
 
     def _packages(self):
 
@@ -74,7 +93,16 @@ class Meta:
         # include hyperlinks
         lines.append(f'{BACKSLASH}usepackage{{hyperref}}')
 
-        # include graphs
+        return lines
+
+    def _preamble_commands(self):
+
+        lines = []
+
+        # set line spacing
+        lines.append(f'{BACKSLASH}linespread{{{self.linespread}}}')
+
+        # include path for graphics
         if self.graphics_path:
             lines.append(f'{BACKSLASH}usepackage{{graphicx}}')
             lines.append(f'{BACKSLASH}graphicspath'

@@ -1,5 +1,9 @@
-# ANSI colour interrupts
+import re
+
+
 class ANSI:
+    '''ANSI colour interrupts'''
+
     DEFAULT = '\033[0m'
 
     OK = '\033[92m'
@@ -9,6 +13,9 @@ class ANSI:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+    # GREEN = '\033[92m'
+    # YELLOW = '\033[93m'
+    # RED = '\033[91m'
     # MAGENTA = '\033[95m',
     # BLUE ='\033[94m',
 
@@ -33,19 +40,19 @@ def _print(message, preface=None, col=ANSI.DEFAULT):
 def message(message):
 
     # print message
-    _print(message, preface='texlite', col=ANSI.OK)
+    _print(message, preface='TeXLite', col=ANSI.OK)
 
 
 def warning(message):
 
     # print warning message
-    _print(message, preface='warning', col=ANSI.WARNING)
+    _print(message, preface='Warning', col=ANSI.WARNING)
 
 
 def error(message):
 
     # print error message
-    _print(message, preface='error', col=ANSI.ERROR)
+    _print(message, preface='Error', col=ANSI.ERROR)
 
     # halt program
     exit()

@@ -2,10 +2,10 @@
 __pycache__/
 *.py[cod]
 
-# environment files
-docs/
-venv/
+# environment and development files
 .vscode/
+venv/
+dev/
 
 # temporary files
 temp/

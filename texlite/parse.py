@@ -38,6 +38,8 @@ def parse(md_lines, graphics_path=None):
             meta.fontsize = body
         elif prefix == 'margin:':
             meta.margin = body
+        elif prefix == 'linespread:':
+            meta.linespread = body
 
         # handle heading/section
         elif prefix == '#':

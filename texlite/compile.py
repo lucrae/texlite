@@ -16,28 +16,32 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False,
     file_stem = base_path.stem
 
     # compile to pdf using pdfLaTeX
-    _call(_get_compilation_command(base_path, show_tex_output=show_tex_output))
+    pdflatex_error = _call(_get_compilation_command(base_path,
+                           show_tex_output=show_tex_output))
+
+    if pdflatex_error:
+        _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
+                      save_tex=False)
+
+        error('TeX could not be compiled, likely due to the inclusion of an '
+              'undefined control sequence. Use --show-tex-output for details.')
 
     # move pdf to destination
     _call(f'mv {file_stem}.pdf {base_path}.pdf')
 
-    # clean up auxillery files
-    for extension in AUXILLARY_FILE_EXTENSIONS:
-        _call(f'rm {file_stem}.{extension}')
-
-    # remove tex if not keeping
-    if not save_tex:
-        _call(f'rm {base_path}.tex')
+    # clean up
+    _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
+                  save_tex=save_tex)
 
     # display success message
-    message(f'compiled document as "{base_path}.pdf"')
+    message(f'Compiled document as "{base_path}.pdf"')
 
     # open PDF with program
     if open_with:
-        message(f'opening "{base_path}.pdf" with "{open_with}"...')
+        message(f'Opening "{base_path}.pdf" with "{open_with}"...')
         exit_code = _call(f'{open_with} {base_path}.pdf')
         if exit_code == 127:
-            error(f'could not open "{base_path}.pdf" with "{open_with}"')
+            error(f'Could not open "{base_path}.pdf" with "{open_with}"')
 
 
 def _call(cmd):
@@ -50,5 +54,17 @@ def _get_compilation_command(base_path, show_tex_output=False):
 
     # return command for compiling pdf with pdflatex
     if show_tex_output:
-        return 
-    return f'pdflatex {base_path}.tex > {os.devnull}'
+        return f'pdflatex -halt-on-error {base_path}.tex'
+    return f'pdflatex -halt-on-error {base_path}.tex > {os.devnull}'
+
+
+def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
+                  save_tex=False):
+
+    # clean up auxillary files
+    for extension in AUXILLARY_FILE_EXTENSIONS:
+        _call(f'rm {file_stem}.{extension}')
+
+    # remove tex if not keeping
+    if not save_tex:
+        _call(f'rm {base_path}.tex')

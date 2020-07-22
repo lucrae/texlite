@@ -12,11 +12,11 @@ def _check_source(source_path):
 
     # check if file exists
     if not source_path.exists():
-        error(f'source file "{source_path}" could not be found')
+        error(f'Source file "{source_path}" could not be found')
 
     # check if file is markdown
     if not source_path.suffix == '.md':
-        error('source file must be in markdown (.md) format')
+        error('Source file must be in markdown (.md) format')
 
 
 if __name__ == '__main__':
@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
     # check source path
     _check_source(source_path)
-    message(f'reading in "{source_path}"...')
+    message(f'Reading in "{source_path}"...')
 
     # get directory path and base path (stem of files)
     dir_path = source_path.parents[0]
@@ -61,6 +61,7 @@ if __name__ == '__main__':
     write_tex_lines(path=tex_path, lines=tex_lines)
 
     # compile to pdf
-    compile_tex_to_pdf(path=tex_path, save_tex=args.save_tex,
+    compile_tex_to_pdf(path=tex_path,
+                       save_tex=args.save_tex,
                        show_tex_output=args.show_tex_output,
                        open_with=args.open_with)
