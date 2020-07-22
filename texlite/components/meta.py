@@ -1,4 +1,5 @@
-from texlite.components.common import BACKSLASH, BANNER_LINE
+from texlite.components.common import BACKSLASH, BANNER_LINE, FONT_SIZES
+from texlite.messages import warning
 
 
 class Meta:
@@ -14,13 +15,15 @@ class Meta:
 
         # document setup
         self.fontsize = fontsize # (default: 10pt)
-        # NOTE: extarticle fontsize options: 8, 9, 10, 11, 12, 14, 17, 20pt
         self.margin = margin # (default: 1.6in)
 
         # graphics setup
         self.graphics_path = graphics_path
 
     def tex(self):
+
+        # check options
+        self._check_options()
 
         # add meta preface
         lines = [
@@ -44,6 +47,18 @@ class Meta:
 
         # return joined string
         return '\n'.join(lines)
+
+    def _check_options(self):
+
+        # check warnings
+        if self.fontsize not in FONT_SIZES:
+            # extarticle font sizes can only be 8, 9, 10, 11, 12, 14, 17, 20
+
+            self.fontsize = '10pt' # reset to default
+            warning(
+                'article fontsize must be one of [8pt, 9pt, 10pt, 11pt, 12pt, '
+                '14pt, 17pt, 20pt], defaulting to 10pt'
+            )
 
     def _packages(self):
 

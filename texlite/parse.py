@@ -19,7 +19,7 @@ def parse(md_lines, graphics_path=None):
         DocumentBegin(),
     ]
 
-    # iteratively parse lines
+    # iteratively tokenise lines
     i, n_lines = 0, len(md_lines)
     while i < n_lines:
 
@@ -116,7 +116,7 @@ def parse(md_lines, graphics_path=None):
     if meta.title:
         components.insert(2, MakeTitle())
 
-    # convert components to lines
+    # convert tokenised components to lines
     tex_lines = [component.tex() + '\n' for component in components]
     return tex_lines
 

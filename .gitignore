@@ -5,6 +5,7 @@ __pycache__/
 # environment files
 docs/
 venv/
+.vscode/
 
 # temporary files
 temp/
@@ -17,3 +18,5 @@ examples/*.pdf
 # auxillary/log files
 *.aux
 *.log
+*.out
+*.swp
