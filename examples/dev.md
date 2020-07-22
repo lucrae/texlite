@@ -1,6 +1,5 @@
 title: Overview of \TeX{}Lite
 author: Lucien Rae Gentil
-linespread: large
 
 # Standard writing
 

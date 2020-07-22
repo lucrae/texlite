@@ -19,12 +19,15 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False,
     pdflatex_error = _call(_get_compilation_command(base_path,
                            show_tex_output=show_tex_output))
 
-    if pdflatex_error:
+    if pdflatex_error == 1:
         _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
                       save_tex=False)
 
         error('TeX could not be compiled, likely due to the inclusion of an '
               'undefined control sequence. Use --show-tex-output for details.')
+    elif pdflatex_error == 127:
+        error('TeX compiler could not be found. If not installed, please '
+              'install a TeX distribution (TeX Live or MiKTeX recommended).')
 
     # move pdf to destination
     _call(f'mv {file_stem}.pdf {base_path}.pdf')
