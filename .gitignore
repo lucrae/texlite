@@ -1,22 +1,25 @@
-# cache/dll files
-__pycache__/
-*.py[cod]
+# directories
 
-# environment and development files
+__pycache__/
 venv/
 dev/
+dist/
+build/
+temp/
+
 .vscode/
 .tox/
+.cache/
+.pytest_cache/
 
-# temporary files
-temp/
-temp.*
+*.egg-info/
 
-# output of examples
-examples/*.tex
-examples/*.pdf
+# files
 
-# auxillary/log files
+*.egg
+*.py[cod]
+
+*.pdf
 *.aux
 *.log
 *.out

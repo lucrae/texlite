@@ -52,7 +52,7 @@ def warning(message):
     _print(message, preface='Warning', col=ANSI.WARNING)
 
 
-def error(message, halt=True):
+def error(message, halt=False):
 
     # print error message
     _print(message, preface='Error', col=ANSI.ERROR)
