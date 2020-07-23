@@ -28,18 +28,11 @@ def parse(md_lines, graphics_path=None):
         body = get_line_without_prefix(md_lines[i])
 
         # handle optional meta specifications
-        if prefix == 'title:':
-            meta.title = body
-        elif prefix == 'author:':
-            meta.author = body
-        elif prefix == 'date:':
-            meta.date = body
-        elif prefix == 'fontsize:':
-            meta.fontsize = body
-        elif prefix == 'margin:':
-            meta.margin = body
-        elif prefix == 'linespread:':
-            meta.linespread = body
+        if prefix in [f':{option}:' for option in meta.options]:
+
+            # set meta attribute to specified value
+            option_name = prefix[1:-1]
+            setattr(meta, option_name, body)
 
         # handle heading/section
         elif prefix == '#':

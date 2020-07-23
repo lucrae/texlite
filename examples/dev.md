@@ -1,5 +1,6 @@
-title: Overview of \TeX{}Lite
-author: Lucien Rae Gentil
+:title: Overview of \TeX{}Lite
+:author: Lucien Rae Gentil
+:margin: 1.6in
 
 # Standard writing
 
@@ -19,7 +20,7 @@ I am working on this.
 
 # Document details
 
-Document detail options are specified at the top of the document in the format "`<option>: <specification>`", with one line for each option. For example, the line "`title: My Great Paper`" will set the document title to "My Great Paper".
+Document detail options are specified at the top of the document in the format "`:<option>: <specification>`", with one line for each option. For example, the line "`:title: My Great Paper`" will set the document title to "My Great Paper".
 
 # Sections
 

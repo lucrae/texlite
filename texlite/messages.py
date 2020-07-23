@@ -4,12 +4,15 @@ import re
 class ANSI:
     '''ANSI colour interrupts'''
 
+    # default/reset code
     DEFAULT = '\033[0m'
 
+    # colour codes
     OK = '\033[92m'
     WARNING = '\033[93m'
     ERROR = '\033[91m'
 
+    # effects
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
@@ -49,10 +52,11 @@ def warning(message):
     _print(message, preface='Warning', col=ANSI.WARNING)
 
 
-def error(message):
+def error(message, halt=True):
 
     # print error message
     _print(message, preface='Error', col=ANSI.ERROR)
 
-    # halt program
-    exit()
+    if halt:
+        # halt program
+        exit()

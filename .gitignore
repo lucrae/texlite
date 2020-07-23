@@ -3,9 +3,10 @@ __pycache__/
 *.py[cod]
 
 # environment and development files
-.vscode/
 venv/
 dev/
+.vscode/
+.tox/
 
 # temporary files
 temp/

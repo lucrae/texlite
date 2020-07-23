@@ -1,5 +1,7 @@
-from texlite.components.common import is_float, BACKSLASH, BANNER_LINE, FONT_SIZES
-from texlite.messages import warning
+from texlite.components.common import (
+    is_number, BACKSLASH, BANNER_LINE, FONT_SIZES
+)
+from texlite import messages as msg
 
 
 class Meta:
@@ -8,23 +10,34 @@ class Meta:
                  fontsize='10pt', margin='1.6in', pagenumbers=True,
                  linespread=1.0, graphics_path=None):
 
-        # document details
+        # specifiable meta options
+        # NOTE: validation of options handled in `Meta._validate_options`
+        self.options = [
+            'title',
+            'author',
+            'date',
+            'fontsize', # default: 10pt
+            'margin', # default: 1.6in
+            'linespread', # default: 1.0
+        ]
+
+        # document detail options
         self.title = title
         self.author = author
         self.date = date
 
-        # document setup
-        self.fontsize = fontsize # (default: 10pt)
-        self.margin = margin # (default: 1.6in)
-        self.linespread = linespread # (default: 1.0)
+        # document setup options
+        self.fontsize = fontsize
+        self.margin = margin
+        self.linespread = linespread
 
         # graphics setup
         self.graphics_path = graphics_path
 
     def tex(self):
 
-        # check options
-        self._check_options()
+        # validate options
+        self._validate_options()
 
         # add meta preface
         lines = [
@@ -56,28 +69,38 @@ class Meta:
         # return joined string
         return '\n'.join(lines)
 
-    def _check_options(self):
+    def _validate_options(self):
 
         # check fontsize
         if self.fontsize not in FONT_SIZES:
-            # extarticle font sizes can only be 8, 9, 10, 11, 12, 14, 17, 20
 
-            
-            warning(
+            # show warning and enact default
+            msg.warning(
                 'Option "fontsize" must be one of [8pt, 9pt, 10pt, 11pt, '
-                '12pt, 14pt, 17pt, 20pt], defaulting to 10pt.'
+                '12pt, 14pt, 17pt, 20pt]. Defaulting to 10pt.'
             )
             self.fontsize = '10pt' # reset to default
 
-        # check linespread
-        if not is_float(self.linespread):
+        # check margin
+        if (not is_number(self.margin[:-2]) or
+                not self.margin[-2:] in ['mm', 'cm', 'pt', 'in']):
 
-            warning(
-                'Option "linespread" must be a float (e.g. 1.6), '
-                'defaulting to 1.0.'
+            # show warning and enact default
+            msg.warning(
+                'Option "margin" must be a number followed by one of [mm, cm, '
+                'pt, in] (e.g. 0.8in). Defaulting to 1.6in.'
+            )
+            self.margin = '1.6in'
+
+        # check linespread
+        if not is_number(self.linespread):
+
+            # show warning and enact default
+            msg.warning(
+                'Option "linespread" must be a float (e.g. 1.6). '
+                'Defaulting to 1.0.'
             )
             self.linespread = 1.0
-        
 
     def _packages(self):
 

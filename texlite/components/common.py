@@ -7,8 +7,8 @@ NON_ENCAPSULATION_CHARS = SPECIAL_CHARS + r' '
 FONT_SIZES = ['8pt', '9pt', '10pt', '11pt', '12pt', '14pt', '17pt', '20pt']
 
 
-def is_float(value):
-    '''Returns if a value can be converted to float'''
+def is_number(value):
+    '''Returns if a value can be converted to integer or float'''
 
     try:
         float(value)

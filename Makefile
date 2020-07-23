@@ -4,12 +4,12 @@ clean:
 	find . | grep -E "(__pycache__|\.pyc|\.pyo)" | xargs rm -rf
 
 	# remove example output
-	rm -rf examples/*.pdf examples/*.tex
+	rm -rf examples/*.pdf exmaples/*.pdf.swp examples/*.tex
 
 	# remove base-level auxillary/log files
 	rm -rf *.out *.aux *.log
 
-flake:
+lint:
 
 	# run flake8 style guide checking
 	flake8 --config setup.cfg
