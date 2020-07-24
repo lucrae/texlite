@@ -15,10 +15,22 @@ clean:
 	# remove base-level auxillary/log files
 	rm -rf *.out *.aux *.log
 
+	# remove build/distribution files
+	rm -rf build dist *.egg-info
+
 lint:
 
 	# run flake8 style guide checking on source file and setup.py
 	flake8 --config setup.cfg texlite setup.py
+
+publish:
+
+	# publish package to PyPI
+	# DO NOT FORGET TO INCREMENT VERSION IN `texlite._version.py`
+	python3 -m pip install --upgrade setuptools wheel twine
+	python3 setup.py sdist bdist_wheel
+	python3 -m twine upload dist/*
+	rm -fr build dist .egg requests.egg-info
 
 refresh-git-index:
 
