@@ -8,6 +8,7 @@ from texlite.cli import run
 
 COMPONENTS_TO_TEST = [
     'meta',
+    'meta_incorrect',
     'section',
     'text',
     'list',

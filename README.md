@@ -2,4 +2,4 @@
   <img src="docs/images/texlite.png" />
 </p>
 
-A tool for writing standard LaTeX/TeX documents in Markdown-style syntax.
+TeXLite is an easy-to-use open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax.

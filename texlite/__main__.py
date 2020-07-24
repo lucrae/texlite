@@ -13,7 +13,7 @@ def main():
                         help='path to source markdown (.md) file to parse and '
                         'compile')
     parser.add_argument('--version', action='version',
-                        version=f'TeXLite {__version__} by Lucien Rae Gentil',
+                        version=f'TeXLite {__version__}',
                         help='display version and exit')
     parser.add_argument('-t', '--save-tex', action='store_true', default=False,
                         help='save TeX (.tex) file used in compilation')
