@@ -47,5 +47,3 @@ def test_component(component):
     # tear down
     Path(f'tests/assets/test_components/{component}.tex').unlink()
     Path(f'tests/assets/test_components/{component}.pdf').unlink()
-
-# @pytest.mark.parametrize(TUPLES, [LIST OF TUPLES])

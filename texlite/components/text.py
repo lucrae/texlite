@@ -5,6 +5,7 @@ from texlite.components.common import (
     ITALICS_RE, BOLD_RE, CODE_RE, QUOTES_RE, HYPERLINK_RE
 )
 
+
 class Text:
 
     def __init__(self, content):

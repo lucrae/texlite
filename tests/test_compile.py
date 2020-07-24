@@ -105,3 +105,21 @@ def test_incorrect_source():
 
     # assert
     assert success is False
+
+
+def test_undefined_command():
+    '''Tests feeding in a file with an undefined control sequence'''
+
+    # set arguments
+    args = {
+        'source': Path('tests/assets/test_compile/undefined_command.txt'),
+        'save_tex': False,
+        'show_tex_output': False,
+        'dry': False,
+    }
+
+    # execute main
+    success = run(args=argparse.Namespace(**args))
+
+    # assert
+    assert success is False

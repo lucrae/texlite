@@ -118,8 +118,8 @@ def parse(md_lines, graphics_path=None):
                 # break out at end
                 if md_lines[i] == '$$$':
                     break
-                
-                equation_lines.append(md_lines[i]) 
+
+                equation_lines.append(md_lines[i])
 
                 i += 1
 

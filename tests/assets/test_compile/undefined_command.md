@@ -1,0 +1,2 @@
+\thisisnotavalidcommand
+\thisalsoisnotavalidcommand{}

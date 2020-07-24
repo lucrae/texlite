@@ -14,8 +14,8 @@ clean:
 
 lint:
 
-	# run flake8 style guide checking
-	flake8 --config setup.cfg
+	# run flake8 style guide checking on source file and setup.py
+	flake8 --config setup.cfg texlite setup.py
 
 refresh-git-index:
 
