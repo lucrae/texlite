@@ -1,3 +1,6 @@
+# NB: This is only for development purposes.
+# Automated testing goes in tox.ini and .travis.yml
+
 clean:
 
 	# remove all cache files
