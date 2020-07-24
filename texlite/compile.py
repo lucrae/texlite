@@ -24,8 +24,8 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False,
                       save_tex=False)
 
         return False, ('TeX could not be compiled, likely due to the '
-                       'inclusion of an undefined control sequence. Use '
-                       '--show-tex-output for details.')
+                       'inclusion of a special character or undefined '
+                       'command. Use --show-tex-output for details.')
 
     elif pdflatex_error == 127:
 

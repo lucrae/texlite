@@ -11,7 +11,7 @@
 % preamble commands
 \linespread{1.0}
 \usepackage{graphicx}
-\graphicspath{{examples/}}
+\graphicspath{{tests/assets/test_components/}}
 
 % document details
 \date{}
@@ -20,25 +20,20 @@
 \begin{document}
 % ------------------------------------------------------------------------------
 
-\section{Bold}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{graphics/universe.jpg}
+\caption{The Universe}\end{figure}
 
-Here is some \textbf{bold text}. Hell \textbf{yeah}.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{graphics/universe.jpg}
+\end{figure}
 
-\section{Italic}
-
-Here is \textit{italic text} and \textit{more} like \textit{what the heck}.
-
-\section{Code}
-
-Here is some in-line \texttt{code} and \texttt{here is some more}.
-
-\section{Quotes}
-
-Here are ``some quotes" using ``double quotes".
-
-\section{Hyperlink}
-
-Here is a \href{http://github.com}{hyperlink} and \href{https://google.com}{another one}.
+\begin{figure}[h!]
+\centering
+\texttt{Image Not Found}
+\caption{Not The Universe}\end{figure}
 
 % ------------------------------------------------------------------------------
 \end{document}

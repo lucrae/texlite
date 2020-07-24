@@ -16,10 +16,14 @@ class Text:
         formatted_content = self._format_encapsulations(self.content)
         formatted_content = self._format_replacements(formatted_content)
         formatted_content = self._format_hyperlinks(formatted_content)
+        formatted_content = self._format_special_characters(formatted_content)
 
         return formatted_content
 
     def _is_encapsulatable(self, text, bad_chars=NON_ENCAPSULATION_CHARS):
+
+        if len(text) == 0:
+            return False
 
         # return if head and tail chars are acceptable for encapsulation
         return not text[0] in bad_chars and not text[-1] in bad_chars
@@ -71,5 +75,12 @@ class Text:
             # form href and replace in text
             href = f'{BACKSLASH}href{{{link_url}}}{{{Text(link_text).tex()}}}'
             text = text.replace(f'[{link_text}]({link_url})', href)
+
+        return text
+
+    def _format_special_characters(self, text):
+
+        # replace special characters with safe (backslashed) ones
+        text = text.replace('&', r'\&')
 
         return text

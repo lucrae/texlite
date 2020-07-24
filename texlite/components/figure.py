@@ -25,7 +25,7 @@ class Figure:
                         'with placeholder text.')
 
             graphics = ([
-                f'{BACKSLASH}texttt{{{full_path}}}',
+                f'{BACKSLASH}texttt{{Image Not Found}}',
             ])
         else:
             graphics = [

@@ -16,9 +16,10 @@ def test_simple_source():
     }
 
     # execute main
-    run(args=argparse.Namespace(**args))
+    success = run(args=argparse.Namespace(**args))
 
     # assert
+    assert success
     assert Path('tests/assets/test_compile/simple.pdf').exists()
 
     # tear down
@@ -37,9 +38,10 @@ def test_saving_tex():
     }
 
     # execute main
-    run(args=argparse.Namespace(**args))
+    success = run(args=argparse.Namespace(**args))
 
     # assert
+    assert success
     assert Path('tests/assets/test_compile/simple.tex').exists()
 
     # tear down
@@ -59,9 +61,10 @@ def test_empty_source():
     }
 
     # execute main
-    run(args=argparse.Namespace(**args))
+    success = run(args=argparse.Namespace(**args))
 
     # assert
+    assert success
     assert Path('tests/assets/test_compile/empty.pdf').exists()
 
     # tear down
