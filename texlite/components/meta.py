@@ -116,6 +116,10 @@ class Meta:
         # include hyperlinks
         lines.append(f'{BACKSLASH}usepackage{{hyperref}}')
 
+        # include include maths helpers
+        lines.append(f'{BACKSLASH}usepackage{{amsmath}}')
+        lines.append(f'{BACKSLASH}usepackage{{amssymb}}')
+
         return lines
 
     def _preamble_commands(self):

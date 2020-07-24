@@ -7,7 +7,7 @@ from texlite.compile import compile_tex_to_pdf
 
 
 def _check_source(source_path):
-    '''Checks input source and halts on error'''
+    '''Checks existence and file type of inputted source path'''
 
     # check if file exists
     if not source_path.exists():
@@ -20,7 +20,7 @@ def _check_source(source_path):
     return True, f'Reading in "{source_path}"...'
 
 
-def main(args):
+def run(args):
     '''Runs main program cycle'''
 
     # form source path (and add .md if no suffix given)

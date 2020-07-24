@@ -1,0 +1,58 @@
+% meta
+\documentclass[10pt]{extarticle}
+
+% packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.6in]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% preamble commands
+\linespread{1.0}
+\usepackage{graphicx}
+\graphicspath{{examples/}}
+
+% document details
+\title{\textbf{Maths}}
+\date{}
+
+% ------------------------------------------------------------------------------
+\begin{document}
+% ------------------------------------------------------------------------------
+
+\maketitle{}
+
+\section{In-line maths}
+
+Here is some maths: $e^{\pi i} + 1 = 0$
+
+\section{Equations}
+
+Here's a single-line equation:
+
+\begin{align*}
+E = mc^2 \\
+\end{align*}
+
+Here \textit{are multiple* and *what} lines:
+
+\begin{align*}
+x = 4 \\
+y = 2x + 1 \\
+\therefore y = 9 \\
+\end{align*}
+
+Here's an aligned \textbf{multi-line} \texttt{equation` (use `\&` before `=})
+
+\begin{align*}
+2x - 5 &= 8 \\
+3x + 9y &= -12 \\
+\end{align*}
+
+Some text after the equation.
+
+% ------------------------------------------------------------------------------
+\end{document}
+% ------------------------------------------------------------------------------
+

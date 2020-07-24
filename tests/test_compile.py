@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from texlite.main import main
+from texlite.cli import run
 
 
 def test_simple_source():
@@ -16,7 +16,7 @@ def test_simple_source():
     }
 
     # execute main
-    main(args=argparse.Namespace(**args))
+    run(args=argparse.Namespace(**args))
 
     # assert
     assert Path('tests/assets/test_compile/simple.pdf').exists()
@@ -37,7 +37,7 @@ def test_saving_tex():
     }
 
     # execute main
-    main(args=argparse.Namespace(**args))
+    run(args=argparse.Namespace(**args))
 
     # assert
     assert Path('tests/assets/test_compile/simple.tex').exists()
@@ -59,7 +59,7 @@ def test_empty_source():
     }
 
     # execute main
-    main(args=argparse.Namespace(**args))
+    run(args=argparse.Namespace(**args))
 
     # assert
     assert Path('tests/assets/test_compile/empty.pdf').exists()
@@ -80,7 +80,7 @@ def test_nonexistent_source():
     }
 
     # execute main
-    success = main(args=argparse.Namespace(**args))
+    success = run(args=argparse.Namespace(**args))
 
     # assert
     assert success is False
@@ -98,7 +98,7 @@ def test_incorrect_source():
     }
 
     # execute main
-    success = main(args=argparse.Namespace(**args))
+    success = run(args=argparse.Namespace(**args))
 
     # assert
     assert success is False

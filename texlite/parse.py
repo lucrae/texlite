@@ -1,14 +1,29 @@
+import re
+
 from texlite.components import (
     Meta, DocumentBegin, DocumentEnd, MakeTitle, Section, Text,
-    UnorderedList, OrderedList
+    UnorderedList, OrderedList, Figure, Equation
 )
 
 
-# useful constants and string sets
+# set useful constants and string sets
 NUMBERS = '0123456789'
 LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 UNORDERED_LIST_PREFIXES = ['-', '+', '*']
 ORDERED_LIST_PREFIXES = [f'{n}.' for n in NUMBERS]
+
+# set section heading codes
+HEADINGS = {
+    '#': 'section',
+    '##': 'subsection',
+    '###': 'subsubsection',
+    '#*': 'section',
+    '##*': 'subsection',
+    '###*': 'subsubsection',
+}
+
+# regex patterns
+FIGURE_RE = re.compile(r'^(!\[.*\]\(.*\))$')
 
 
 def parse(md_lines, graphics_path=None):
@@ -35,18 +50,10 @@ def parse(md_lines, graphics_path=None):
             setattr(meta, option_name, body)
 
         # handle heading/section
-        elif prefix == '#':
-            components.append(Section(body, section_type='section'))
-        elif prefix == '##':
-            components.append(Section(body, section_type='subsection'))
-        elif prefix == '###':
-            components.append(Section(body, section_type='subsubsection'))
-        elif prefix == '#*':
-            components.append(Section(body, section_type='section*'))
-        elif prefix == '##*':
-            components.append(Section(body, section_type='subsection*'))
-        elif prefix == '###*':
-            components.append(Section(body, section_type='subsubsection*'))
+        elif prefix in HEADINGS.keys():
+
+            # add section (heading) component
+            components.append(Section(body, section_type=HEADINGS[prefix]))
 
         # handle unordered list
         elif prefix in UNORDERED_LIST_PREFIXES:
@@ -66,10 +73,12 @@ def parse(md_lines, graphics_path=None):
                 items.append(get_line_without_prefix(md_lines[i]))
                 i += 1
 
+            # add unordered list component
             components.append(UnorderedList(items))
 
         # handle ordered list
         elif prefix in ORDERED_LIST_PREFIXES:
+            # XXX: Will not handle nested lists (lists within lists)
 
             items = []
             while i < n_lines:
@@ -85,7 +94,36 @@ def parse(md_lines, graphics_path=None):
                 items.append(get_line_without_prefix(md_lines[i]))
                 i += 1
 
+            # add ordered list component
             components.append(OrderedList(items))
+
+        # handle figures
+        elif FIGURE_RE.match(md_lines[i]):
+
+            # get details of figure component
+            image_path = re.findall(r'\((.*)\)', md_lines[i])[0]
+            caption_text = re.findall(r'\[(.*)\]', md_lines[i])[0]
+
+            # add figure component
+            components.append(Figure(graphics_path, image_path, caption_text))
+
+        # handle equation
+        elif prefix == '$$$':
+
+            # skip to next line and then iterate through until $$$ is reached
+            equation_lines = []
+            i += 1
+            while i < n_lines:
+
+                # break out at end
+                if md_lines[i] == '$$$':
+                    break
+                
+                equation_lines.append(md_lines[i]) 
+
+                i += 1
+
+            components.append(Equation(equation_lines))
 
         # handle comment
         elif prefix == '<!--':
@@ -96,7 +134,7 @@ def parse(md_lines, graphics_path=None):
                     break
                 i += 1
 
-        # interpret as text content
+        # interpret as text content (by default)
         else:
             components.append(Text(md_lines[i]))
 

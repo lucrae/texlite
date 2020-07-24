@@ -3,14 +3,14 @@ clean:
 	# remove all cache files
 	find . | grep -E "(__pycache__|\.py[cod]|\.pytest_cache)" | xargs rm -rf
 
-	# # remove example output
-	# rm -rf examples/*.pdf exmaples/*.pdf.swp examples/*.tex
+	# remove example output
+	rm -rf examples/*.pdf exmaples/*.pdf.swp examples/*.tex
 
-	# # remove test output
-	# rm -rf tests/assets/*.pdf tests/assets/*.pdf.swp tests/assets/*.tex
+	# remove test output
+	rm -rf tests/assets/*.pdf tests/assets/*.pdf.swp tests/assets/*.tex
 
-	# # remove base-level auxillary/log files
-	# rm -rf *.out *.aux *.log
+	# remove base-level auxillary/log files
+	rm -rf *.out *.aux *.log
 
 lint:
 

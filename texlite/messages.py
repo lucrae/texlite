@@ -41,18 +41,21 @@ def _print(message, preface=None, col=ANSI.DEFAULT):
 
 
 def message(message):
+    '''Prints a standard message'''
 
     # print message
     _print(message, preface='TeXLite', col=ANSI.OK)
 
 
 def warning(message):
+    '''Prints a warning message'''
 
     # print warning message
     _print(message, preface='Warning', col=ANSI.WARNING)
 
 
 def error(message, halt=False):
+    '''Prints an error message'''
 
     # print error message
     _print(message, preface='Error', col=ANSI.ERROR)

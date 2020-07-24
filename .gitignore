@@ -3,8 +3,8 @@
 __pycache__/
 venv/
 dev/
-dist/
 build/
+dist/
 temp/
 
 .vscode/

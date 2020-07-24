@@ -6,6 +6,13 @@ SPECIAL_CHARS = r'\#$%^&_{}~'
 NON_ENCAPSULATION_CHARS = SPECIAL_CHARS + r' '
 FONT_SIZES = ['8pt', '9pt', '10pt', '11pt', '12pt', '14pt', '17pt', '20pt']
 
+# text regex patterns
+BOLD_RE = r'\*\*([^\*\*]*)\*\*'
+ITALICS_RE = r'\*([^\*]*)\*'
+CODE_RE = r'`([^`]*)`'
+QUOTES_RE = r'"([^"]*)"'
+HYPERLINK_RE = r'\[([^\[]*)]\(([^\(]*)\)'
+
 
 def is_number(value):
     '''Returns if a value can be converted to integer or float'''
