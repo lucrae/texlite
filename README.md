@@ -8,20 +8,20 @@ TeXLite is an easy-to-use open-source tool for writing standard LaTeX/TeX docume
 
 # Install
 
-**Step 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
+**STEP 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
 
 ```
-pip install --upgrade texlite
+$ pip install --upgrade texlite
 ```
 
-**Step 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/).
+**STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/).
 - For Ubuntu, *TeX Live* can be installed with `sudo apt-get install texlive`.
 - For MacOS, *MacTeX* can be installed with `brew cask install mactex`.
 
 You should now be able to compile documents with:
 
 ```
-texlite my_document.md
+$ texlite my_document.md
 ```
 
 Use `texlite --help` for options and information.
