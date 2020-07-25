@@ -12,7 +12,12 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     base_path = Path(path).parents[0] / Path(path).stem
     file_stem = base_path.stem
 
-    exit_code = call_pdflatex(base_path, show_tex_output=show_tex_output)
+    try:
+        exit_code = call_pdflatex(base_path, show_tex_output=show_tex_output)
+    except FileNotFoundError as e:
+        return False, ('TeX compiler could not be found. If not installed, '
+                       'please install a TeX distribution (TeX Live '
+                       'recommended).')
 
     # XXX: pdflatex_error code will not be handled on Windows, working fix:
     # # compile to pdf using pdfLaTeX
@@ -38,12 +43,6 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
                        'inclusion of a special character or undefined '
                        'command. Use --show-tex-output for details.')
 
-    elif exit_code == 127:
-
-        return False, ('TeX compiler could not be found. If not installed, '
-                       'please install a TeX distribution (TeX Live '
-                       'recommended).')
-
     # move pdf to destination
     Path(f'{file_stem}.pdf').rename(Path(f'{base_path}.pdf'))
 
@@ -67,14 +66,14 @@ def call_pdflatex(base_path, show_tex_output=False):
     # set flags
     flags = '-halt-on-error'
 
-    # set output pipe
-    out = f'> {os.devnull}'
-    if show_tex_output:
-        out = '' # stdout
-
     # run pdflatex
-    cmd = ['pdflatex', flags, base_path, out] 
-    exit_code = subprocess.call(cmd)
+    cmd = ['pdflatex', flags, base_path]
+    if show_tex_output:
+        exit_code = subprocess.call(cmd)
+    else:
+        exit_code = subprocess.call(cmd,
+                                    stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
 
     return exit_code
 

@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
+        os: [ubuntu-16.04, ubuntu-18.04]
         python-version: [3.6, 3.7, 3.8]
 
     steps:
@@ -29,8 +29,7 @@ jobs:
       run: |
 
         # install texlive
-        sudo apt-get install texlive-full
-        # sudo apt-get install texlive
+        sudo apt-get install texlive
         
         # check if installed
         which pdflatex
