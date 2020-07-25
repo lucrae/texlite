@@ -66,12 +66,13 @@ def _call_pdflatex(base_path, show_tex_output=False):
             'stdout': subprocess.PIPE,
             'stderr': subprocess.PIPE,
         }
-    
+
     # run pdflatex
     cmd = [cmd_exe, *cmd_args]
     exit_code = subprocess.call(cmd, **call_kwargs)
 
     return exit_code
+
 
 def _get_pdflatex_exe():
 
@@ -84,7 +85,7 @@ def _get_pdflatex_exe():
     # attempts (in order)
     exes = [
         'pdflatex',
-        '/usr/bin/pdflatex', # Ubuntu
+        '/usr/bin/pdflatex', # Ubuntu/Debian
         '/Library/TeX/texbin/pdflatex', # MacOS
     ]
 
@@ -95,7 +96,6 @@ def _get_pdflatex_exe():
 
     # return None if no attempts succeeded
     return None
-
 
 
 def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
