@@ -31,11 +31,8 @@ jobs:
         # install texlive
         brew cask install mactex-no-gui
 
-        # reset terminal for MacTex CLI tools to take effect
-        eval "$(/usr/libexec/path_helper)"
-        
-        # check if installed
-        which pdflatex
+        # # reset terminal for MacTex tools to take effect
+        # eval "$(/usr/libexec/path_helper)"
         
     - name: Lint with flake8
       run: |

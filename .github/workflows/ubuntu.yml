@@ -30,9 +30,6 @@ jobs:
 
         # install texlive
         sudo apt-get install texlive
-        
-        # check if installed
-        which pdflatex
 
     - name: Lint with flake8
       run: |
