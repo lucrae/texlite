@@ -12,8 +12,7 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     base_path = Path(path).parents[0] / Path(path).stem
     file_stem = base_path.stem
 
-    pdflatex_error = _call(_get_compilation_command(base_path,
-                           show_tex_output=show_tex_output))
+    exit_code = call_pdflatex(base_path, show_tex_output=show_tex_output)
 
     # XXX: pdflatex_error code will not be handled on Windows, working fix:
     # # compile to pdf using pdfLaTeX
@@ -30,7 +29,7 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     #                    'recommended).')
 
     # handle pdflatex errors
-    if pdflatex_error == 1:
+    if exit_code == 1:
 
         _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
                       save_tex=False)
@@ -39,7 +38,7 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
                        'inclusion of a special character or undefined '
                        'command. Use --show-tex-output for details.')
 
-    elif pdflatex_error == 127:
+    elif exit_code == 127:
 
         return False, ('TeX compiler could not be found. If not installed, '
                        'please install a TeX distribution (TeX Live '
@@ -63,11 +62,21 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     return True, f'Compiled document as "{base_path}.pdf"'
 
 
-def _call(cmd):
+def call_pdflatex(base_path, show_tex_output=False):
 
-    # perform subprocess call in shell and return exit code
-    # NOTE: use this only if there are no built-in os functions for the task
-    return subprocess.call(cmd, shell=True)
+    # set flags
+    flags = '-halt-on-error'
+
+    # set output pipe
+    out = f'> {os.devnull}'
+    if show_tex_output:
+        out = '' # stdout
+
+    # run pdflatex
+    cmd = ['pdflatex', flags, base_path, out] 
+    exit_code = subprocess.call(cmd)
+
+    return exit_code
 
 
 def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
@@ -82,17 +91,4 @@ def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
     if not save_tex:
         if Path(f'{base_path}.tex').exists():
             Path(f'{base_path}.tex').unlink()
-
-
-def _get_compilation_command(base_path, show_tex_output=False):
-
-    # set flags
-    flags = '-halt-on-error'
-
-    # set output pipe
-    out = f'> {os.devnull}'
-    if show_tex_output:
-        out = '' # stdout
-
-    # return command for compiling pdf with pdflatex
-    return f'pdflatex {flags} {base_path}.tex {out}'
+   
