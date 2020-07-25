@@ -25,14 +25,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
 
-    - name: Install TeX distribution (TeX Live)
+    - name: Install TeX distribution (MacTeX)
       run: |
 
         # install texlive
         brew cask install mactex-no-gui
-
-        # # reset terminal for MacTex tools to take effect
-        # eval "$(/usr/libexec/path_helper)"
         
     - name: Lint with flake8
       run: |
