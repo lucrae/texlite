@@ -21,7 +21,7 @@ clean:
 lint:
 
 	# run flake8 style guide checking on source file and setup.py
-	flake8 --config setup.cfg texlite setup.py
+	flake8 --config setup.cfg
 
 publish:
 

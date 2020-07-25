@@ -1,4 +1,4 @@
-name: Main
+name: standard
 on: [push, pull_request]
 
 jobs:
@@ -29,11 +29,11 @@ jobs:
     - name: Lint with flake8
       run: |
         # syntax errors
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        python -m flake8 --config setup.cfg --select=E9,F63,F7,F82 --show-source
 
-        # warnings
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    
+        # warnings (--exit-zero to not treat as errors)
+        python -m flake8 --config setup.cfg --count --exit-zero --max-line-length=127
+
     - name: Test with pytest
       run: |
-        pytest
+        python -m pytest
