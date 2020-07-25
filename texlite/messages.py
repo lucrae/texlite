@@ -1,4 +1,5 @@
 import re
+import os
 
 
 class ANSI:
@@ -22,6 +23,7 @@ class ANSI:
     # MAGENTA = '\033[95m',
     # BLUE ='\033[94m',
 
+    @classmethod
     def disable(self):
         self.DEFAULT = ''
         self.OK = ''
@@ -29,6 +31,11 @@ class ANSI:
         self.ERROR = ''
         self.BOLD = ''
         self.UNDERLINE = ''
+
+
+# disable terminal styling if on Windows
+if os.name == 'nt':
+    ANSI.disable()
 
 
 def _print(message, preface=None, col=ANSI.DEFAULT):

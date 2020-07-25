@@ -16,8 +16,8 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
         exit_code = _call_pdflatex(base_path, show_tex_output=show_tex_output)
     except FileNotFoundError:
         return False, ('TeX compiler could not be found. If not installed, '
-                       'please install a TeX distribution (TeX Live '
-                       'recommended).')
+                       'please install a TeX distribution (TeX Live or '
+                       'MacTeX recommended).')
 
     # handle pdflatex errors
     if exit_code == 1:
@@ -94,8 +94,8 @@ def _get_pdflatex_exe():
         if subprocess.call(['which', exe], **call_kwargs) == 0:
             return exe
 
-    # return None if no attempts succeeded
-    return None
+    # return pdflatex as a default
+    return 'pdflatex'
 
 
 def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
