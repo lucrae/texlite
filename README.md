@@ -8,10 +8,10 @@ TeXLite is an easy-to-use open-source tool for writing standard LaTeX/TeX docume
 
 # Install
 
-**Step 1**: Install TeXLite with [pip](https://pip.pypa.io/en/stable/quickstart/).
+**Step 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
 
 ```
-pip install texlite
+pip install --upgrade texlite
 ```
 
 **Step 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/).

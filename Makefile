@@ -24,8 +24,10 @@ lint:
 
 publish:
 
-	# publish package to PyPI
-	# DO NOT FORGET TO INCREMENT VERSION IN `texlite._version.py`
+	# remind user to update __version__ in texlite/_version.py
+	scripts/before_publish.sh
+
+	# publish package to PyPI (ONLY DO THIS IF IN MASTER)
 	python3 -m pip install --upgrade setuptools wheel twine
 	python3 setup.py sdist bdist_wheel
 	python3 -m twine upload dist/*
