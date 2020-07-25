@@ -12,18 +12,22 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     base_path = Path(path).parents[0] / Path(path).stem
     file_stem = base_path.stem
 
-    # compile to pdf using pdfLaTeX
-    try:
-        pdflatex_error = _call(_get_compilation_command(base_path,
-                               show_tex_output=show_tex_output))
-    except:
+    pdflatex_error = _call(_get_compilation_command(base_path,
+                           show_tex_output=show_tex_output))
 
-        # NOTE: if the call completely fails, it is likely due to TeX not being
-        # installed. On Ubuntu/Linux this will give an error code 127 but
-        # on Windows it might just completely fail.
-        return False, ('TeX compiler could not be found. If not installed, '
-                       'please install a TeX distribution (TeX Live '
-                       'recommended).')
+    # XXX: pdflatex_error code will not be handled on Windows, working fix:
+    # # compile to pdf using pdfLaTeX
+    # try:
+    #     pdflatex_error = _call(_get_compilation_command(base_path,
+    #                            show_tex_output=show_tex_output))
+    # except:
+
+    #     # NOTE: if the call completely fails, it is likely due to TeX not
+    #     # being installed. On Ubuntu/Linux this will give an error code 127
+    #     # but on Windows it might just completely fail.
+    #     return False, ('TeX compiler could not be found. If not installed, '
+    #                    'please install a TeX distribution (TeX Live '
+    #                    'recommended).')
 
     # handle pdflatex errors
     if pdflatex_error == 1:
