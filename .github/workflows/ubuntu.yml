@@ -1,0 +1,47 @@
+name: Ubuntu
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-16.04, ubuntu-18.04]
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Python dependencies
+      run: |
+
+        # upgrade pip and install flake8 and pytest for linting and testing
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+
+    - name: Install TeX distribution (TeX Live)
+      run: |
+
+        # install texlive
+        sudo apt-get install texlive
+
+    - name: Lint with flake8
+      run: |
+
+        # check for syntax errors
+        python -m flake8 --config setup.cfg --select=E9,F63,F7,F82 --show-source
+
+        # check for give warnings (--exit-zero to not treat as errors)
+        python -m flake8 --config setup.cfg --exit-zero
+
+    - name: Test with pytest
+      run: |
+
+        # run tests
+        python -m pytest --verbose

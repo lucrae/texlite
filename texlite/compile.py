@@ -12,25 +12,15 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     base_path = Path(path).parents[0] / Path(path).stem
     file_stem = base_path.stem
 
-    pdflatex_error = _call(_get_compilation_command(base_path,
-                           show_tex_output=show_tex_output))
-
-    # XXX: pdflatex_error code will not be handled on Windows, working fix:
-    # # compile to pdf using pdfLaTeX
-    # try:
-    #     pdflatex_error = _call(_get_compilation_command(base_path,
-    #                            show_tex_output=show_tex_output))
-    # except:
-
-    #     # NOTE: if the call completely fails, it is likely due to TeX not
-    #     # being installed. On Ubuntu/Linux this will give an error code 127
-    #     # but on Windows it might just completely fail.
-    #     return False, ('TeX compiler could not be found. If not installed, '
-    #                    'please install a TeX distribution (TeX Live '
-    #                    'recommended).')
+    try:
+        exit_code = _call_pdflatex(base_path, show_tex_output=show_tex_output)
+    except FileNotFoundError:
+        return False, ('TeX compiler could not be found. If not installed, '
+                       'please install a TeX distribution (TeX Live '
+                       'recommended).')
 
     # handle pdflatex errors
-    if pdflatex_error == 1:
+    if exit_code == 1:
 
         _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
                       save_tex=False)
@@ -39,14 +29,8 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
                        'inclusion of a special character or undefined '
                        'command. Use --show-tex-output for details.')
 
-    elif pdflatex_error == 127:
-
-        return False, ('TeX compiler could not be found. If not installed, '
-                       'please install a TeX distribution (TeX Live '
-                       'recommended).')
-
     # move pdf to destination
-    os.rename(f'{file_stem}.pdf', f'{base_path}.pdf')
+    Path(f'{file_stem}.pdf').rename(Path(f'{base_path}.pdf'))
 
     # clean up
     _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
@@ -63,11 +47,55 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     return True, f'Compiled document as "{base_path}.pdf"'
 
 
-def _call(cmd):
+def _call_pdflatex(base_path, show_tex_output=False):
 
-    # perform subprocess call in shell and return exit code
-    # NOTE: use this only if there are no built-in os functions for the task
-    return subprocess.call(cmd, shell=True)
+    # set command executable
+    cmd_exe = _get_pdflatex_exe()
+
+    # if executable not found, raise FileNotFoundError
+    if not cmd_exe:
+        raise FileNotFoundError
+
+    # set flags
+    cmd_args = ['-halt-on-error', base_path]
+
+    # set keyword arguments for subprocess call
+    call_kwargs = {}
+    if not show_tex_output:
+        call_kwargs = {
+            'stdout': subprocess.PIPE,
+            'stderr': subprocess.PIPE,
+        }
+
+    # run pdflatex
+    cmd = [cmd_exe, *cmd_args]
+    exit_code = subprocess.call(cmd, **call_kwargs)
+
+    return exit_code
+
+
+def _get_pdflatex_exe():
+
+    # set keyword arguments for subprocess call
+    call_kwargs = {
+        'stdout': subprocess.PIPE,
+        'stderr': subprocess.PIPE,
+    }
+
+    # attempts (in order)
+    exes = [
+        'pdflatex',
+        '/usr/bin/pdflatex', # Ubuntu/Debian
+        '/Library/TeX/texbin/pdflatex', # MacOS
+    ]
+
+    for exe in exes:
+        # attempt to call which on executable
+        if subprocess.call(['which', exe], **call_kwargs) == 0:
+            return exe
+
+    # return None if no attempts succeeded
+    return None
 
 
 def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
@@ -75,22 +103,10 @@ def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
 
     # clean up auxillary files
     for extension in AUXILLARY_FILE_EXTENSIONS:
-        os.remove(f'{file_stem}.{extension}')
+        if Path(f'{file_stem}.{extension}').exists():
+            Path(f'{file_stem}.{extension}').unlink()
 
     # remove tex if not keeping
     if not save_tex:
-        os.remove(f'{base_path}.tex')
-
-
-def _get_compilation_command(base_path, show_tex_output=False):
-
-    # set flags
-    flags = '-halt-on-error'
-
-    # set output pipe
-    out = f'> {os.devnull}'
-    if show_tex_output:
-        out = '' # stdout
-
-    # return command for compiling pdf with pdflatex
-    return f'pdflatex {flags} {base_path}.tex {out}'
+        if Path(f'{base_path}.tex').exists():
+            Path(f'{base_path}.tex').unlink()
