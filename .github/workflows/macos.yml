@@ -29,7 +29,7 @@ jobs:
       run: |
 
         # install texlive
-        brew cask install mactex
+        brew cask install mactex-no-gui
 
         # reset terminal for MacTex CLI tools to take effect
         eval "$(/usr/libexec/path_helper)"
