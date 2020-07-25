@@ -29,7 +29,8 @@ jobs:
       run: |
 
         # install texlive
-        sudo apt-get install texlive
+        sudo apt-get install texlive-full
+        # sudo apt-get install texlive
         
         # check if installed
         which pdflatex
