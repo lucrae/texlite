@@ -3,8 +3,6 @@ from setuptools import setup, find_packages
 
 from texlite._version import description, __version__
 
-# sample warning                                                                                here
-
 # read in README file for long description
 with open('README.md', 'r') as f:
 

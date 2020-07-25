@@ -4,6 +4,9 @@ from pathlib import Path
 from texlite.cli import run
 
 
+SHOW_TEX_OUTPUT = True
+
+
 def test_simple_source():
     '''Tests feeding in a simple source file'''
 
@@ -11,7 +14,7 @@ def test_simple_source():
     args = {
         'source': Path('tests/assets/test_compile/simple.md'),
         'save_tex': False,
-        'show_tex_output': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
     }
 
@@ -33,7 +36,7 @@ def test_saving_tex():
     args = {
         'source': Path('tests/assets/test_compile/simple.md'),
         'save_tex': True,
-        'show_tex_output': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
     }
 
@@ -56,7 +59,7 @@ def test_empty_source():
     args = {
         'source': Path('tests/assets/test_compile/empty.md'),
         'save_tex': False,
-        'show_tex_output': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
     }
 
@@ -78,7 +81,7 @@ def test_nonexistent_source():
     args = {
         'source': Path('tests/assets/test_compile/doesnotexist.md'),
         'save_tex': False,
-        'show_tex_output': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
     }
 
@@ -96,7 +99,7 @@ def test_incorrect_source():
     args = {
         'source': Path('tests/assets/test_compile/incorrect.txt'),
         'save_tex': False,
-        'show_tex_output': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
     }
 
@@ -112,9 +115,9 @@ def test_undefined_command():
 
     # set arguments
     args = {
-        'source': Path('tests/assets/test_compile/undefined_command.txt'),
+        'source': Path('tests/assets/test_compile/undefined_command.md'),
         'save_tex': False,
-        'show_tex_output': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
     }
 
@@ -123,3 +126,26 @@ def test_undefined_command():
 
     # assert
     assert success is False
+
+
+def test_no_pdf_compile():
+    '''Tests feeding in a file and not creating a pdf'''
+
+    # set arguments
+    args = {
+        'source': Path('tests/assets/test_compile/simple.md'),
+        'save_tex': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
+        'no_pdf': True,
+    }
+
+    # execute main
+    success = run(args=argparse.Namespace(**args))
+
+    # assert
+    assert success
+    assert not Path('tests/assets/test_compile/simple.pdf').exists()
+    
+    # tear down
+    if Path('tests/assets/test_compile/simple.tex').exists():
+        Path('tests/assets/test_compile/simple.tex').unlink()

@@ -6,6 +6,8 @@ from pathlib import Path
 from texlite.cli import run
 
 
+SHOW_TEX_OUTPUT = True
+
 COMPONENTS_TO_TEST = [
     'meta',
     'meta_incorrect',
@@ -31,7 +33,7 @@ def test_component(component):
     args = {
         'source': Path(f'tests/assets/test_components/{component}.md'),
         'save_tex': True,
-        'show_tex_output': False,
+        'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
     }
 
