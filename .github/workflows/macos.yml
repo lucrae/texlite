@@ -1,4 +1,4 @@
-name: standard
+name: MacOS
 on: [push, pull_request]
 
 jobs:
@@ -30,8 +30,11 @@ jobs:
 
         # install texlive
         brew cask install mactex
+
+        # reset terminal for MacTex CLI tools to take effect
+        eval "$(/usr/libexec/path_helper)"
         
-        # test if installed
+        # check if installed
         which pdflatex
         
     - name: Lint with flake8

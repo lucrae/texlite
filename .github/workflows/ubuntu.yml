@@ -1,4 +1,4 @@
-name: standard
+name: Ubuntu
 on: [push, pull_request]
 
 jobs:

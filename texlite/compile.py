@@ -46,7 +46,7 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
                        'recommended).')
 
     # move pdf to destination
-    os.rename(f'{file_stem}.pdf', f'{base_path}.pdf')
+    Path(f'{file_stem}.pdf').rename(Path(f'{base_path}.pdf'))
 
     # clean up
     _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
@@ -75,11 +75,13 @@ def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
 
     # clean up auxillary files
     for extension in AUXILLARY_FILE_EXTENSIONS:
-        os.remove(f'{file_stem}.{extension}')
+        if Path(f'{file_stem}.{extension}').exists():
+            Path(f'{file_stem}.{extension}').unlink()
 
     # remove tex if not keeping
     if not save_tex:
-        os.remove(f'{base_path}.tex')
+        if Path(f'{base_path}.tex').exists():
+            Path(f'{base_path}.tex').unlink()
 
 
 def _get_compilation_command(base_path, show_tex_output=False):
