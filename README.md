@@ -24,4 +24,10 @@ You should now be able to compile documents with:
 $ texlite my_document.md
 ```
 
-Use `texlite --help` for options and information.
+Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](##Installation-Fixes).
+
+## Installation Fixes
+
+- If `pip install texlite` is not working, you may be using Python 2.7, which has reached its end of life. Use `pip3 install --upgrade pip` and then `pip3 install texlite` to ensure that you are using Python 3.
+
+- If TeX Live is installed and working but the document TeX cannot be compiled, it may because of missing plugins. You can ensure your TeX Live has all the plugins with `sudo apt-get install texlive-full`.
