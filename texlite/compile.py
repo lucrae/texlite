@@ -13,25 +13,11 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     file_stem = base_path.stem
 
     try:
-        exit_code = call_pdflatex(base_path, show_tex_output=show_tex_output)
+        exit_code = _call_pdflatex(base_path, show_tex_output=show_tex_output)
     except FileNotFoundError:
         return False, ('TeX compiler could not be found. If not installed, '
                        'please install a TeX distribution (TeX Live '
                        'recommended).')
-
-    # XXX: pdflatex_error code will not be handled on Windows, working fix:
-    # # compile to pdf using pdfLaTeX
-    # try:
-    #     pdflatex_error = _call(_get_compilation_command(base_path,
-    #                            show_tex_output=show_tex_output))
-    # except:
-
-    #     # NOTE: if the call completely fails, it is likely due to TeX not
-    #     # being installed. On Ubuntu/Linux this will give an error code 127
-    #     # but on Windows it might just completely fail.
-    #     return False, ('TeX compiler could not be found. If not installed, '
-    #                    'please install a TeX distribution (TeX Live '
-    #                    'recommended).')
 
     # handle pdflatex errors
     if exit_code == 1:
@@ -61,23 +47,55 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     return True, f'Compiled document as "{base_path}.pdf"'
 
 
-def call_pdflatex(base_path, show_tex_output=False):
+def _call_pdflatex(base_path, show_tex_output=False):
+
+    # set command executable
+    cmd_exe = _get_pdflatex_exe()
+
+    # if executable not found, raise FileNotFoundError
+    if not cmd_exe:
+        raise FileNotFoundError
 
     # set flags
-    flags = '-halt-on-error'
+    cmd_args = ['-halt-on-error', base_path]
 
-    print(show_tex_output)
-
+    # set keyword arguments for subprocess call
+    call_kwargs = {}
+    if not show_tex_output:
+        call_kwargs = {
+            'stdout': subprocess.PIPE,
+            'stderr': subprocess.PIPE,
+        }
+    
     # run pdflatex
-    cmd = ['pdflatex', flags, base_path]
-    if show_tex_output:
-        exit_code = subprocess.call(cmd)
-    else:
-        exit_code = subprocess.call(cmd,
-                                    stdout=subprocess.PIPE,
-                                    stderr=subprocess.PIPE)
+    cmd = [cmd_exe, *cmd_args]
+    exit_code = subprocess.call(cmd, **call_kwargs)
 
     return exit_code
+
+def _get_pdflatex_exe():
+
+    # set keyword arguments for subprocess call
+    call_kwargs = {
+        'stdout': subprocess.PIPE,
+        'stderr': subprocess.PIPE,
+    }
+
+    # attempts (in order)
+    exes = [
+        'pdflatex',
+        '/usr/bin/pdflatex', # Ubuntu
+        '/Library/TeX/texbin/pdflatex', # MacOS
+    ]
+
+    for exe in exes:
+        # attempt to call which on executable
+        if subprocess.call(['which', exe], **call_kwargs) == 0:
+            return exe
+
+    # return None if no attempts succeeded
+    return None
+
 
 
 def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
