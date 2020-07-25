@@ -12,7 +12,7 @@ def main():
     parser.add_argument('source', type=str,
                         help='path to source markdown (.md) file to parse and '
                         'compile')
-    parser.add_argument('--version', action='version',
+    parser.add_argument('-V', '--version', action='version',
                         version=f'TeXLite {__version__}',
                         help='display version and exit')
     parser.add_argument('-t', '--save-tex', action='store_true', default=False,
@@ -20,8 +20,8 @@ def main():
     parser.add_argument('--show-tex-output', action='store_true',
                         default=False, help='show output for TeX and pdfLaTeX '
                         'processes')
-    parser.add_argument('--dry', action='store_true', default=False,
-                        help='don\'t generate PDF')
+    parser.add_argument('--no-pdf', action='store_true', default=False,
+                        help='save TeX (.tex) and do not generate PDF')
     args = parser.parse_args()
 
     # run texlite

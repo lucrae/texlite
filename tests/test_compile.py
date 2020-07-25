@@ -12,7 +12,7 @@ def test_simple_source():
         'source': Path('tests/assets/test_compile/simple.md'),
         'save_tex': False,
         'show_tex_output': False,
-        'dry': False,
+        'no_pdf': False,
     }
 
     # execute main
@@ -34,7 +34,7 @@ def test_saving_tex():
         'source': Path('tests/assets/test_compile/simple.md'),
         'save_tex': True,
         'show_tex_output': False,
-        'dry': False,
+        'no_pdf': False,
     }
 
     # execute main
@@ -57,7 +57,7 @@ def test_empty_source():
         'source': Path('tests/assets/test_compile/empty.md'),
         'save_tex': False,
         'show_tex_output': False,
-        'dry': False,
+        'no_pdf': False,
     }
 
     # execute main
@@ -79,7 +79,7 @@ def test_nonexistent_source():
         'source': Path('tests/assets/test_compile/doesnotexist.md'),
         'save_tex': False,
         'show_tex_output': False,
-        'dry': False,
+        'no_pdf': False,
     }
 
     # execute main
@@ -97,7 +97,7 @@ def test_incorrect_source():
         'source': Path('tests/assets/test_compile/incorrect.txt'),
         'save_tex': False,
         'show_tex_output': False,
-        'dry': False,
+        'no_pdf': False,
     }
 
     # execute main
@@ -115,7 +115,7 @@ def test_undefined_command():
         'source': Path('tests/assets/test_compile/undefined_command.txt'),
         'save_tex': False,
         'show_tex_output': False,
-        'dry': False,
+        'no_pdf': False,
     }
 
     # execute main

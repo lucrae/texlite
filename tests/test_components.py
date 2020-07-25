@@ -32,7 +32,7 @@ def test_component(component):
         'source': Path(f'tests/assets/test_components/{component}.md'),
         'save_tex': True,
         'show_tex_output': False,
-        'dry': False,
+        'no_pdf': False,
     }
 
     # execute main

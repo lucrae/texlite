@@ -6,16 +6,24 @@ from pathlib import Path
 AUXILLARY_FILE_EXTENSIONS = ['aux', 'log', 'out']
 
 
-def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False,
-                       dry=False):
+def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
 
     # get base file path (tex file path without extension)
     base_path = Path(path).parents[0] / Path(path).stem
     file_stem = base_path.stem
 
     # compile to pdf using pdfLaTeX
-    pdflatex_error = _call(_get_compilation_command(base_path,
-                           show_tex_output=show_tex_output, dry=dry))
+    try:
+        pdflatex_error = _call(_get_compilation_command(base_path,
+                               show_tex_output=show_tex_output))
+    except:
+
+        # NOTE: if the call completely fails, it is likely due to TeX not being
+        # installed. On Ubuntu/Linux this will give an error code 127 but
+        # on Windows it might just completely fail.
+        return False, ('TeX compiler could not be found. If not installed, '
+                       'please install a TeX distribution (TeX Live '
+                       'recommended).')
 
     # handle pdflatex errors
     if pdflatex_error == 1:
@@ -30,12 +38,11 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False,
     elif pdflatex_error == 127:
 
         return False, ('TeX compiler could not be found. If not installed, '
-                       'please install a TeX distribution (TeX Live or MiKTeX '
+                       'please install a TeX distribution (TeX Live '
                        'recommended).')
 
-    # move pdf (if created) to destination
-    if not dry:
-        os.rename(f'{file_stem}.pdf', f'{base_path}.pdf')
+    # move pdf to destination
+    os.rename(f'{file_stem}.pdf', f'{base_path}.pdf')
 
     # clean up
     _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
@@ -71,12 +78,10 @@ def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
         os.remove(f'{base_path}.tex')
 
 
-def _get_compilation_command(base_path, show_tex_output=False, dry=False):
+def _get_compilation_command(base_path, show_tex_output=False):
 
     # set flags
     flags = '-halt-on-error'
-    if dry:
-        flags += ' -draftmode'
 
     # set output pipe
     out = f'> {os.devnull}'

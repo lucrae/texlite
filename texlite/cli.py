@@ -54,18 +54,20 @@ def run(args):
     write_tex_lines(path=tex_path, lines=tex_lines)
 
     # compile to pdf
-    compile_success, compile_message = compile_tex_to_pdf(
-        path=tex_path,
-        save_tex=args.save_tex,
-        show_tex_output=args.show_tex_output,
-        dry=args.dry,
-    )
+    if not args.no_pdf:
+        compile_success, compile_message = compile_tex_to_pdf(
+            path=tex_path,
+            save_tex=args.save_tex,
+            show_tex_output=args.show_tex_output,
+        )
 
-    # display compile success
-    if compile_success:
-        msg.message(compile_message)
-    else:
-        msg.error(compile_message)
-        return False
+        # display compile success
+        if compile_success:
+            msg.message(compile_message)
+        else:
+            msg.error(compile_message)
+            return False
+
+    msg.message('Done')
 
     return True
