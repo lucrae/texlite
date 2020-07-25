@@ -14,7 +14,7 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
 
     try:
         exit_code = call_pdflatex(base_path, show_tex_output=show_tex_output)
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         return False, ('TeX compiler could not be found. If not installed, '
                        'please install a TeX distribution (TeX Live '
                        'recommended).')
@@ -66,6 +66,8 @@ def call_pdflatex(base_path, show_tex_output=False):
     # set flags
     flags = '-halt-on-error'
 
+    print(show_tex_output)
+
     # run pdflatex
     cmd = ['pdflatex', flags, base_path]
     if show_tex_output:
@@ -90,4 +92,3 @@ def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
     if not save_tex:
         if Path(f'{base_path}.tex').exists():
             Path(f'{base_path}.tex').unlink()
-   

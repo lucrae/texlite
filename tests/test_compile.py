@@ -145,7 +145,7 @@ def test_no_pdf_compile():
     # assert
     assert success
     assert not Path('tests/assets/test_compile/simple.pdf').exists()
-    
+
     # tear down
     if Path('tests/assets/test_compile/simple.tex').exists():
         Path('tests/assets/test_compile/simple.tex').unlink()
