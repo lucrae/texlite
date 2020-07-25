@@ -19,21 +19,28 @@ jobs:
 
     - name: Install Python dependencies
       run: |
+
+        # upgrade pip and install flake8 and pytest for linting and testing
         python -m pip install --upgrade pip
         pip install flake8 pytest
 
     - name: Install TeX distribution (TeX Live)
       run: |
+
+        # install texlive
         sudo apt-get install texlive
         
     - name: Lint with flake8
       run: |
-        # syntax errors
+
+        # check for syntax errors
         python -m flake8 --config setup.cfg --select=E9,F63,F7,F82 --show-source
 
-        # warnings (--exit-zero to not treat as errors)
-        python -m flake8 --config setup.cfg --count --exit-zero --max-line-length=127
+        # check for give warnings (--exit-zero to not treat as errors)
+        python -m flake8 --config setup.cfg --exit-zero
 
     - name: Test with pytest
       run: |
+
+        # run tests
         python -m pytest

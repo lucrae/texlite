@@ -1,5 +1,4 @@
-# NB: This is only for development purposes.
-# Automated testing goes in tox.ini and .travis.yml
+# NB: These workflows are for local development purposes only.
 
 clean:
 
