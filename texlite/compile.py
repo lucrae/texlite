@@ -2,7 +2,8 @@ import os
 import subprocess
 from pathlib import Path
 
-from texlite.utils import using_windows
+from texlite import messages as msg
+from texlite.utils import get_os_name
 
 
 AUXILLARY_FILE_EXTENSIONS = ['aux', 'log', 'out']
@@ -59,10 +60,6 @@ def _call_pdflatex(base_path, show_tex_output=False):
     # set command executable
     cmd_exe = _get_pdflatex_exe()
 
-    # if executable not found, raise FileNotFoundError
-    if not cmd_exe:
-        raise FileNotFoundError
-
     # set flags
     cmd_args = ['-halt-on-error', str(base_path)]
 
@@ -82,14 +79,15 @@ def _get_pdflatex_exe():
 
     # XXX: the `which` method of this function does not work in Windows, so
     # just default to pdflatex. This is a little hacky and could be improved
-    if using_windows:
+
+    if get_os_name() == 'windows':
         return 'pdflatex'
 
     # attempts (in order)
     exes = [
         'pdflatex',
         '/usr/bin/pdflatex', # Ubuntu/Debian
-        '/Library/TeX/texbin/pdflatex', # MacOS
+        '/Library/TeX/texbin/pdflatex', # macOS
     ]
 
     # open devnull pipe to write subprocess calls to
@@ -99,9 +97,13 @@ def _get_pdflatex_exe():
         for exe in exes:
 
             # attempt to call which on executable
-            exit_code = subprocess.call(['which', exe], stdout=f)
-            if exit_code == 0:
-                return exe
+            try:
+                exit_code = subprocess.call(['which', exe], stdout=f)
+                if exit_code == 0:
+                    return exe
+            except FileNotFoundError:
+                msg.warning('Search for TeX PDF compiler failed.')
+                raise FileNotFoundError
 
     # return pdflatex as a default
     return 'pdflatex'
