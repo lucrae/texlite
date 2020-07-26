@@ -14,10 +14,15 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     base_path = Path(path).parents[0] / Path(path).stem
     file_stem = base_path.stem
 
+    # remove previous PDF file if exists
+    if Path(f'{base_path}.pdf').exists():
+        Path(f'{base_path}.pdf').unlink()
+
+    # run pdflatex
     try:
         exit_code = _call_pdflatex(base_path, show_tex_output=show_tex_output)
     except FileNotFoundError:
-        return False, ('TeX compiler could not be found to create PDF. If not '
+        return False, ('TeX PDF compiler could not be found. If not '
                        'installed, please install a TeX distribution '
                        '(https://www.latex-project.org/get).')
 
@@ -61,17 +66,14 @@ def _call_pdflatex(base_path, show_tex_output=False):
     # set flags
     cmd_args = ['-halt-on-error', str(base_path)]
 
-    # set keyword arguments for subprocess call
-    call_kwargs = {}
-    if not show_tex_output:
-        call_kwargs = {
-            'stdout': subprocess.PIPE,
-            'stderr': subprocess.PIPE,
-        }
-
     # run pdflatex
     cmd = [cmd_exe, *cmd_args]
-    exit_code = subprocess.call(cmd, **call_kwargs)
+
+    if show_tex_output:
+        exit_code = subprocess.call(cmd)
+    else:
+        with open(os.devnull, 'w') as f:
+            exit_code = subprocess.call(cmd, stdout=f)
 
     return exit_code
 
@@ -83,12 +85,6 @@ def _get_pdflatex_exe():
     if using_windows:
         return 'pdflatex'
 
-    # set keyword arguments for subprocess call
-    call_kwargs = {
-        'stdout': subprocess.PIPE,
-        'stderr': subprocess.PIPE,
-    }
-
     # attempts (in order)
     exes = [
         'pdflatex',
@@ -96,13 +92,16 @@ def _get_pdflatex_exe():
         '/Library/TeX/texbin/pdflatex', # MacOS
     ]
 
-    # iterate through options
-    for exe in exes:
+    # open devnull pipe to write subprocess calls to
+    with open(os.devnull, 'w') as f:
 
-        # attempt to call which on executable
-        exit_code = subprocess.call(['which', exe], **call_kwargs)
-        if exit_code == 0:
-            return exe
+        # iterate through attempts
+        for exe in exes:
+
+            # attempt to call which on executable
+            exit_code = subprocess.call(['which', exe], stdout=f)
+            if exit_code == 0:
+                return exe
 
     # return pdflatex as a default
     return 'pdflatex'
