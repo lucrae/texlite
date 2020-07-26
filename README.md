@@ -8,6 +8,7 @@ TeXLite is an easy-to-use open-source tool for writing standard LaTeX/TeX docume
 
 <p align="center">
   <img width="100%" src="docs/images/demo.png" />
+  <p align="center"><i>A demo of writing a simple document in an editor and compiling it to a PDF with TeXLite</i></p>
 </p>
 
 # Install
