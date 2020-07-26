@@ -14,9 +14,3 @@ def get_os_name():
 
     # default to linux
     return 'linux'
-
-
-def using_windows():
-    '''Returns if Windows is used at runtime'''
-
-    return os.name == 'nt'

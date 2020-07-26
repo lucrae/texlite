@@ -17,7 +17,7 @@ $ pip install --upgrade texlite
 **STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/). Recommendations:
 - On Ubuntu, *TeX Live* can be installed with `sudo apt-get install texlive`.
 - On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
-- On Windows, *MikTeX* can be downloaded and installed from [their official downloads page](https://miktex.org/download).
+- On Windows, *MikTeX* can be downloaded and installed from [its official downloads page](https://miktex.org/download).
 
 You should now be able to compile documents with:
 

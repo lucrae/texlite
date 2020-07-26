@@ -2,7 +2,7 @@ import re
 import os
 
 
-from texlite.utils import using_windows
+from texlite.utils import get_os_name
 
 
 class ANSI:
@@ -36,8 +36,8 @@ class ANSI:
         self.UNDERLINE = ''
 
 
-# disable terminal styling if on Windows
-if using_windows():
+# disable terminal styling if not on Linux
+if get_os_name() != 'linux':
     ANSI.disable()
 
 
