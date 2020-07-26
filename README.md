@@ -6,6 +6,11 @@
 
 TeXLite is an easy-to-use open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
 
+<p align="center">
+  <img width="100%" src="docs/images/demo.png" />
+  <p align="center"><i>A demo of writing a simple document in an editor and compiling it to a PDF with TeXLite</i></p>
+</p>
+
 # Install
 
 **STEP 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
@@ -17,7 +22,7 @@ $ pip install --upgrade texlite
 **STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/). Recommendations:
 - On Ubuntu, *TeX Live* can be installed with `sudo apt-get install texlive`.
 - On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
-- On Windows, *MikTeX* can be downloaded and installed from [its official downloads page](https://miktex.org/download).
+- On Windows (currently experimental), *MikTeX* can be downloaded and installed from [its official downloads page](https://miktex.org/download).
 
 You should now be able to compile documents with:
 
@@ -25,7 +30,7 @@ You should now be able to compile documents with:
 $ texlite my_document.md
 ```
 
-Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](##Installation-Fixes).
+Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
 ## Installation Fixes
 
