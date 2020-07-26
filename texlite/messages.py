@@ -2,6 +2,9 @@ import re
 import os
 
 
+from texlite.utils import using_windows
+
+
 class ANSI:
     '''ANSI colour interrupts'''
 
@@ -34,7 +37,7 @@ class ANSI:
 
 
 # disable terminal styling if on Windows
-if os.name == 'nt':
+if using_windows():
     ANSI.disable()
 
 

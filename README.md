@@ -14,9 +14,10 @@ TeXLite is an easy-to-use open-source tool for writing standard LaTeX/TeX docume
 $ pip install --upgrade texlite
 ```
 
-**STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/).
-- For Ubuntu, *TeX Live* can be installed with `sudo apt-get install texlive`.
-- For MacOS, *MacTeX* can be installed with `brew cask install mactex`.
+**STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/). Recommendations:
+- On Ubuntu, *TeX Live* can be installed with `sudo apt-get install texlive`.
+- On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
+- On Windows, *MikTeX* can be downloaded and installed from [here](https://miktex.org/download)
 
 You should now be able to compile documents with:
 
@@ -30,4 +31,6 @@ Use `texlite --help` for options and information. If you have any issues install
 
 - If `pip install texlite` is not working, you may be using Python 2.7, which has reached its end of life. Use `pip3 install --upgrade pip` and then `pip3 install texlite` to ensure that you are using Python 3.
 
-- If TeX Live is installed and working but the document TeX cannot be compiled, it may because of missing plugins. You can ensure your TeX Live has all the plugins with `sudo apt-get install texlive-full`.
+- If *TeX Live* is installed and working but the document TeX cannot be compiled, it may because of missing plugins. You can ensure your *TeX Live* has all the plugins with `sudo apt-get install texlive-full`.
+
+- When first running *MikTeX* on Windows, you may still need to install LaTeX packages. To easily install all that are missing, run `texlite` and wait for a prompt. To make this quicker, select the "

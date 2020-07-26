@@ -2,6 +2,8 @@ import os
 import subprocess
 from pathlib import Path
 
+from texlite.utils import using_windows
+
 
 AUXILLARY_FILE_EXTENSIONS = ['aux', 'log', 'out']
 
@@ -15,9 +17,9 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     try:
         exit_code = _call_pdflatex(base_path, show_tex_output=show_tex_output)
     except FileNotFoundError:
-        return False, ('TeX compiler could not be found. If not installed, '
-                       'please install a TeX distribution (TeX Live or '
-                       'MacTeX recommended).')
+        return False, ('TeX compiler could not be found to create PDF. If not '
+                       'installed, please install a TeX distribution '
+                       '(https://www.latex-project.org/get).')
 
     # handle pdflatex errors
     if exit_code == 1:
@@ -57,7 +59,7 @@ def _call_pdflatex(base_path, show_tex_output=False):
         raise FileNotFoundError
 
     # set flags
-    cmd_args = ['-halt-on-error', base_path]
+    cmd_args = ['-halt-on-error', str(base_path)]
 
     # set keyword arguments for subprocess call
     call_kwargs = {}
@@ -76,6 +78,11 @@ def _call_pdflatex(base_path, show_tex_output=False):
 
 def _get_pdflatex_exe():
 
+    # XXX: the `which` method of this function does not work in Windows, so
+    # just default to pdflatex. This is a little hacky and could be improved
+    if using_windows:
+        return 'pdflatex'
+
     # set keyword arguments for subprocess call
     call_kwargs = {
         'stdout': subprocess.PIPE,
@@ -89,9 +96,12 @@ def _get_pdflatex_exe():
         '/Library/TeX/texbin/pdflatex', # MacOS
     ]
 
+    # iterate through options
     for exe in exes:
+
         # attempt to call which on executable
-        if subprocess.call(['which', exe], **call_kwargs) == 0:
+        exit_code = subprocess.call(['which', exe], **call_kwargs)
+        if exit_code == 0:
             return exe
 
     # return pdflatex as a default
