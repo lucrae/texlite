@@ -38,7 +38,7 @@ Get all the info you need on writing with TeXLite in [this concise guide](https:
 
 # Contributing
 
-TeXLite still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
+TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
 
 If you have any issues/bugs/requests, please add them to the [Issues](https://github.com/lucrae/texlite/issues) page.
 
