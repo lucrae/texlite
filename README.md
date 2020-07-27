@@ -34,7 +34,7 @@ Use `texlite --help` for options and information. If you have any issues install
 
 # Getting started
 
-After `installing TeXLite`, you can get all the info you need to get started in `this concise guide`.
+After installing TeXLite, you can get all the info you need to get started in [this concise guide](https://github.com/lucrae/texlite/blob/documentation/docs/guide.md).
 
 # Issues and Requests
 
