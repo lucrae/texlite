@@ -32,6 +32,21 @@ $ texlite my_document.md
 
 Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
+# Issues and Requests
+
+Please add any issues/bugs/requests you have to the [Issues](https://github.com/lucrae/texlite/issues) page.
+
+# Contributing
+TeXLite still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
+
+Please go to the [Issues](https://github.com/lucrae/texlite/issues) page to see what contributions are currently needed.
+
+# Other
+
+## License
+
+TeXLite is licensed under [GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html). You are essentially free to use this software in any way you want (privately, commercially, with modifications, etc.) on the condition that distributions stay open-source and stick to the license.
+
 ## Installation Fixes
 
 If you're having issues with installing TeXLite, here are some fixes to possible problems:
