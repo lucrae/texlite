@@ -1,158 +1,63 @@
-# A Guide to TeXLite
+<p align="center">
+  <img src="docs/images/texlite.png" />
+</p>
 
-This is a concise guide to the features in TeXLite as of v1.0.4.
+[![PyPI version](https://badge.fury.io/py/texlite.svg)](https://badge.fury.io/py/texlite) ![Ubuntu](https://github.com/lucrae/texlite/workflows/Ubuntu/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg)
 
-## Introduction
+TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
 
-TeXLite *(pronounced `teck-lite`)* is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**
+<p align="center">
+  <img width="100%" src="docs/images/demo.png" />
+  <p align="center"><i>A demo of writing a simple document in an editor and compiling it to a PDF with TeXLite</i></p>
+</p>
 
-Standard writing in TeXLite is done with [basic Markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). More complex writing, such as maths, can be done with [LaTeX commands](https://www.latex-project.org/). TeXLite extends LaTeX/TeX, so standard in-line commands in LaTeX will be standard in-line commands in TeXLite.
+# Installing
 
-More "meta" specifications such as document titles, margins, fontsizes, etc. are done simply by writing lines at the start of the document in the format`:option_name: option_specification`. For example, `:title: My Document` sets the document title to "My Document". More information in this can be found under [Document Setup](#document-setup).
-
-## Usage
-
-For instructions on installation, refer to [Installation](https://github.com/lucrae/texlite/blob/master/README.md#installing) in the README.
-
-General usage of TeXLite is as follows:
-
-1. Write your document in a text editor, and save it as a Markdown (`.md`).
-2. In the command-line, enter `texlite path/to/document` and TeXLite will generate a PDF beside the document.
-```
-
-You can`cd` to the location of your document, or specify the path. Use `texlite --help`for more information.
-
-Note that writing in TeXLite goes beyond Markdown, but source files are still accepted as `.md` so that you don't have to do any extra work to get nice syntax highlighting in your editor.
-
-## Features
-
-### Section headings
-
-Section headings are written using the hash character.
+**STEP 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
 
 ```
-# This the heading of a section
-## This is the heading of a subsection
-### This is the heading of a subsubsection
+$ pip install --upgrade texlite
 ```
 
-Section headings will be automatically numbered. If you want unnumbered section headings, add an asterix after the hash.
+**STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/). Recommendations:
+- On Ubuntu, *TeX Live* can be installed with `sudo apt-get install texlive`.
+- On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
+- On Windows (currently experimental), *MikTeX* can be downloaded and installed from [its official downloads page](https://miktex.org/download).
 
-
-```
-#* This the heading of an unnumbered section
-##* This is the heading of a unnumbered subsection
-###* This is the heading of a unnumbered subsubsection
-```
-
-### Text
-
-Text is written simply by writing without special prefixes. Paragraphs are created with line-breaks.
+You should now be able to compile documents with:
 
 ```
-Here is some text. Here is some more text.
-
-Here is some text that will be in another paragraph.
+$ texlite my_document.md
 ```
 
-Text can be formatted using [basic Markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet), using asterisks for italics and double asterisks for bold. You can even do in-line code (monospace font) with backticks.
+Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
-```
-Here is a word in *italics*, a word in **bold**, and some `in-line code`.
-```
+# Getting started
 
-### Lists
+After `installing TeXLite`, you can get all the info you need to get started in `this concise guide`.
 
-Unordered lists can be created very intuitively with Markdown syntax.
+# Issues and Requests
 
-```
-Here is a list:
-- This is an item
-- This is another item
-- Here is another one
-```
+Please add any issues/bugs/requests you have to the [Issues](https://github.com/lucrae/texlite/issues) page.
 
-You can use a variety of characters for list items.
+# Contributing
 
-```
-You can use the following characters for list items:
-- Hyphens
-+ Addition Signs
-* Asterixes
-```
+TeXLite still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
 
-Ordered lists can be created by using a number/letter and a period.
+Please go to the [Issues](https://github.com/lucrae/texlite/issues) page to see what contributions are currently needed.
 
-```
-My ordered list has:
-1. A first item
-2. A second item
-3. A third item
-```
+# Other
 
-### Equations
+## License
 
-In-line equations can be done with dollar signs, writing maths with [LaTeX maths formatting](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
+TeXLite is licensed under [GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html). You are essentially free to use this software in any way you want (privately, commercially, with modifications, etc.) on the condition that distributions stay open-source and stick to the license.
 
-```
-Did you know that $E = mc^2$
-```
+## Installation Fixes
 
-Full-line equations, multi-lined, and aligned maths can be written between triple dollar signs.
+If you're having issues with installing TeXLite, here are some fixes to possible problems:
 
-```
-$$$
-	y &= x + 4
-	x &= 2
-	\therefore y &= 6
-$$$
-```
+- If `pip install texlite` is not working, you may be using Python 2.7, which has reached its end of life. Use `pip3 install --upgrade pip` and then `pip3 install texlite` to ensure that you are using Python 3.
 
-Note here we are using the ampersand before the equals sign to specify alignment.
+- If *TeX Live* is installed and working but the document TeX cannot be compiled, it may because of missing plugins. You can ensure your *TeX Live* has all the plugins with `sudo apt-get install texlive-full`.
 
-### Figures
-
-*Note: in v1.0.4 the Windows build is still experimental and specifying figures within subdirectories may has some issues.*
-
-Figures are specified in the same way that images are specified in Markdown.
-
-```
-![The Universe](graphics/universe.jpg)
-```
-
-This will get the image `universe.jpg` from the directory `graphics` that is next to whatever document you are compiling.
-
-### Hyperlinks
-
-Although not as popular in most LaTeX documents, hyperlinks can be specified in the same way that they are in Markdown.
-
-```
-[TeXLite](https://github.com/lucrae/texlite)
-```
-
-This will create a link labelled "TeXLite" that goes to the address `https://github.com/lucrae/texlite`.
-
-### Document Setup
-
-Specifiying document setup options can actually be done anywhere in the document, but makes the most sense to do at the top. Here is an example of specifying the document details for the heading:
-
-```
-:title: Solution to the Riemann Hypothesis
-:author: Lucien Rae Gentil
-:date: July 11, 2038
-```
-
-The lines above would set the document title to "Solution to the Riemann Hypothesis" with the author "Lucien Rae Gentil" and the date "July 11, 2038". Note that because in-line LaTeX commands can be used, you can write `\today{}` to automatically provide the current date.
-
-So far the meta specifications for document setup are just the basics. Here is a list:
-
-- `:title:` Sets the document title.
-- `:author:`. Sets the document author.
-- `:date:`. Sets the document date, typically can be used with `\today{}`.
-- `:fontsize:`. Sets the size of the font. Default is `10pt`. Options are: `8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt`. Remember to include the `pt`.
-- `:margin:`. Sets the size of the margins. Default is `1.6in`. Unit must be included, and can be any one of `mm, cm, pt, in`.
-- `:linespread:`. Sets the proportional spacing between lines. Default is `1.0`. One-and-a-half spacing is `1.3` and double spacing is `1.6`.
-
-## Conclusion
-
-Hopefully this concise guide provides some useful information on what you can do with TeXLite. If you have any issues or suggestions, please add them to the [Issues](https://github.com/lucrae/texlite/issues) page on GitHub. Thank you for reading :)
+- When first running *MikTeX* on Windows, you may still need to install LaTeX packages. To easily install all that are missing, run `texlite` and wait for a prompt. In the prompt there's a checkbox to do this automatically, which may require you to wait but then it should fix your problems.
