@@ -18,7 +18,7 @@ General usage of TeXLite is as follows:
 
 1. Write your document in a text editor, and save it as a Markdown (`.md`).
 2. In the command-line, enter `texlite path/to/document` and TeXLite will generate a PDF beside the document.
-```
+
 
 You can`cd` to the location of your document, or specify the path. Use `texlite --help`for more information.
 
