@@ -4,7 +4,7 @@
 
 # Introduction
 
-TeXLite is an easy-to-use open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
+TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
 
 # Demo
 
@@ -15,3 +15,5 @@ $$$
 $$$
 
 TeXLive lets you use the **power** of \LaTeX{} with the *intuitive feel* of Markdown. It's still in development, so there are still plenty of features to come. If you have any issues or feature suggestions they are very, very welcome!
+
+
