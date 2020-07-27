@@ -11,7 +11,7 @@ TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documen
   <p align="center"><i>A demo of writing a simple document in an editor and compiling it to a PDF with TeXLite</i></p>
 </p>
 
-# Installing
+# Installation
 
 **STEP 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
 
@@ -36,15 +36,13 @@ Use `texlite --help` for options and information. If you have any issues install
 
 After installing TeXLite, you can get all the info you need to get started in [this concise guide](https://github.com/lucrae/texlite/blob/documentation/docs/guide.md).
 
-# Issues and Requests
-
-Please add any issues/bugs/requests you have to the [Issues](https://github.com/lucrae/texlite/issues) page.
-
 # Contributing
 
 TeXLite still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
 
-Please go to the [Issues](https://github.com/lucrae/texlite/issues) page to see what contributions are currently needed.
+If you have any issues/bugs/requests, please add them to the [Issues](https://github.com/lucrae/texlite/issues) page.
+
+If you want to contribute code, please go to the [Issues](https://github.com/lucrae/texlite/issues) page to see what contributions are currently needed.
 
 # Other
 

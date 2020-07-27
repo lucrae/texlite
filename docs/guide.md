@@ -12,7 +12,7 @@ More "meta" specifications such as document titles, margins, fontsizes, etc. are
 
 ## Usage
 
-For instructions on installation, refer to [Installation](https://github.com/lucrae/texlite/blob/master/README.md#installing) in the README.
+For instructions on installation, refer to [Installation](https://github.com/lucrae/texlite/blob/master/README.md#installation) in the README.
 
 General usage of TeXLite is as follows:
 
