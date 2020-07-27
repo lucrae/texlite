@@ -92,7 +92,7 @@ My ordered list has:
 
 ### Equations
 
-In-line equations can be done with dollar signs, writing maths with [LaTeX maths formatting](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
+In-line equations can be done with dollar signs, writing maths with [LaTeX maths formatting](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols).
 
 ```
 Did you know that $E = mc^2$
