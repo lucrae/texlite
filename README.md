@@ -32,11 +32,16 @@ $ texlite my_document.md
 
 Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
+# Getting started
+
+After installing TeXLite, you can get all the info you need to get started in [this concise guide](https://github.com/lucrae/texlite/blob/documentation/docs/guide.md).
+
 # Issues and Requests
 
 Please add any issues/bugs/requests you have to the [Issues](https://github.com/lucrae/texlite/issues) page.
 
 # Contributing
+
 TeXLite still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
 
 Please go to the [Issues](https://github.com/lucrae/texlite/issues) page to see what contributions are currently needed.
