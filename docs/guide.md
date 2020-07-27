@@ -10,20 +10,6 @@ Standard writing in TeXLite is done with [basic Markdown syntax](https://github.
 
 More "meta" specifications such as document titles, margins, fontsizes, etc. are done simply by writing lines at the start of the document in the format`:option_name: option_specification`. For example, `:title: My Document` sets the document title to "My Document". More information in this can be found under [Document Setup](#document-setup).
 
-## Usage
-
-For instructions on installation, refer to [Installation](https://github.com/lucrae/texlite/blob/master/README.md#installing) in the README.
-
-General usage of TeXLite is as follows:
-
-1. Write your document in a text editor, and save it as a Markdown (`.md`).
-2. In the command-line, enter `texlite path/to/document` and TeXLite will generate a PDF beside the document.
-```
-
-You can`cd` to the location of your document, or specify the path. Use `texlite --help`for more information.
-
-Note that writing in TeXLite goes beyond Markdown, but source files are still accepted as `.md` so that you don't have to do any extra work to get nice syntax highlighting in your editor.
-
 ## Features
 
 ### Section headings
@@ -109,28 +95,6 @@ $$$
 ```
 
 Note here we are using the ampersand before the equals sign to specify alignment.
-
-### Figures
-
-*Note: in v1.0.4 the Windows build is still experimental and specifying figures within subdirectories may has some issues.*
-
-Figures are specified in the same way that images are specified in Markdown.
-
-```
-![The Universe](graphics/universe.jpg)
-```
-
-This will get the image `universe.jpg` from the directory `graphics` that is next to whatever document you are compiling.
-
-### Hyperlinks
-
-Although not as popular in most LaTeX documents, hyperlinks can be specified in the same way that they are in Markdown.
-
-```
-[TeXLite](https://github.com/lucrae/texlite)
-```
-
-This will create a link labelled "TeXLite" that goes to the address `https://github.com/lucrae/texlite`.
 
 ### Document Setup
 
