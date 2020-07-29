@@ -26,11 +26,13 @@ $ pip install --upgrade texlite
 - On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
 - On Windows, *MikTeX* can be installed from [its official downloads page](https://miktex.org/download).
 
-You should now be able to compile documents with:
+You should now be able to compile your documents into PDFs with:
 
 ```
 $ texlite my_document.md
 ```
+
+(Or alternatively `$ python -m texlite my_document.md`).
 
 Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
