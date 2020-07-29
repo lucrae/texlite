@@ -4,24 +4,24 @@ This is a concise guide to the features in TeXLite as of v1.0.4.
 
 ## Introduction
 
-TeXLite *(pronounced `teck-lite`)* is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**
+TeXLite *(pronounced `teck-lite`)* is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
 
 Standard writing in TeXLite is done with [basic Markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). More complex writing, such as maths, can be done with [LaTeX commands](https://www.latex-project.org/). TeXLite extends LaTeX/TeX, so standard in-line commands in LaTeX will be standard in-line commands in TeXLite.
 
-More "meta" specifications such as document titles, margins, fontsizes, etc. are done simply by writing lines at the start of the document in the format`:option_name: option_specification`. For example, `:title: My Document` sets the document title to "My Document". More information in this can be found under [Document Setup](#document-setup).
+The "meta" specifications of a document such as titles, authors, margins, font sizes, etc. can be specified at the start of the document. For example, writing in `:title: My Document` will set the document title to "My Document". More information in this can be found under [Document Setup](#document-setup).
 
 ## Usage
 
-For instructions on installation, refer to [Installation](https://github.com/lucrae/texlite/blob/master/README.md#installation) in the README.
+For instructions on installation, refer to [Installation](https://github.com/lucrae/texlite/blob/master/README.md#install) in the README.
 
 General usage of TeXLite is as follows:
 
 1. Write your document in a text editor, and save it as a Markdown (`.md`).
 2. In the command-line, enter `texlite path/to/document` (or `python -m texlite path/to/document`) and TeXLite will generate a PDF beside the document.
 
-You can`cd` to the location of your document, or specify the path. Use `texlite --help`for more information.
+You can `cd` to the location of your document, or specify the path. Use `texlite --help`for more information.
 
-Note that writing in TeXLite goes beyond Markdown, but source files are still accepted as `.md` so that you don't have to do any extra work to get nice syntax highlighting in your editor.
+Note that writing in TeXLite has features beyond Markdown, but source files are still accepted as `.md` so that you don't have to do any extra work to get nice syntax highlighting in your editor.
 
 ## Features
 
@@ -91,13 +91,13 @@ My ordered list has:
 
 ### Equations
 
-In-line equations can be done with dollar signs, writing maths with [LaTeX maths formatting](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
+In-line equations can be done with dollar signs, writing maths with [LaTeX maths formatting](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols).
 
 ```
 Did you know that $E = mc^2$
 ```
 
-Full-line equations, multi-lined, and aligned maths can be written between triple dollar signs.
+Full-line, multi-lined, and aligned equations can be written between triple dollar signs.
 
 ```
 $$$
@@ -119,7 +119,7 @@ Figures are specified in the same way that images are specified in Markdown.
 ![The Universe](graphics/universe.jpg)
 ```
 
-This will get the image `universe.jpg` from the directory `graphics` that is next to whatever document you are compiling.
+This will get the image `universe.jpg` from the directory `graphics` beside your document, and add the caption "The Universe".
 
 ### Hyperlinks
 
@@ -143,7 +143,7 @@ Specifiying document setup options can actually be done anywhere in the document
 
 The lines above would set the document title to "Solution to the Riemann Hypothesis" with the author "Lucien Rae Gentil" and the date "July 11, 2038". Note that because in-line LaTeX commands can be used, you can write `\today{}` to automatically provide the current date.
 
-So far the meta specifications for document setup are just the basics. Here is a list:
+More specifications are planned to be added, but here is the list so far:
 
 - `:title:` Sets the document title.
 - `:author:`. Sets the document author.
