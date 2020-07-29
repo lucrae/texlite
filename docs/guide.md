@@ -1,4 +1,4 @@
-# A Guide to TeXLite
+# Writing with TeXLite
 
 This is a concise guide to the features in TeXLite as of v1.0.4.
 
