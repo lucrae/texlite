@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from texlite.components.common import (
     is_number, BACKSLASH, BANNER_LINE, FONT_SIZES
 )
@@ -131,6 +133,10 @@ class Meta:
 
         # include path for graphics
         if self.graphics_path:
+
+            # ensure path is POSIX
+            self.graphics_path = Path(self.graphics_path).as_posix()
+
             lines.append(f'{BACKSLASH}usepackage{{graphicx}}')
             lines.append(f'{BACKSLASH}graphicspath'
                          f'{{{{{self.graphics_path}/}}}}')
