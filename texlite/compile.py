@@ -33,9 +33,10 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
         _tex_clean_up(file_stem, base_path, AUXILLARY_FILE_EXTENSIONS,
                       save_tex=False)
 
-        return False, ('TeX could not be compiled, likely due to the '
+        return False, ('TeX could not be compiled, possibly due to the '
                        'inclusion of a special character or undefined '
-                       'command. Use --show-tex-output for details.')
+                       'command, or due to missing packages. Use '
+                       '--show-tex-output for details.')
 
     # move pdf to destination
     Path(f'{file_stem}.pdf').rename(Path(f'{base_path}.pdf'))
