@@ -36,7 +36,7 @@ Use `texlite --help` for options and information. If you have any issues install
 
 # Guide
 
-All the info you need on writing with TeXLite is in this [this concise guide](https://github.com/lucrae/texlite/blob/documentation/docs/guide.md).
+All the info you need on writing with TeXLite is in this [this concise guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md).
 
 # Contributing
 
