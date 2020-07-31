@@ -20,9 +20,9 @@ $ pip install --upgrade texlite
 ```
 
 **STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/). Recommendations:
-- On Ubuntu, *TeX Live* can be installed with `sudo apt-get install texlive`.
-- On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
 - On Windows, *MikTeX* can be installed from [its official downloads page](https://miktex.org/download).
+- On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
+- On Ubuntu/Debian, *TeX Live* can be installed with `sudo apt-get install texlive`.
 
 You should now be able to compile your documents into PDFs with:
 
