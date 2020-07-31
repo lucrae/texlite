@@ -2,7 +2,7 @@
   <img src="docs/images/texlite.png" />
 </p>
 
-[![PyPI version](https://badge.fury.io/py/texlite.svg)](https://pypi.org/project/texlite) ![Linux](https://github.com/lucrae/texlite/workflows/Linux/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg)
+[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![Linux](https://github.com/lucrae/texlite/workflows/Linux/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg)
 
 TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
 
@@ -30,7 +30,7 @@ You should now be able to compile your documents into PDFs with:
 $ texlite my_document.md
 ```
 
-(Or alternatively `$ python -m texlite my_document.md`).
+(Or with `$ python -m texlite my_document.md`).
 
 Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
@@ -56,10 +56,10 @@ TeXLite is licensed under [GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 If you're having issues with installing TeXLite, here are some fixes to possible problems:
 
+- **Not added to Windows PATH**: On Windows PowerShell or CMD, Pip will not automatically add programs to your PATH (meaning that TeXLite can't be executed with `$ texlite`). You can fix this either by adding texlite to your PATH, or simply by calling TeXLite with `python -m texlite` or `python3 -m texlite`.
+
 - **Wrong Python**: If `pip install texlite` is not working, you may be using Python 2.7, which has reached its end of life. Use `pip3 install --upgrade pip` and then `pip3 install texlite` to ensure that you are using Python 3.
 
 - **TeX Live Missing Packages**: If *TeX Live* is installed and working but the document TeX cannot be compiled, it may because of missing plugins. You can ensure your *TeX Live* has all the plugins with `sudo apt-get install texlive-full`.
 
 - **MikTeX Missing Packages**: When first running *MikTeX* on Windows, you may still need to install LaTeX packages. To easily install all that are missing, run `texlite` and wait for a prompt. In the prompt there's a checkbox to do this automatically, which may require you to wait but then it should fix your problems.
-
-- **Not added to Windows PATH**: On Windows PowerShell, Pip will not automatically add programs to your PATH (meaning that TeXLite can't be executed with `$ texlite`). You can fix this either by adding texlite to your PATH, or by calling TeXLite instead with `python -m texlite` or `python3 -m texlite`.
