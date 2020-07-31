@@ -1,8 +1,8 @@
-name: Ubuntu
+name: Linux
 on: [push]
 
 jobs:
-  build:
+  test-with-tex-live:
 
     runs-on: ${{ matrix.os }}
     strategy:
