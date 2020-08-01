@@ -16,6 +16,7 @@ COMPONENTS_TO_TEST = [
     'list',
     'figure',
     'equation',
+    'abstract'
 ]
 
 

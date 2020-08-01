@@ -12,4 +12,4 @@ Versions of TeXLite in development.
 
 ### v1.0.6
 
-[Put update notes here]
+- Added 'abstract' meta specification, e.g.: `:abstract: Abstract goes here`.
