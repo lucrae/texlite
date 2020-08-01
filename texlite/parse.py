@@ -26,10 +26,13 @@ HEADINGS = {
 FIGURE_RE = re.compile(r'^(!\[.*\]\(.*\))$')
 
 
-def parse(md_lines, graphics_path=None):
+def parse(md_lines, graphics_path=None, package_config_path=None):
 
     # set up meta object and initial components
-    meta = Meta(graphics_path=graphics_path)
+    meta = Meta(
+        graphics_path=graphics_path,
+        package_config_path=package_config_path
+    )
     components = [
         DocumentBegin(),
     ]

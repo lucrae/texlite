@@ -13,3 +13,4 @@ Versions of TeXLite in development.
 ### v1.0.6
 
 - Added 'abstract' meta specification, e.g.: `:abstract: Abstract goes here`.
+- Added command-line option to specify a JSON file with the list of packages to use (default: config/packages.json)

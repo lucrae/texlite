@@ -4,20 +4,21 @@ from texlite.components.common import (
     is_number, BACKSLASH, BANNER_LINE, FONT_SIZES
 )
 from texlite import messages as msg
+from texlite.utils import read_json
 
 
 class Meta:
 
     def __init__(self, title=None, author=None, date=None, abstract=None,
                  fontsize='10pt', margin='1.6in', pagenumbers=True,
-                 linespread=1.0, graphics_path=None):
+                 linespread=1.0, package_config_path=None, graphics_path=None):
 
         # set default packages
-        self.packages = [
-            'hyperref',
-            'amsmath',
-            'amssymb',
-        ]
+        if package_config_path:
+            self.packages = read_json(package_config_path)
+        else:
+            package_config_path = Path('texlite', 'config', 'packages.json')
+            self.packages = read_json(package_config_path)
 
         # declare specifiable meta options
         # NOTE: validation of options handled in `Meta._validate_options`
