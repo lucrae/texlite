@@ -1,5 +1,10 @@
+import json
 import os
 from platform import system
+from pathlib import Path
+
+
+from texlite import messages as msg
 
 
 def get_os_name():
@@ -14,3 +19,13 @@ def get_os_name():
 
     # default to linux
     return 'linux'
+
+
+def read_json(path):
+    '''Reads in json file as Python object'''
+
+    try:
+        with open(Path(path)) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        msg.error(f'JSON file "{path}" could not be found', halt=True)

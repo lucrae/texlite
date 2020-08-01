@@ -47,7 +47,9 @@ def run(args):
     md_lines = read_md_lines(path=md_path)
 
     # translate markdown to tex
-    tex_lines = parse(md_lines, graphics_path=dir_path)
+    tex_lines = parse(md_lines,
+                      graphics_path=dir_path,
+                      package_config_path=args.use_packages)
 
     # write out tex lines to file
     tex_path = base_path.with_suffix('.tex')
