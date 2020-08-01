@@ -1,3 +1,4 @@
+import sys
 import argparse
 
 from texlite.cli import run
@@ -29,6 +30,6 @@ def main():
 
 
 if __name__ == '__main__':
-
+    
     # run command-line entry-point
     main()
