@@ -146,8 +146,8 @@ def parse(md_lines, graphics_path=None):
     components.insert(0, meta)
 
     # add maketitle if needed
-    if meta.title:
-        components.insert(2, MakeTitle())
+    if meta.title or meta.abstract:
+        components.insert(2, MakeTitle(meta))
 
     # convert tokenised components to lines
     tex_lines = [component.tex() + '\n' for component in components]

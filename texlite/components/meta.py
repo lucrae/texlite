@@ -8,16 +8,18 @@ from texlite import messages as msg
 
 class Meta:
 
-    def __init__(self, title=None, author=None, date=None,
+    def __init__(self, title=None, author=None, date=None, abstract=None,
                  fontsize='10pt', margin='1.6in', pagenumbers=True,
                  linespread=1.0, graphics_path=None):
 
         # specifiable meta options
         # NOTE: validation of options handled in `Meta._validate_options`
+        # by default, defaults are None
         self.options = [
             'title',
             'author',
             'date',
+            'abstract',
             'fontsize', # default: 10pt
             'margin', # default: 1.6in
             'linespread', # default: 1.0
@@ -27,6 +29,7 @@ class Meta:
         self.title = title
         self.author = author
         self.date = date
+        self.abstract = abstract
 
         # document setup options
         self.fontsize = fontsize
@@ -187,5 +190,24 @@ class DocumentEnd:
 
 class MakeTitle:
 
+    def __init__(self, meta):
+        self.title = meta.title
+        self.author = meta.author
+        self.date = meta.date
+        self.abstract = meta.abstract
+
     def tex(self):
-        return r'\maketitle{}'
+
+        lines = []
+
+        if self.title:
+            lines.append(f'{BACKSLASH}maketitle{{}}')
+
+        if self.abstract:
+            lines += [
+                f'{BACKSLASH}begin{{abstract}}',
+                f'{self.abstract}',
+                f'{BACKSLASH}end{{abstract}}'
+            ]
+
+        return '\n'.join(lines)
