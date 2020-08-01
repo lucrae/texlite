@@ -12,7 +12,14 @@ class Meta:
                  fontsize='10pt', margin='1.6in', pagenumbers=True,
                  linespread=1.0, graphics_path=None):
 
-        # specifiable meta options
+        # set default packages
+        self.packages = [
+            'hyperref',
+            'amsmath',
+            'amssymb',
+        ]
+
+        # declare specifiable meta options
         # NOTE: validation of options handled in `Meta._validate_options`
         # by default, defaults are None
         self.options = [
@@ -23,6 +30,7 @@ class Meta:
             'fontsize', # default: 10pt
             'margin', # default: 1.6in
             'linespread', # default: 1.0
+            'usepackages',
         ]
 
         # document detail options
@@ -118,12 +126,9 @@ class Meta:
         lines.append(f'{BACKSLASH}usepackage[margin={self.margin}]'
                      f'{{geometry}}')
 
-        # include hyperlinks
-        lines.append(f'{BACKSLASH}usepackage{{hyperref}}')
-
-        # include include maths helpers
-        lines.append(f'{BACKSLASH}usepackage{{amsmath}}')
-        lines.append(f'{BACKSLASH}usepackage{{amssymb}}')
+        # include default packages
+        for package in self.packages:
+            lines.append(f'{BACKSLASH}usepackage{{{package}}}')
 
         return lines
 

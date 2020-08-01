@@ -1,3 +1,4 @@
+import sys
 import argparse
 
 from texlite.cli import run
