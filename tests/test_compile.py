@@ -16,6 +16,7 @@ def test_simple_source():
         'save_tex': False,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main
@@ -38,6 +39,7 @@ def test_saving_tex():
         'save_tex': True,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main
@@ -61,6 +63,7 @@ def test_empty_source():
         'save_tex': False,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main
@@ -83,6 +86,7 @@ def test_nonexistent_source():
         'save_tex': False,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main
@@ -101,6 +105,7 @@ def test_incorrect_source():
         'save_tex': False,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main
@@ -119,6 +124,7 @@ def test_undefined_command():
         'save_tex': False,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main
@@ -137,6 +143,7 @@ def test_no_pdf_compile():
         'save_tex': False,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': True,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main

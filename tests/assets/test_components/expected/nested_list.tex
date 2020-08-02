@@ -1,0 +1,95 @@
+% meta
+\documentclass[10pt]{extarticle}
+
+% packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.6in]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% preamble commands
+\linespread{1.0}
+\usepackage{graphicx}
+\graphicspath{{tests/assets/test_components/}}
+
+% document details
+\date{}
+
+% ------------------------------------------------------------------------------
+\begin{document}
+% ------------------------------------------------------------------------------
+
+Here is a nested unordered list:
+
+\begin{itemize}
+\item Here is an item
+\item Another item
+\begin{itemize}
+\item Hey
+\item What the heck
+\begin{itemize}
+\item Woah \textit{so} far
+\end{itemize}
+\item Hey
+\end{itemize}
+\item Going back again
+\end{itemize}
+
+Here is another:
+
+\begin{itemize}
+\item An item
+\begin{itemize}
+\item Going out 
+\begin{itemize}
+\item Going out \textbf{more}
+\begin{itemize}
+\item This is the limit
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+Here is a nested ordered list:
+
+\begin{enumerate}
+\item Here is something
+\begin{enumerate}
+\item Here is another thing
+\begin{enumerate}
+\item \textit{Another!}
+\item The actual char used doesn't do anything (don't tell anyone!)
+\end{enumerate}
+\item And back again
+\end{enumerate}
+\end{enumerate}
+
+And here is a mix:
+
+\begin{enumerate}
+\item Hey
+\begin{enumerate}
+\item What is up
+\item This is cool
+\begin{enumerate}
+\item Yeah sure
+\begin{itemize}
+\item Okay
+\item Mmm
+\end{itemize}
+\end{enumerate}
+\item Sure
+\end{enumerate}
+\item Cool
+\begin{itemize}
+\item Why not
+\end{itemize}
+\end{enumerate}
+
+It's hard to come up with things to write in these tests
+
+% ------------------------------------------------------------------------------
+\end{document}
+% ------------------------------------------------------------------------------
+

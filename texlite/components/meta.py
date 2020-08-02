@@ -1,30 +1,44 @@
+from pathlib import Path
+
 from texlite.components.common import (
     is_number, BACKSLASH, BANNER_LINE, FONT_SIZES
 )
 from texlite import messages as msg
+from texlite.utils import read_json
 
 
 class Meta:
 
-    def __init__(self, title=None, author=None, date=None,
+    def __init__(self, title=None, author=None, date=None, abstract=None,
                  fontsize='10pt', margin='1.6in', pagenumbers=True,
-                 linespread=1.0, graphics_path=None):
+                 linespread=1.0, package_config_path=None, graphics_path=None):
 
-        # specifiable meta options
+        # set default packages
+        if package_config_path:
+            self.packages = read_json(package_config_path)
+        else:
+            package_config_path = Path('texlite', 'config', 'packages.json')
+            self.packages = read_json(package_config_path)
+
+        # declare specifiable meta options
         # NOTE: validation of options handled in `Meta._validate_options`
+        # by default, defaults are None
         self.options = [
             'title',
             'author',
             'date',
+            'abstract',
             'fontsize', # default: 10pt
             'margin', # default: 1.6in
             'linespread', # default: 1.0
+            'usepackages',
         ]
 
         # document detail options
         self.title = title
         self.author = author
         self.date = date
+        self.abstract = abstract
 
         # document setup options
         self.fontsize = fontsize
@@ -113,12 +127,9 @@ class Meta:
         lines.append(f'{BACKSLASH}usepackage[margin={self.margin}]'
                      f'{{geometry}}')
 
-        # include hyperlinks
-        lines.append(f'{BACKSLASH}usepackage{{hyperref}}')
-
-        # include include maths helpers
-        lines.append(f'{BACKSLASH}usepackage{{amsmath}}')
-        lines.append(f'{BACKSLASH}usepackage{{amssymb}}')
+        # include default packages
+        for package in self.packages:
+            lines.append(f'{BACKSLASH}usepackage{{{package}}}')
 
         return lines
 
@@ -131,6 +142,10 @@ class Meta:
 
         # include path for graphics
         if self.graphics_path:
+
+            # ensure path is POSIX
+            self.graphics_path = Path(self.graphics_path).as_posix()
+
             lines.append(f'{BACKSLASH}usepackage{{graphicx}}')
             lines.append(f'{BACKSLASH}graphicspath'
                          f'{{{{{self.graphics_path}/}}}}')
@@ -181,5 +196,24 @@ class DocumentEnd:
 
 class MakeTitle:
 
+    def __init__(self, meta):
+        self.title = meta.title
+        self.author = meta.author
+        self.date = meta.date
+        self.abstract = meta.abstract
+
     def tex(self):
-        return r'\maketitle{}'
+
+        lines = []
+
+        if self.title:
+            lines.append(f'{BACKSLASH}maketitle{{}}')
+
+        if self.abstract:
+            lines += [
+                f'{BACKSLASH}begin{{abstract}}',
+                f'{self.abstract}',
+                f'{BACKSLASH}end{{abstract}}'
+            ]
+
+        return '\n'.join(lines)

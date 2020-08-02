@@ -14,8 +14,10 @@ COMPONENTS_TO_TEST = [
     'section',
     'text',
     'list',
+    'nested_list',
     'figure',
     'equation',
+    'abstract'
 ]
 
 
@@ -35,6 +37,7 @@ def test_component(component):
         'save_tex': True,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
+        'use_packages': None, # default to texlite/config/packages.json
     }
 
     # execute main

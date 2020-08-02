@@ -1,3 +1,4 @@
+import sys
 import argparse
 
 from texlite.cli import run
@@ -22,6 +23,8 @@ def main():
                         'processes')
     parser.add_argument('--no-pdf', action='store_true', default=False,
                         help='save TeX (.tex) and do not generate PDF')
+    parser.add_argument('--use-packages', metavar='CFG', help='Read in JSON '
+                        'file with list of packages to use')
     args = parser.parse_args()
 
     # run texlite
