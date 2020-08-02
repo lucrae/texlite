@@ -49,7 +49,7 @@ jobs:
 
     - name: Run TeX Live installer (install-tl-windows.bat)
       run: |
-        install-tl-dir\install-tl-windows.bat --profile .github\profiles\texlive_windows.profile
+        install-tl-dir\install-tl-windows.bat --profile .github\installation_profiles\texlive_windows.profile
       if: steps.cache-texlive.outputs.cache-hit != 'true'
       shell: cmd
 

@@ -1,6 +1,6 @@
 # Writing with TeXLite
 
-This is a concise guide to the features of TeXLite as of v1.1.0.
+This is a concise guide to the features of TeXLite v1.1.0.
 
 - [Introduction](#introduction) provides an overview of TeXLite.
 - [Usage](#usage) provides information on how to run TeXLite.
