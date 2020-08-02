@@ -2,15 +2,16 @@ import re
 
 from texlite.components import (
     Meta, DocumentBegin, DocumentEnd, MakeTitle, Section, Text,
-    UnorderedList, OrderedList, Figure, Equation
+    List, Figure, Equation
 )
-
 
 # set useful constants and string sets
 NUMBERS = '0123456789'
 LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 UNORDERED_LIST_PREFIXES = ['-', '+', '*']
-ORDERED_LIST_PREFIXES = [f'{n}.' for n in NUMBERS]
+ORDERED_LIST_PREFIXES = [f'{c}.' for c in NUMBERS + LETTERS]
+LIST_PREFIXES = UNORDERED_LIST_PREFIXES + ORDERED_LIST_PREFIXES
+TAB = r' ' * 4 # tabs are four spaces
 
 # set section heading codes
 HEADINGS = {
@@ -60,45 +61,17 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
 
         # handle unordered list
         elif prefix in UNORDERED_LIST_PREFIXES:
-            # XXX: Will not handle nested lists (lists within lists)
 
-            items = []
-            while i < n_lines:
-
-                # break if line is not item
-                if get_line_prefix(md_lines[i]) not in UNORDERED_LIST_PREFIXES:
-
-                    # go back to align with end-of-loop increment and break
-                    i -= 1
-                    break
-
-                # add line to items
-                items.append(get_line_without_prefix(md_lines[i]))
-                i += 1
-
-            # add unordered list component
-            components.append(UnorderedList(items))
+            # parse list and add list component
+            list_component, i = _parse_list(i, md_lines, ordered=False)
+            components.append(list_component)
 
         # handle ordered list
         elif prefix in ORDERED_LIST_PREFIXES:
-            # XXX: Will not handle nested lists (lists within lists)
 
-            items = []
-            while i < n_lines:
-
-                # break if line is not item
-                if get_line_prefix(md_lines[i]) not in ORDERED_LIST_PREFIXES:
-
-                    # go back to align with end-of-loop increment and break
-                    i -= 1
-                    break
-
-                # add line to items
-                items.append(get_line_without_prefix(md_lines[i]))
-                i += 1
-
-            # add ordered list component
-            components.append(OrderedList(items))
+            # parse list and add list component
+            list_component, i = _parse_list(i, md_lines, ordered=True)
+            components.append(list_component)
 
         # handle figures
         elif FIGURE_RE.match(md_lines[i]):
@@ -155,6 +128,52 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
     # convert tokenised components to lines
     tex_lines = [component.tex() + '\n' for component in components]
     return tex_lines
+
+
+def _parse_list(i, md_lines, ordered=False, depth=0):
+    # NOTE: Nested lists must be done with four-space indentation
+
+    prefixes = ORDERED_LIST_PREFIXES if ordered else UNORDERED_LIST_PREFIXES
+
+    items = []
+    while i < len(md_lines):
+
+        # get line without tabs (at specific depth)
+        line_without_tab = md_lines[i][depth * len(TAB):]
+
+        # read in line if at proper depth
+        if get_line_prefix(line_without_tab) in prefixes:
+
+            # add line to items
+            items.append(get_line_without_prefix(line_without_tab))
+            i += 1
+
+        # if tabbed inwards, create nested list (NOTE: recursive)
+        elif (TAB * (depth + 1) in md_lines[i] and
+                get_line_prefix(md_lines[i].lstrip()) in LIST_PREFIXES):
+
+            # determine if nested list
+            if get_line_prefix(md_lines[i].lstrip()) in ORDERED_LIST_PREFIXES:
+                nested_ordered = True
+            else:
+                nested_ordered = False
+
+            # parse nested list and append
+            list_component, i = _parse_list(i, md_lines,
+                                            ordered=nested_ordered,
+                                            depth=depth + 1)
+            items.append(list_component)
+            i += 1
+
+        # exit out of list
+        else:
+
+            # go back to align with end-of-loop increment and break
+            i -= 1
+            break
+
+    # return list object and ending line for parsing to be picked up from
+    return List(items, ordered=ordered), i
 
 
 def get_line_prefix(line):

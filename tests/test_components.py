@@ -14,6 +14,7 @@ COMPONENTS_TO_TEST = [
     'section',
     'text',
     'list',
+    'nested_list',
     'figure',
     'equation',
     'abstract'
