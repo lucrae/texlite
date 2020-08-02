@@ -40,11 +40,13 @@ All the info you need on writing with TeXLite is in this [this concise guide](ht
 
 # Contributing
 
-TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
+TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated. Notes on contributing:
 
-If you have any issues/bugs/requests, or want to know what code is in need of writing, please go to the [Issues](https://github.com/lucrae/texlite/issues) page.
+- If you have any issues/bugs/requests, or want to know what code is in need of writing, please go to the [Issues](https://github.com/lucrae/texlite/issues) page.
 
-If you're new to contributing, that's okay! Refer to [this great guide](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) on how to get started.
+- If you're new to contributing, that's okay! Refer to [this great guide](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) on how to get started.
+
+- Before and after implementing features, run tests on your local build with `$ tox` and lint with `$ tox -e lint`. Pull requests will not be accepted if not passing tests.
 
 # Other
 
