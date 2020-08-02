@@ -2,7 +2,7 @@ import re
 
 from texlite.components import (
     Meta, DocumentBegin, DocumentEnd, MakeTitle, Section, Text,
-    UnorderedList, OrderedList, Figure, Equation
+    List, Figure, Equation
 )
 
 
@@ -11,6 +11,7 @@ NUMBERS = '0123456789'
 LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 UNORDERED_LIST_PREFIXES = ['-', '+', '*']
 ORDERED_LIST_PREFIXES = [f'{n}.' for n in NUMBERS]
+TAB = r'    ' # tabs are four spaces
 
 # set section heading codes
 HEADINGS = {
@@ -60,45 +61,19 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
 
         # handle unordered list
         elif prefix in UNORDERED_LIST_PREFIXES:
-            # XXX: Will not handle nested lists (lists within lists)
 
-            items = []
-            while i < n_lines:
+            list_component, i, md_lines = parse_list(i, md_lines,
+                                                     ordered=False)
 
-                # break if line is not item
-                if get_line_prefix(md_lines[i]) not in UNORDERED_LIST_PREFIXES:
-
-                    # go back to align with end-of-loop increment and break
-                    i -= 1
-                    break
-
-                # add line to items
-                items.append(get_line_without_prefix(md_lines[i]))
-                i += 1
-
-            # add unordered list component
-            components.append(UnorderedList(items))
+            components.append(list_component)
 
         # handle ordered list
         elif prefix in ORDERED_LIST_PREFIXES:
-            # XXX: Will not handle nested lists (lists within lists)
 
-            items = []
-            while i < n_lines:
+            list_component, i, md_lines = parse_list(i, md_lines,
+                                                     ordered=True)
 
-                # break if line is not item
-                if get_line_prefix(md_lines[i]) not in ORDERED_LIST_PREFIXES:
-
-                    # go back to align with end-of-loop increment and break
-                    i -= 1
-                    break
-
-                # add line to items
-                items.append(get_line_without_prefix(md_lines[i]))
-                i += 1
-
-            # add ordered list component
-            components.append(OrderedList(items))
+            components.append(list_component)
 
         # handle figures
         elif FIGURE_RE.match(md_lines[i]):
@@ -155,6 +130,32 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
     # convert tokenised components to lines
     tex_lines = [component.tex() + '\n' for component in components]
     return tex_lines
+
+
+def parse_list(i, md_lines, ordered=False):
+    # XXX: Does not handle nested lists
+
+    prefixes = ORDERED_LIST_PREFIXES if ordered else UNORDERED_LIST_PREFIXES
+    
+    items = []
+    while i < len(md_lines):
+
+        print(md_lines[i])
+
+        # break if line is not item
+        if get_line_prefix(md_lines[i]) in prefixes:
+
+            # add line to items
+            items.append(get_line_without_prefix(md_lines[i]))
+            i += 1
+
+        else:
+
+            # go back to align with end-of-loop increment and break
+            i -= 1
+            break
+
+    return List(items, ordered=ordered), i, md_lines
 
 
 def get_line_prefix(line):

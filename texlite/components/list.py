@@ -2,37 +2,33 @@ from texlite.components.common import BACKSLASH
 from texlite.components.text import Text
 
 
-class UnorderedList:
+class List:
 
-    def __init__(self, items):
+    def __init__(self, items, ordered=False):
         self.items = items
+        self.ordered = ordered
 
     def tex(self):
+        
+        lines = []
 
-        lines = [f'{BACKSLASH}begin{{itemize}}']
+        # add begin
+        if self.ordered:
+            lines.append(f'{BACKSLASH}begin{{enumerate}}')
+        else:
+            lines.append(f'{BACKSLASH}begin{{itemize}}')
 
         # add items
         for item in self.items:
-            lines.append(f'\t{BACKSLASH}item {Text(item).tex()}')
+            if type(item) == type(self):
+                lines.append(f'{item.tex()}')
+            else:
+                lines.append(f'\t{BACKSLASH}item {Text(item).tex()}')
 
-        lines.append(f'{BACKSLASH}end{{itemize}}')
-
-        return '\n'.join(lines)
-
-
-class OrderedList:
-
-    def __init__(self, items):
-        self.items = items
-
-    def tex(self):
-
-        lines = [f'{BACKSLASH}begin{{enumerate}}']
-
-        # add items
-        for item in self.items:
-            lines.append(f'\t{BACKSLASH}item {Text(item).tex()}')
-
-        lines.append(f'{BACKSLASH}end{{enumerate}}')
+        # add end
+        if self.ordered:
+            lines.append(f'{BACKSLASH}end{{enumerate}}')
+        else:
+            lines.append(f'{BACKSLASH}end{{itemize}}')
 
         return '\n'.join(lines)
