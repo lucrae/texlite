@@ -1,6 +1,10 @@
 # Writing with TeXLite
 
-This is a concise guide to the features in TeXLite as of v1.0.4.
+This is a concise guide to the features of TeXLite as of v1.1.0.
+
+- [Introduction](#introduction) provides an overview of TeXLite.
+- [Usage](#usage) provides information on how to run TeXLite.
+- [Features](#features) covers the features of TeXLite, with examples included with all components.
 
 ## Introduction
 
@@ -89,6 +93,20 @@ My ordered list has:
 3. A third item
 ```
 
+Lists can also be nested using indentation, and use both ordered/unordered items.
+
+```
+Here is a list:
+1. This is the first item
+	a. Here is a subitem
+	b. Here is another subitem
+2. Here is the second main item
+	- This is an unordered item
+	- This is another.
+```
+
+*Note that indentation is done with 4 spaces, for the sake of consistency.*
+
 ### Equations
 
 In-line equations can be done with dollar signs, writing maths with [LaTeX maths formatting](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols).
@@ -111,15 +129,13 @@ Note here we are using the ampersand before the equals sign to specify alignment
 
 ### Figures
 
-*Note: in v1.0.4 the Windows build is still experimental and specifying figures within subdirectories may has some issues.*
-
 Figures are specified in the same way that images are specified in Markdown.
 
 ```
 ![The Universe](graphics/universe.jpg)
 ```
 
-This will get the image `universe.jpg` from the directory `graphics` beside your document, and add the caption "The Universe".
+This will get the image `universe.jpg` from the directory `graphics`, and add the caption "The Universe". Note that the path to images are relative (located in relation to where the source .md file is) and in POSIX format (using "/" to denote location) no matter the platform.
 
 ### Hyperlinks
 
@@ -148,6 +164,7 @@ More specifications are planned to be added, but here is the list so far:
 - `:title:` Sets the document title.
 - `:author:`. Sets the document author.
 - `:date:`. Sets the document date, typically can be used with `\today{}`.
+- `:abstract:`. Adds an 'abstract' section to the start of the document comprising whatever text is specified.
 - `:fontsize:`. Sets the size of the font. Default is `10pt`. Options are: `8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt`. Remember to include the `pt`.
 - `:margin:`. Sets the size of the margins. Default is `1.6in`. Unit must be included, and can be any one of `mm, cm, pt, in`.
 - `:linespread:`. Sets the proportional spacing between lines. Default is `1.0`. One-and-a-half spacing is `1.3` and double spacing is `1.6`.

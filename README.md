@@ -2,7 +2,7 @@
   <img src="docs/images/texlite.png" />
 </p>
 
-[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![Linux](https://github.com/lucrae/texlite/workflows/Linux/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
+[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![GNU/Linux](https://github.com/lucrae/texlite/workflows/Linux/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
 
 TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
 
@@ -40,11 +40,13 @@ All the info you need on writing with TeXLite is in this [this concise guide](ht
 
 # Contributing
 
-TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
+TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated. Notes on contributing:
 
-If you have any issues/bugs/requests, or want to know what code is in need of writing, please go to the [Issues](https://github.com/lucrae/texlite/issues) page.
+- If you have any issues/bugs/requests, or want to know what code is in need of writing, please go to the [Issues](https://github.com/lucrae/texlite/issues) page.
 
-If you're new to contributing, that's okay! Refer to [this great guide](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) on how to get started.
+- If you're new to contributing, that's okay! Refer to [this great guide](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) on how to get started.
+
+- Before and after implementing features, run tests on your local build with `$ tox` and lint with `$ tox -e lint`. Pull requests will not be accepted if not passing tests.
 
 # Other
 
