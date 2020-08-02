@@ -1,4 +1,4 @@
-name: Linux
+name: GNU/Linux
 on: [push]
 
 jobs:
