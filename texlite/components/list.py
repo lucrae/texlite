@@ -9,7 +9,7 @@ class List:
         self.ordered = ordered
 
     def tex(self):
-        
+
         lines = []
 
         # add begin
@@ -20,10 +20,14 @@ class List:
 
         # add items
         for item in self.items:
+
+            # parse nested list
             if type(item) == type(self):
                 lines.append(f'{item.tex()}')
+
+            # parse list item
             else:
-                lines.append(f'\t{BACKSLASH}item {Text(item).tex()}')
+                lines.append(f'{BACKSLASH}item {Text(item).tex()}')
 
         # add end
         if self.ordered:

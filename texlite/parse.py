@@ -5,13 +5,13 @@ from texlite.components import (
     List, Figure, Equation
 )
 
-
 # set useful constants and string sets
 NUMBERS = '0123456789'
 LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 UNORDERED_LIST_PREFIXES = ['-', '+', '*']
-ORDERED_LIST_PREFIXES = [f'{n}.' for n in NUMBERS]
-TAB = r'    ' # tabs are four spaces
+ORDERED_LIST_PREFIXES = [f'{c}.' for c in NUMBERS + LETTERS]
+LIST_PREFIXES = UNORDERED_LIST_PREFIXES + ORDERED_LIST_PREFIXES
+TAB = r' ' * 4 # tabs are four spaces
 
 # set section heading codes
 HEADINGS = {
@@ -62,17 +62,15 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
         # handle unordered list
         elif prefix in UNORDERED_LIST_PREFIXES:
 
-            list_component, i, md_lines = parse_list(i, md_lines,
-                                                     ordered=False)
-
+            # parse list and add list component
+            list_component, i = _parse_list(i, md_lines, ordered=False)
             components.append(list_component)
 
         # handle ordered list
         elif prefix in ORDERED_LIST_PREFIXES:
 
-            list_component, i, md_lines = parse_list(i, md_lines,
-                                                     ordered=True)
-
+            # parse list and add list component
+            list_component, i = _parse_list(i, md_lines, ordered=True)
             components.append(list_component)
 
         # handle figures
@@ -132,30 +130,50 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
     return tex_lines
 
 
-def parse_list(i, md_lines, ordered=False):
-    # XXX: Does not handle nested lists
+def _parse_list(i, md_lines, ordered=False, depth=0):
+    # NOTE: Nested lists must be done with four-space indentation
 
     prefixes = ORDERED_LIST_PREFIXES if ordered else UNORDERED_LIST_PREFIXES
-    
+
     items = []
     while i < len(md_lines):
 
-        print(md_lines[i])
+        # get line without tabs (at specific depth)
+        line_without_tab = md_lines[i][depth * len(TAB):]
 
-        # break if line is not item
-        if get_line_prefix(md_lines[i]) in prefixes:
+        # read in line if at proper depth
+        if get_line_prefix(line_without_tab) in prefixes:
 
             # add line to items
-            items.append(get_line_without_prefix(md_lines[i]))
+            items.append(get_line_without_prefix(line_without_tab))
             i += 1
 
+        # if tabbed inwards, create nested list (NOTE: recursive)
+        elif (TAB * (depth + 1) in md_lines[i] and
+                get_line_prefix(md_lines[i].lstrip()) in LIST_PREFIXES):
+
+            # determine if nested list
+            if get_line_prefix(md_lines[i].lstrip()) in ORDERED_LIST_PREFIXES:
+                nested_ordered = True
+            else:
+                nested_ordered = False
+
+            # parse nested list and append
+            list_component, i = _parse_list(i, md_lines,
+                                            ordered=nested_ordered,
+                                            depth=depth + 1)
+            items.append(list_component)
+            i += 1
+
+        # exit out of list
         else:
 
             # go back to align with end-of-loop increment and break
             i -= 1
             break
 
-    return List(items, ordered=ordered), i, md_lines
+    # return list object and ending line for parsing to be picked up from
+    return List(items, ordered=ordered), i
 
 
 def get_line_prefix(line):
