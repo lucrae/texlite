@@ -34,9 +34,7 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
         graphics_path=graphics_path,
         package_config_path=package_config_path
     )
-    components = [
-        DocumentBegin(),
-    ]
+    components = [DocumentBegin()]
 
     # iteratively tokenise lines
     i, n_lines = 0, len(md_lines)
