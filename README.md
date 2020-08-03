@@ -30,7 +30,7 @@ You should now be able to compile your documents into PDFs with:
 $ texlite my_document.md
 ```
 
-(Or with `$ python -m texlite my_document.md`).
+(Or with `python -m texlite my_document.md` if on Windows).
 
 Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
