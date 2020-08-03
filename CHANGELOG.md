@@ -1,5 +1,10 @@
 # Changelog
 
+### v1.1.1 (2020-08-04)
+
+- Cleaned up some capitalisation inconsistency.
+- Decreased distribution build size by excluding some unnecessary files.
+
 ### v1.1.0 (2020-08-03)
 
 - Added 'abstract' meta specification, e.g.: `:abstract: Abstract goes here`.
