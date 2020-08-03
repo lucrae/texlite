@@ -37,7 +37,7 @@ def test_component(component):
         'save_tex': True,
         'show_tex_output': SHOW_TEX_OUTPUT,
         'no_pdf': False,
-        'use_packages': None, # default to texlite/config/packages.json
+        'default_packages': None, # texlite/config/default_packages.txt
     }
 
     # execute main

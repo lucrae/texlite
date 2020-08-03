@@ -13,5 +13,6 @@ Versions of TeXLite in development.
 ### v1.1.0
 
 - Added 'abstract' meta specification, e.g.: `:abstract: Abstract goes here`.
-- Added command-line option `--use-packages` to feed in a JSON file with the list of packages to use (default: config/packages.json).
+- Added 'usepackages' meta specification, e.g.: `:usepackages: xcolor, hyperref`
+- Added command-line option `--default-packages F` to use a text (.txt) file to specify a custom set of default packages to use (one line per package name). Default is in `texlite/config/default_packages.txt`.
 - Added the ability to create nested lists using (4 space) indentation.

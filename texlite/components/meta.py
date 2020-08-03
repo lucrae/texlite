@@ -4,21 +4,23 @@ from texlite.components.common import (
     is_number, BACKSLASH, BANNER_LINE, FONT_SIZES
 )
 from texlite import messages as msg
-from texlite.utils import read_json
+from texlite.utils import read_file_as_list
 
 
 class Meta:
 
     def __init__(self, title=None, author=None, date=None, abstract=None,
                  fontsize='10pt', margin='1.6in', pagenumbers=True,
-                 linespread=1.0, package_config_path=None, graphics_path=None):
+                 linespread=1.0, usepackages=None,
+                 package_config_path=None, graphics_path=None):
 
         # set default packages
         if package_config_path:
-            self.packages = read_json(package_config_path)
+            self.packages = read_file_as_list(package_config_path)
         else:
-            package_config_path = Path('texlite', 'config', 'packages.json')
-            self.packages = read_json(package_config_path)
+            package_config_path = Path('texlite', 'config',
+                                       'default_packages.txt')
+            self.packages = read_file_as_list(package_config_path)
 
         # declare specifiable meta options
         # NOTE: validation of options handled in `Meta._validate_options`
@@ -44,6 +46,9 @@ class Meta:
         self.fontsize = fontsize
         self.margin = margin
         self.linespread = linespread
+
+        # other
+        self.usepackages = usepackages
 
         # graphics setup
         self.graphics_path = graphics_path
@@ -130,6 +135,12 @@ class Meta:
         # include default packages
         for package in self.packages:
             lines.append(f'{BACKSLASH}usepackage{{{package}}}')
+
+        # include extra packages
+        if self.usepackages:
+            extra_packages = self.usepackages.replace(' ', '').split(',')
+            for package in extra_packages:
+                lines.append(f'{BACKSLASH}usepackage{{{package}}} % custom')
 
         return lines
 
