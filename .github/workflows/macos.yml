@@ -4,6 +4,7 @@ on: [push]
 jobs:
   test-with-mactex:
 
+    timeout-minutes: 20
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
