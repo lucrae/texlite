@@ -16,11 +16,17 @@ class Meta:
 
         # set default packages
         if package_config_path:
+
+            # use custom list
             self.packages = read_file_as_list(package_config_path)
         else:
-            package_config_path = Path('texlite', 'config',
-                                       'default_packages.txt')
-            self.packages = read_file_as_list(package_config_path)
+
+            # default packages
+            self.packages = [
+                'hyperref',
+                'amsmath',
+                'amssymb',
+            ]
 
         # declare specifiable meta options
         # NOTE: validation of options handled in `Meta._validate_options`

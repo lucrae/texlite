@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.1.3 (2020-08-04)
+
+- Solved critical config issue with reading in default packages.
+
 ### v1.1.1 (2020-08-04)
 
 - Cleaned up some capitalisation inconsistency.
