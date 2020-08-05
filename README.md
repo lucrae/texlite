@@ -2,9 +2,9 @@
   <img src="docs/images/texlite.png" />
 </p>
 
-[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![GNU/Linux](https://github.com/lucrae/texlite/workflows/Linux/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
+[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![GNU/Linux](https://github.com/lucrae/texlite/workflows/GNU/Linux/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
 
-TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
+> TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
 
 <p align="center">
   <img width="100%" src="docs/images/demo.png" />
@@ -30,7 +30,7 @@ You should now be able to compile your documents into PDFs with:
 $ texlite my_document.md
 ```
 
-(Or with `$ python -m texlite my_document.md`).
+(Or with `python -m texlite my_document.md` if on Windows).
 
 Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
@@ -42,7 +42,7 @@ All the info you need on writing with TeXLite is in this [this concise guide](ht
 
 TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated. Notes on contributing:
 
-- If you have any issues/bugs/requests, or want to know what code is in need of writing, please go to the [Issues](https://github.com/lucrae/texlite/issues) page.
+- If you have any issues/bugs/requests, or want to know what code is in need of writing, please go to [Issues](https://github.com/lucrae/texlite/issues).
 
 - If you're new to contributing, that's okay! Refer to [this great guide](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) on how to get started.
 

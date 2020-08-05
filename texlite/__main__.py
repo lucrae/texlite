@@ -23,8 +23,9 @@ def main():
                         'processes')
     parser.add_argument('--no-pdf', action='store_true', default=False,
                         help='save TeX (.tex) and do not generate PDF')
-    parser.add_argument('--use-packages', metavar='CFG', help='Read in JSON '
-                        'file with list of packages to use')
+    parser.add_argument('--default-packages', metavar='F', help='use text '
+                        '(.txt) file to specify a custom set of default '
+                        'packages to use (one line per package name)')
     args = parser.parse_args()
 
     # run texlite
