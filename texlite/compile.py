@@ -1,6 +1,7 @@
 import os
 import subprocess
 from pathlib import Path
+from typing import List
 
 from texlite import messages as msg
 from texlite.utils import get_os_name
@@ -9,7 +10,9 @@ from texlite.utils import get_os_name
 AUXILLARY_FILE_EXTENSIONS = ['aux', 'log', 'out']
 
 
-def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
+def compile_tex_to_pdf(path: Path, save_tex: bool=False,
+                       show_tex_output: bool=False) -> (bool, str):
+    '''Compiles a PDF from a TeX (.tex) file'''
 
     # get base file path (tex file path without extension)
     base_path = Path(path).parents[0] / Path(path).stem
@@ -56,7 +59,8 @@ def compile_tex_to_pdf(path, save_tex=False, show_tex_output=False):
     return True, f'Compiled document as "{base_path}.pdf"'
 
 
-def _call_pdflatex(base_path, show_tex_output=False):
+def _call_pdflatex(base_path: Path, show_tex_output: bool=False) -> int:
+    '''Calls pdflatex to run the PDF compilation'''
 
     # set command executable
     cmd_exe = _get_pdflatex_exe()
@@ -76,10 +80,12 @@ def _call_pdflatex(base_path, show_tex_output=False):
     return exit_code
 
 
-def _get_pdflatex_exe():
+def _get_pdflatex_exe() -> str:
+    '''Gets the name/path of pdflatex executable in shell'''
 
-    # XXX: the `which` method of this function does not work in Windows, so
-    # just default to pdflatex. This is a little hacky and could be improved
+    # XXX: the `which` method used in this function does not work in Windows,
+    # so just default to pdflatex. This is a little hacky and could be
+    # improved.
 
     if get_os_name() == 'windows':
         return 'pdflatex'
@@ -110,8 +116,10 @@ def _get_pdflatex_exe():
     return 'pdflatex'
 
 
-def _tex_clean_up(file_stem, base_path, auxillary_file_extensions,
-                  save_tex=False):
+def _tex_clean_up(file_stem: Path, base_path: Path,
+                  auxillary_file_extensions: List[str],
+                  save_tex: bool=False) -> None:
+    '''Cleans up auxillary files generated in PDF compilation'''
 
     # clean up auxillary files
     for extension in AUXILLARY_FILE_EXTENSIONS:

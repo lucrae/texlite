@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional, List as L
 
 from texlite.components.common import (
     is_number, BACKSLASH, BANNER_LINE, FONT_SIZES
@@ -8,11 +9,18 @@ from texlite.utils import read_file_as_list
 
 
 class Meta:
+    '''Handles the meta options and setup of the document'''
 
-    def __init__(self, title=None, author=None, date=None, abstract=None,
-                 fontsize='10pt', margin='1.6in', pagenumbers=True,
-                 linespread=1.0, usepackages=None,
-                 package_config_path=None, graphics_path=None):
+    def __init__(self, title: Optional[str]=None,
+                 author: Optional[str]=None,
+                 date: Optional[str]=None,
+                 abstract: Optional[str]=None,
+                 fontsize: str='10pt',
+                 margin: str='1.6in',
+                 linespread: int=1.0,
+                 usepackages: Optional[str]=None,
+                 package_config_path: Optional[Path]=None,
+                 graphics_path: Optional[Path]=None):
 
         # set default packages
         if package_config_path:
@@ -59,7 +67,8 @@ class Meta:
         # graphics setup
         self.graphics_path = graphics_path
 
-    def tex(self):
+    def tex(self) -> str:
+        '''Returns generated TeX from component'''
 
         # validate options
         self._validate_options()
@@ -94,7 +103,8 @@ class Meta:
         # return joined string
         return '\n'.join(lines)
 
-    def _validate_options(self):
+    def _validate_options(self) -> None:
+        '''Validates options to provide warnings and reset to defaults'''
 
         # check fontsize
         if self.fontsize not in FONT_SIZES:
@@ -127,7 +137,8 @@ class Meta:
             )
             self.linespread = 1.0
 
-    def _packages(self):
+    def _packages(self) -> L[str]:
+        '''Returns list of TeX import commands for packages'''
 
         lines = []
 
@@ -150,7 +161,8 @@ class Meta:
 
         return lines
 
-    def _preamble_commands(self):
+    def _preamble_commands(self) -> L[str]:
+        '''Returns list of TeX comamands for the document preamble'''
 
         lines = []
 
@@ -169,7 +181,8 @@ class Meta:
 
         return lines
 
-    def _document_details(self):
+    def _document_details(self) -> L[str]:
+        '''Returns list of TeX document detail specification commands'''
 
         lines = []
 
@@ -192,8 +205,11 @@ class Meta:
 
 
 class DocumentBegin:
+    '''Opens the main document section'''
 
-    def tex(self):
+    def tex(self) -> str:
+        '''Returns generated TeX from component'''
+
         return '\n'.join([
             BANNER_LINE,
             r'\begin{document}',
@@ -202,8 +218,11 @@ class DocumentBegin:
 
 
 class DocumentEnd:
+    '''Closes the main document section'''
 
-    def tex(self):
+    def tex(self) -> str:
+        '''Returns generated TeX from component'''
+
         return '\n'.join([
             BANNER_LINE,
             r'\end{document}',
@@ -212,14 +231,16 @@ class DocumentEnd:
 
 
 class MakeTitle:
+    '''Creates the title from the meta document details'''
 
-    def __init__(self, meta):
+    def __init__(self, meta: Meta):
         self.title = meta.title
         self.author = meta.author
         self.date = meta.date
         self.abstract = meta.abstract
 
-    def tex(self):
+    def tex(self) -> str:
+        '''Returns generated TeX from component'''
 
         lines = []
 

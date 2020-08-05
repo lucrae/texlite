@@ -5,7 +5,7 @@ from texlite.cli import run
 from texlite._version import description, __version__
 
 
-def main():
+def main() -> None:
     '''Entry-point for command-line calling (texlite.__main__:main)'''
 
     # parse command-line arguments

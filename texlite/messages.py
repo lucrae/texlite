@@ -6,7 +6,7 @@ from texlite.utils import get_os_name
 
 
 class ANSI:
-    '''ANSI colour interrupts'''
+    '''ANSI colour interrupt codes'''
 
     # default/reset code
     DEFAULT = '\033[0m'
@@ -41,7 +41,7 @@ if get_os_name() != 'linux':
     ANSI.disable()
 
 
-def _print(message, preface=None, col=ANSI.DEFAULT):
+def _print(message: str, preface: str=None, col=ANSI.DEFAULT) -> None:
 
     # print text
     if preface:
@@ -50,21 +50,21 @@ def _print(message, preface=None, col=ANSI.DEFAULT):
         print(f'{col}{message}{ANSI.DEFAULT}')
 
 
-def message(message):
+def message(message: str) -> None:
     '''Prints a standard message'''
 
     # print message
     _print(message, preface='TeXLite', col=ANSI.OK)
 
 
-def warning(message):
+def warning(message: str) -> None:
     '''Prints a warning message'''
 
     # print warning message
     _print(message, preface='Warning', col=ANSI.WARNING)
 
 
-def error(message, halt=False):
+def error(message: str, halt: bool=False) -> None:
     '''Prints an error message'''
 
     # print error message

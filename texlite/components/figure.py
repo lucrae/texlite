@@ -6,9 +6,11 @@ from texlite.components.text import Text
 
 
 class Figure:
+    '''Represents an image, optionally with a caption'''
 
-    def __init__(self, graphics_path, image_path, caption_text='',
-                 graphics_width=f'{BACKSLASH}textwidth'):
+    def __init__(self, graphics_path: Path, image_path: Path,
+                 caption_text: str='',
+                 graphics_width: str=f'{BACKSLASH}textwidth'):
 
         # set details
         self.graphics_path = graphics_path
@@ -16,7 +18,8 @@ class Figure:
         self.caption_text = caption_text
         self.graphics_width = graphics_width
 
-    def tex(self):
+    def tex(self) -> str:
+        '''Returns generated TeX from component'''
 
         # check if image exists
         full_path = Path(self.graphics_path) / Path(self.image_path)
