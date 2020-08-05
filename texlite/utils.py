@@ -4,7 +4,6 @@ from platform import system
 from pathlib import Path
 from typing import Union, List as L
 
-
 from texlite import messages as msg
 
 
