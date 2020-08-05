@@ -1,4 +1,5 @@
 from pathlib import Path
+from argparse import Namespace
 
 from texlite import messages as msg
 from texlite.io import read_md_lines, write_tex_lines
@@ -6,7 +7,7 @@ from texlite.parse import parse
 from texlite.compile import compile_tex_to_pdf
 
 
-def _check_source(source_path):
+def _check_source(source_path: Path) -> (bool, str):
     '''Checks existence and file type of inputted source path'''
 
     # check if file exists
@@ -17,10 +18,11 @@ def _check_source(source_path):
     if not source_path.suffix == '.md':
         return False, 'Source file must be in markdown (.md) format'
 
+    # return success and message
     return True, f'Reading in "{source_path}"...'
 
 
-def run(args):
+def run(args: Namespace) -> bool:
     '''Runs main program cycle'''
 
     # form source path (and add .md if no suffix given)

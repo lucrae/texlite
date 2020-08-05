@@ -4,22 +4,10 @@ from setuptools import setup, find_packages
 
 from texlite._version import description, __version__
 
-# read in README file for long description
+
+# read in description
 with open(Path('docs/DESCRIPTION.md'), 'r') as f:
-
     long_description = f.read()
-
-    # # set up html regex pattern to filter README
-    # html_re = re.compile(r'<.*>')
-    # long_description_lines = []
-
-    # # read in README lines and append non-HTML non-empty lines
-    # for line in f.readlines():
-    #     if not re.search(html_re, line) and not line == '\n':
-    #         long_description_lines.append(line)
-
-    # # form long description
-    # long_description = '\n'.join(long_description_lines)
 
 
 # set up package details
