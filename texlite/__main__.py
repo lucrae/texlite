@@ -9,7 +9,10 @@ def main():
     '''Entry-point for command-line calling (texlite.__main__:main)'''
 
     # parse command-line arguments
-    parser = argparse.ArgumentParser(description=description)
+    parser = argparse.ArgumentParser(
+        description=description,
+        epilog='For more information go to https://github.com/lucrae/texlite.'
+    )
     parser.add_argument('source', type=str,
                         help='path to source markdown (.md) file to parse and '
                         'compile')
