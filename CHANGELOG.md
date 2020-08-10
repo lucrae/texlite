@@ -25,3 +25,7 @@
 ## [Unreleased]
 
 Versions of TeXLite in development.
+
+### v1.1.4
+
+- Added link to repo in command-line `--help` for more information.
