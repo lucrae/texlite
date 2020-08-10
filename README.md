@@ -42,12 +42,12 @@ A run-down on all you need to know is in [this concise guide](https://github.com
 
 > TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
 
-You can become a contributer to the project by:
+For example, you can become a contributer to the project by:
 
-- Fixing bugs, or trying to break TeXLite to discover bugs.
-- Adding new components (which is as simple as adding a module to `texlite/components` and then adding it to `parse.py`).
-- Writing documentation or examples (super appreciated!)
 - Adding ideas for the project to [Issues](https://github.com/lucrae/texlite/issues).
+- Adding new components (as simple as adding a module to `texlite/components` and then adding it to `parse.py`).
+- Fixing bugs, or trying to break TeXLite to discover bugs (go to [Issues](https://github.com/lucrae/texlite/issues)).
+- Writing documentation or examples (super appreciated!).
 
 Notes on contributing:
 
