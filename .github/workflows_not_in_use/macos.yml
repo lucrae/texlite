@@ -4,9 +4,11 @@ on: [push]
 jobs:
   test-with-mactex:
 
-    runs-on: macos-10.15 # macOS Catalina
+    timeout-minutes: 20
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [macos-latest] # macos-10.15 (macOS Catalina)
         python-version: [3.6]
 
     steps:
