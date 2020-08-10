@@ -4,7 +4,6 @@ on: [push]
 jobs:
   test-with-tex-live:
 
-    timeout-minutes: 20
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
