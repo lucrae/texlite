@@ -1,5 +1,11 @@
 # Changelog
 
+### v1.1.4 (2020-08-10)
+
+- Added link to repo in command-line `--help` for more information.
+- Greatly improved codebase readability and internal documentation for future development.
+- Cleaned up documentation.
+
 ### v1.1.3 (2020-08-04)
 
 - Solved critical config issue with reading in default packages.
@@ -26,8 +32,3 @@
 
 Versions of TeXLite in development.
 
-### v1.1.4
-
-- Added link to repo in command-line `--help` for more information.
-- Greatly improved codebase readability and internal documentation for future development.
-- Cleaned up documentation.
