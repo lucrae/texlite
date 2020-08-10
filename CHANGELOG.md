@@ -29,3 +29,5 @@ Versions of TeXLite in development.
 ### v1.1.4
 
 - Added link to repo in command-line `--help` for more information.
+- Greatly improved codebase readability and internal documentation for future development.
+- Cleaned up documentation.
