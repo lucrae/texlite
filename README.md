@@ -4,7 +4,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![GNU/Linux](https://github.com/lucrae/texlite/workflows/GNU/Linux/badge.svg) ![macOS](https://github.com/lucrae/texlite/workflows/macOS/badge.svg) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
 
-> TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
+> TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. **With TeXLite, it's easy to write good-looking documents with minimal overhead**.
 
 <p align="center">
   <img width="100%" src="docs/images/demo.png" />
@@ -34,25 +34,32 @@ $ texlite my_document.md
 
 Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
-# Guide
+# Get Started
 
-All the info you need on writing with TeXLite is in this [this concise guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md).
+A run-down on all you need to know is in [this concise guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md).
 
 # Contributing
 
-TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated. Notes on contributing:
+> TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
 
-- If you have any issues/bugs/requests, or want to know what code is in need of writing, please go to [Issues](https://github.com/lucrae/texlite/issues).
+You can become a contributer to the project by:
+
+- Fixing bugs, or trying to break TeXLite to discover bugs.
+- Adding new components (which is as simple as adding a module to `texlite/components` and then adding it to `parse.py`).
+- Writing documentation or examples (super appreciated!)
+- Adding ideas for the project to [Issues](https://github.com/lucrae/texlite/issues).
+
+Notes on contributing:
 
 - If you're new to contributing, that's okay! Refer to [this great guide](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) on how to get started.
-
+- Go to [Issues](https://github.com/lucrae/texlite/issues) to report any bugs, suggest any features, or see what contributions are currently in need.
 - Before and after implementing features, run tests on your local build with `$ tox` and lint with `$ tox -e lint`. Pull requests will not be accepted if not passing tests.
 
 # Other
 
 ## License
 
-TeXLite is licensed under [GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html). You are essentially free to use this software in any way you want (privately, commercially, with modifications, etc.) on the condition that distributions stay open-source and stick to the license.
+TeXLite is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html). You are essentially free to use this software in any way you want (privately, commercially, with modifications, etc.) on the condition that distributions stay open-source and stick to the license.
 
 ## Installation Fixes
 
@@ -60,7 +67,7 @@ If you're having issues with installing TeXLite, here are some fixes to possible
 
 - **Not added to Windows PATH**: On Windows PowerShell or CMD, Pip will not automatically add programs to your PATH (meaning that TeXLite can't be executed with `$ texlite`). You can fix this either by adding texlite to your PATH, or simply by calling TeXLite with `python -m texlite` or `python3 -m texlite`.
 
-- **Wrong Python**: If `pip install texlite` is not working, you may be using Python 2.7, which has reached its end of life. Use `pip3 install --upgrade pip` and then `pip3 install texlite` to ensure that you are using Python 3.
+- **Wrong Python**: If `pip install texlite` is not working, you may be using Python 2.7, which has reached its end of life. Use `pip3 install --upgrade pip` and then `pip3 install texlite` to ensure that you're using Python 3.
 
 - **TeX Live Missing Packages**: If *TeX Live* is installed and working but the document TeX cannot be compiled, it may because of missing plugins. You can ensure your *TeX Live* has all the plugins with `sudo apt-get install texlive-full`.
 
