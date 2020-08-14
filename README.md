@@ -9,7 +9,7 @@
 
 # Example
 
-| <img width="105%" src="docs/images/demo_md.png" />  | <img width="100%" src="docs/images/demo_pdf.png" />  |
+| <img width="100%" src="docs/images/demo_md.png" />  | <img width="100%" src="docs/images/demo_pdf.png" />  |
 |:--:|:--:|
 | Document | PDF |
 
@@ -43,7 +43,7 @@ Open the terminal, go to your document, and execute:
 $ texlite my_document.md
 ```
 
-Use `texlite --help` for options and information. Note that on Windows you may need to use `python -m texlite my_document.md` instead, or add TeXLite to your `PATH`.
+Use `texlite --help` for options and information. Note that on Windows you may need to use `python -m texlite my_document.md` instead, see [Installation Fixes](#installation-fixes) for more info.
 
 ## Writing
 
