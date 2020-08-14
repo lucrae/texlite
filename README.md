@@ -51,9 +51,16 @@ Use `texlite --help` for options and information. Note that on Windows you may n
 
 ## Advanced Usage
 
-### Document setup
+### Document Setup
 
-Document setup options can be specified with tags at the start of the document. For example `:title: My Document` will set the document title to "My Document", and `:usepackages: xcolor, hyperref` will allow the document to use commands from the `xcolor` and `hyperref` LaTeX packages (given they're installed).
+Document setup options can be specified with tags at the start of the document.
+
+```
+:title: My Document  
+:usepackages: xcolor, hyperref 
+```
+
+For example the lines above will set the document title to "My Document" and allow the document to use commands from the `xcolor` and `hyperref` LaTeX packages (given they're installed).
 
 All the meta specification tags can be found in the guide [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
 
