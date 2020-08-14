@@ -43,7 +43,7 @@ Open the terminal, go to your document, and execute:
 $ texlite my_document.md
 ```
 
-Use `texlite --help` for options and information. Note that on Windows you may need to use `python -m texlite my_doc.md`.
+Use `texlite --help` for options and information. Note that on Windows you may need to use `python -m texlite my_document.md` instead, or add TeXLite to your `PATH`.
 
 ## Writing
 
