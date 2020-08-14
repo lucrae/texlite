@@ -37,11 +37,13 @@ You should now be able to use `texlite` in the command-line (see [Usage](#usage)
 
 ## Usage
 
-To compile your document to PDF, open the terminal, go to your document, and execute:
+To compile your document to PDF, open the terminal and execute:
 
 ```
 $ texlite my_document.md
 ```
+
+where `my_document.md` is the path to your document.
 
 Use `texlite --help` for options and information. Note that on Windows you may need to use `python -m texlite my_document.md` instead, see [Installation Fixes](#installation-fixes) for more info.
 
