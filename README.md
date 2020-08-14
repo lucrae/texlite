@@ -13,7 +13,7 @@
 |:--:|:--:|
 | Document | PDF |
 
-:smile: Note that **all LaTeX commands can be used seemlessly as valid TeXLite**, even from [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
+:smile: Note that **all LaTeX commands can be used seamlessly as valid TeXLite**, even from [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
 
 # Get Started
 
