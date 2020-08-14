@@ -1,18 +1,19 @@
 
 <p align="center">
-  <img  src="docs/images/texlite.png" />
+  <img src="docs/images/texlite.png" />
 </p>
 
-[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![tests](https://github.com/lucrae/texlite/workflows/tests/badge.svg) ![GNU/Linux](https://img.shields.io/badge/GNU/Linux-tested-32c954) ![macOS](https://img.shields.io/badge/macOS-tested-32c954) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
+[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![build](https://github.com/lucrae/texlite/workflows/build/badge.svg) ![GNU/Linux](https://img.shields.io/badge/GNU/Linux-tested-32c954) ![macOS](https://img.shields.io/badge/macOS-tested-32c954) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
 
 > TeXLite is a lightweight, open-source tool for writing standard LaTeX documents cleanly using Markdown-style syntax. **It's all about writing your LaTeX documents without distractions or overhead.**
 
-<p align="center">
-  <img  width="100%"  src="docs/images/demo.png" />
-  <p align="center"><i>A demo of writing a simple document in an editor and compiling it to a PDF with TeXLite</i></p>
-</p>
+# Example
 
-:pencil: Note that **all LaTeX commands can be seemlessly used as valid TeXLite**, including commands from external packages (see the `:usepackages:` tag [in the guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup)).
+| <img width="105%" src="docs/images/demo_md.png" />  | <img width="100%" src="docs/images/demo_pdf.png" />  |
+|:--:|:--:|
+| Document | PDF |
+
+:smile: Note that **all LaTeX commands can be seemlessly used as valid TeXLite**, including commands from external packages (see the `:usepackages:` tag [in the guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup)).
 
 # Installation
 
@@ -39,11 +40,16 @@ Open the terminal, go to your document, and execute:
 ```
 $ texlite my_document.md
 ```
-(Or `python -m texlite my_document.md` if on Windows.)
+
+Or alternatively (if on Windows):
+
+```
+$ python -m texlite my_document.md
+```
 
 Use `texlite --help` for options and information. 
 
-:pencil: **A run-down on how to write your document is [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md).**
+:blue_book: **A run-down on how to write your document is [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md).**
 
 ## Saving as LaTeX/TeX
 
