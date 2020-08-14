@@ -32,3 +32,8 @@
 
 Versions of TeXLite in development.
 
+### v1.1.5
+
+- Updated README with more details on usage
+- Simplified the --help output
+- Removed unneeded files from MANIFEST.in

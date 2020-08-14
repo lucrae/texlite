@@ -10,6 +10,7 @@ def main() -> None:
 
     # parse command-line arguments
     parser = argparse.ArgumentParser(
+        usage='texlite [options] source',
         description=description,
         epilog='For more information go to https://github.com/lucrae/texlite.'
     )

@@ -1,17 +1,20 @@
+
 <p align="center">
-  <img src="docs/images/texlite.png" />
+  <img  src="docs/images/texlite.png" />
 </p>
 
-[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![build](https://github.com/lucrae/texlite/workflows/build/badge.svg) ![GNU/Linux](https://img.shields.io/badge/GNU/Linux-tested-32c954) ![macOS](https://img.shields.io/badge/macOS-tested-32c954) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
+[![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![tests](https://github.com/lucrae/texlite/workflows/tests/badge.svg) ![GNU/Linux](https://img.shields.io/badge/GNU/Linux-tested-32c954) ![macOS](https://img.shields.io/badge/macOS-tested-32c954) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
 
-> TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. **With TeXLite, it's easy to write good-looking documents with minimal overhead**.
+> TeXLite is a lightweight, open-source tool for writing standard LaTeX documents cleanly using Markdown-style syntax. **It's all about writing your LaTeX documents without distractions or overhead.**
 
 <p align="center">
-  <img width="100%" src="docs/images/demo.png" />
+  <img  width="100%"  src="docs/images/demo.png" />
   <p align="center"><i>A demo of writing a simple document in an editor and compiling it to a PDF with TeXLite</i></p>
 </p>
 
-# Install
+:pencil: Note that **all LaTeX commands can be seemlessly used as valid TeXLite**, including commands from external packages (see the `:usepackages:` tag [in the guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup)).
+
+# Installation
 
 **STEP 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
 
@@ -20,24 +23,42 @@ $ pip install --upgrade texlite
 ```
 
 **STEP 2**: Install (if not already installed) a [distribution of TeX](https://www.latex-project.org/get/). Recommendations:
+
 - On Windows, *MikTeX* can be installed from [its official downloads page](https://miktex.org/download).
+
 - On MacOS, *MacTeX* can be installed with `brew cask install mactex`.
+
 - On Ubuntu/Debian, *TeX Live* can be installed with `sudo apt-get install texlive`.
 
-You should now be able to compile your documents into PDFs with:
+You should now be able to use `texlite` in the command-line (see [Usage](#usage)). If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
+
+# Usage
+
+Open the terminal, go to your document, and execute:
 
 ```
 $ texlite my_document.md
 ```
+(Or `python -m texlite my_document.md` if on Windows.)
 
-(Or with `python -m texlite my_document.md` if on Windows).
+Use `texlite --help` for options and information. 
 
-Use `texlite --help` for options and information. If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
+:pencil: **A run-down on how to write your document is [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md).**
 
-# Get Started
+## Saving as LaTeX/TeX
 
-A run-down on all you need to know is in [this concise guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md).
+TeXLite "transpiles" to TeX, so it's very easy to save the `.tex` with:
 
+```
+$ texlite --save-tex my_document.md
+```
+
+Or if you want just the `.tex` and no PDF:
+
+```
+$ texlite --no-pdf my_document.md
+```
+  
 # Contributing
 
 > TeXLite is still in development and has plenty of features and fixes yet to come! If you can help with that, no matter to what degree, contributions to the project are greatly appreciated.
@@ -52,7 +73,9 @@ A run-down on all you need to know is in [this concise guide](https://github.com
 **Notes on contributing:**
 
 - If you're new to contributing, that's okay! Refer to [this great guide](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) on how to get started.
+
 - Go to [Issues](https://github.com/lucrae/texlite/issues) to report any bugs, suggest any features, or see what contributions are currently in need.
+
 - Before and after implementing features, run tests on your local build with `$ tox` and lint with `$ tox -e lint`. Pull requests will not be accepted if not passing tests.
 
 # Other

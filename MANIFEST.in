@@ -1,6 +1,2 @@
 include README.md
 include LICENSE
-include tox.ini
-
-graft docs
-graft tests

@@ -1,1 +1,1 @@
-TeXLite is a lightweight open-source tool for writing standard LaTeX/TeX documents in clean, Markdown-style syntax. With TeXLite, it's easy to write **good-looking documents with minimal overhead**.
+TeXLite is a lightweight, open-source tool for writing standard LaTeX documents cleanly using Markdown-style syntax. **It's all about writing your LaTeX documents without distractions or overhead.**
