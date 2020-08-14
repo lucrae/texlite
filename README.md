@@ -13,9 +13,7 @@
 |:--:|:--:|
 | Document | PDF |
 
-> "Simplicity is the ultimate sophistication" -- Leonardo di Vinci
-
-:smile: Note that **all LaTeX commands can be seemlessly used as valid TeXLite**, including commands from external packages (see the `:usepackages:` tag [in the guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup)).
+:smile: Note that **all LaTeX commands can be used seemlessly as valid TeXLite**, even from [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
 
 # Get Started
 
