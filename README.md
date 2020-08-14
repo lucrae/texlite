@@ -15,7 +15,9 @@
 
 :smile: Note that **all LaTeX commands can be seemlessly used as valid TeXLite**, including commands from external packages (see the `:usepackages:` tag [in the guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup)).
 
-# Installation
+# Get Started
+
+## Installation
 
 **STEP 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
 
@@ -33,7 +35,7 @@ $ pip install --upgrade texlite
 
 You should now be able to use `texlite` in the command-line (see [Usage](#usage)). If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
-# Usage
+## Usage
 
 Open the terminal, go to your document, and execute:
 
@@ -41,17 +43,21 @@ Open the terminal, go to your document, and execute:
 $ texlite my_document.md
 ```
 
-Or alternatively (if on Windows):
+Use `texlite --help` for options and information. Note that on Windows you may need to use `python -m texlite my_doc.md`.
 
-```
-$ python -m texlite my_document.md
-```
+## Writing
 
-Use `texlite --help` for options and information. 
+:blue_book: The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
 
-:blue_book: **A run-down on how to write your document is [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md).**
+## Advanced Usage
 
-## Saving as LaTeX/TeX
+### Document setup
+
+Document setup options can be specified with tags at the start of the document. For example `:title: My Document` will set the document title to "My Document", and `:usepackages: xcolor, hyperref` will allow the document to use commands from the `xcolor` and `hyperref` LaTeX packages (given they're installed).
+
+All the meta specification tags can be found in the guide [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
+
+### Saving as LaTeX/TeX
 
 TeXLite "transpiles" to TeX, so it's very easy to save the `.tex` with:
 
