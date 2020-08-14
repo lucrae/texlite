@@ -19,7 +19,7 @@
 
 ## Installation
 
-**STEP 1**: Install and upgrade with [pip](https://pip.pypa.io/en/stable/quickstart/).
+**STEP 1**: Install `texlite` with [pip](https://pip.pypa.io/en/stable/quickstart/).
 
 ```
 $ pip install --upgrade texlite
@@ -53,14 +53,14 @@ Use `texlite --help` for options and information. Note that on Windows you may n
 
 ### Document Setup
 
-Document setup options can be specified with tags at the start of the document.
+Document setup options can be specified with tags at the start of the document. For example:
 
 ```
 :title: My Document  
 :usepackages: xcolor, hyperref 
 ```
 
-For example the lines above will set the document title to "My Document" and allow the document to use commands from the `xcolor` and `hyperref` LaTeX packages (given they're installed).
+The lines above will set the document title to "My Document" and allow the document to use commands from the `xcolor` and `hyperref` LaTeX packages (given they're installed).
 
 All the meta specification tags can be found in the guide [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
 
