@@ -37,7 +37,7 @@ You should now be able to use `texlite` in the command-line (see [Usage](#usage)
 
 ## Usage
 
-Open the terminal, go to your document, and execute:
+To compile your document to PDF, open the terminal, go to your document, and execute:
 
 ```
 $ texlite my_document.md
