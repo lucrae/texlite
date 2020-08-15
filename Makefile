@@ -31,7 +31,7 @@ publish:
 	python3 -m pip install --upgrade setuptools wheel twine
 	python3 setup.py sdist bdist_wheel
 	python3 -m twine upload dist/*
-	rm -rf build dist .egg requests.egg-info
+	rm -rf build dist .egg *.egg-info
 
 refresh-git-index:
 

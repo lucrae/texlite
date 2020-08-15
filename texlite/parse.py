@@ -1,9 +1,12 @@
 import re
+from pathlib import Path
+from typing import List as L
 
 from texlite.components import (
     Meta, DocumentBegin, DocumentEnd, MakeTitle, Section, Text,
     List, Figure, Equation
 )
+
 
 # set useful constants and string sets
 NUMBERS = '0123456789'
@@ -27,16 +30,16 @@ HEADINGS = {
 FIGURE_RE = re.compile(r'^(!\[.*\]\(.*\))$')
 
 
-def parse(md_lines, graphics_path=None, package_config_path=None):
+def parse(md_lines: L[str], graphics_path: Path=None,
+          package_config_path: Path=None) -> L[str]:
+    '''Parses list of Markdown (.md) lines and returns TeX (.tex) lines'''
 
     # set up meta object and initial components
     meta = Meta(
         graphics_path=graphics_path,
         package_config_path=package_config_path
     )
-    components = [
-        DocumentBegin(),
-    ]
+    components = [DocumentBegin()]
 
     # iteratively tokenise lines
     i, n_lines = 0, len(md_lines)
@@ -130,11 +133,16 @@ def parse(md_lines, graphics_path=None, package_config_path=None):
     return tex_lines
 
 
-def _parse_list(i, md_lines, ordered=False, depth=0):
+def _parse_list(i: int, md_lines: L[str], ordered: bool=False,
+                depth: int=0) -> List:
+    '''Parse Markdown lines containing a list and return List component'''
+
     # NOTE: Nested lists must be done with four-space indentation
 
+    # set prefixes
     prefixes = ORDERED_LIST_PREFIXES if ordered else UNORDERED_LIST_PREFIXES
 
+    # iterate through lines
     items = []
     while i < len(md_lines):
 
@@ -176,13 +184,19 @@ def _parse_list(i, md_lines, ordered=False, depth=0):
     return List(items, ordered=ordered), i
 
 
-def get_line_prefix(line):
+def get_line_prefix(line: str) -> str:
+    '''Returns first section of a line'''
+
     return line.split(' ')[0]
 
 
-def get_line_without_prefix(line):
+def get_line_without_prefix(line: str) -> str:
+    '''Returns line without first section'''
+
     return ' '.join(line.split(' ')[1:])
 
 
-def is_empty(text):
+def is_empty(text: str) -> bool:
+    '''Returns true if the given string is completely empty'''
+
     return bytes(text, encoding='utf-8') == b''

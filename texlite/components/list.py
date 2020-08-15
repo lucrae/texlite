@@ -1,14 +1,20 @@
+from typing import List as L
+
 from texlite.components.common import BACKSLASH
 from texlite.components.text import Text
 
 
 class List:
+    '''Represents recursively nestable ordered or unordered list'''
 
-    def __init__(self, items, ordered=False):
+    def __init__(self, items: L[str], ordered: bool=False):
+
+        # set details
         self.items = items
         self.ordered = ordered
 
-    def tex(self):
+    def tex(self) -> str:
+        '''Returns generated TeX from component'''
 
         lines = []
 

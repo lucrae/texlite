@@ -7,11 +7,13 @@ from texlite.components.common import (
 
 
 class Text:
+    '''Represents standard auto-formatted text'''
 
-    def __init__(self, content):
+    def __init__(self, content: str):
         self.content = content
 
-    def tex(self):
+    def tex(self) -> str:
+        '''Returns generated TeX from component'''
 
         # flow through formatting pipes
         formatted_content = self._format_encapsulations(self.content)
@@ -21,7 +23,8 @@ class Text:
 
         return formatted_content
 
-    def _is_encapsulatable(self, text, bad_chars=NON_ENCAPSULATION_CHARS):
+    def _is_encapsulatable(self, text,
+                           bad_chars=NON_ENCAPSULATION_CHARS) -> bool:
 
         if len(text) == 0:
             return False
@@ -29,7 +32,7 @@ class Text:
         # return if head and tail chars are acceptable for encapsulation
         return not text[0] in bad_chars and not text[-1] in bad_chars
 
-    def _format_encapsulations(self, text):
+    def _format_encapsulations(self, text: str) -> str:
 
         # format bold (**)
         for match in re.findall(BOLD_RE, text):
@@ -57,14 +60,14 @@ class Text:
 
         return text
 
-    def _format_replacements(self, text):
+    def _format_replacements(self, text: str) -> str:
 
         # replace horizontal bars with medskips
         text = text.replace('---', r'\medskip')
 
         return text
 
-    def _format_hyperlinks(self, text):
+    def _format_hyperlinks(self, text: str) -> str:
 
         # format hyperlinks
         for m in re.finditer(HYPERLINK_RE, text):
@@ -79,7 +82,7 @@ class Text:
 
         return text
 
-    def _format_special_characters(self, text):
+    def _format_special_characters(self, text: str) -> str:
 
         # replace special characters with safe (backslashed) ones
         text = text.replace('&', r'\&')

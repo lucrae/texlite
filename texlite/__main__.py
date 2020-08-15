@@ -5,11 +5,15 @@ from texlite.cli import run
 from texlite._version import description, __version__
 
 
-def main():
+def main() -> None:
     '''Entry-point for command-line calling (texlite.__main__:main)'''
 
     # parse command-line arguments
-    parser = argparse.ArgumentParser(description=description)
+    parser = argparse.ArgumentParser(
+        usage='texlite [options] source',
+        description=description,
+        epilog='For more information go to https://github.com/lucrae/texlite.'
+    )
     parser.add_argument('source', type=str,
                         help='path to source markdown (.md) file to parse and '
                         'compile')
@@ -23,8 +27,9 @@ def main():
                         'processes')
     parser.add_argument('--no-pdf', action='store_true', default=False,
                         help='save TeX (.tex) and do not generate PDF')
-    parser.add_argument('--use-packages', metavar='CFG', help='Read in JSON '
-                        'file with list of packages to use')
+    parser.add_argument('--default-packages', metavar='F', help='use text '
+                        '(.txt) file to specify a custom set of default '
+                        'packages to use (one line per package name)')
     args = parser.parse_args()
 
     # run texlite

@@ -1,3 +1,5 @@
+from typing import Union
+
 
 # useful constants and character sets
 BACKSLASH = r'\_'[0]
@@ -14,7 +16,7 @@ QUOTES_RE = r'"([^"]*)"'
 HYPERLINK_RE = r'\[([^\[]*)]\(([^\(]*)\)'
 
 
-def is_number(value):
+def is_number(value: Union[str, float, int]) -> bool:
     '''Returns if a value can be converted to integer or float'''
 
     try:
