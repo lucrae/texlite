@@ -109,7 +109,7 @@ TeXLite is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.h
 
 If you're having issues with installing TeXLite, here are some fixes to possible problems:
 
-- **Not added to Windows PATH**: On Windows PowerShell or CMD, Pip will not automatically add programs to your PATH (meaning that TeXLite can't be executed with `$ texlite`). You can fix this either by adding texlite to your PATH, or simply by calling TeXLite with `python -m texlite` or `python3 -m texlite`.
+- **TeXLite not added to Windows PATH**: On Windows, Pip will not automatically add programs to your PATH (meaning that TeXLite can't be executed with `$ texlite`). Try calling TeXLite instead with `python -m texlite` or `python3 -m texlite`, or adding Python/TeXLite to your PATH.
 
 - **Wrong Python**: If `pip install texlite` is not working, you may be using Python 2.7, which has reached its end of life. Use `pip3 install --upgrade pip` and then `pip3 install texlite` to ensure that you're using Python 3.
 
