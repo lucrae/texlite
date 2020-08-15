@@ -33,7 +33,9 @@ $ pip install --upgrade texlite
 
 - On Ubuntu/Debian, *TeX Live* can be installed with `sudo apt-get install texlive`.
 
-You should now be able to use `texlite` in the command-line (see [Usage](#usage)). If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
+You should now be able to run `$ texlite` (see [Usage](#usage)). If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
+
+You should now be able to run `$ texlite` (see [Usage](#usage)). If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
 ## Usage
 
