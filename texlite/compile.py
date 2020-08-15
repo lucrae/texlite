@@ -93,7 +93,8 @@ def _get_pdflatex_exe() -> str:
     # attempts (in order)
     exes = [
         'pdflatex',
-        '/usr/bin/pdflatex', # Ubuntu/Debian
+        '/usr/bin/pdflatex',
+        '/usr/local/bin/pdflatex',
         '/Library/TeX/texbin/pdflatex', # macOS
     ]
 
