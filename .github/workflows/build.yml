@@ -22,9 +22,9 @@ jobs:
     - name: Install Python dependencies
       run: |
 
-        # upgrade pip and install flake8 and pytest for linting and testing
+        # upgrade pip and install pip packages
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest tox 
 
     - name: Install TeX distribution (TeX Live)
       run: |
@@ -41,8 +41,8 @@ jobs:
         # check for give warnings (--exit-zero to not treat as errors)
         python -m flake8 --config setup.cfg --exit-zero
 
-    - name: Test with pytest
+    - name: Run tox
       run: |
 
         # run tests
-        python -m pytest --verbose
+        tox
