@@ -35,8 +35,6 @@ $ pip install --upgrade texlite
 
 You should now be able to run `$ texlite` (see [Usage](#usage)). If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
 
-You should now be able to run `$ texlite` (see [Usage](#usage)). If you have any issues installing, refer to [Installation Fixes](#installation-fixes).
-
 ## Usage
 
 To compile your document to PDF, open the terminal and execute:
