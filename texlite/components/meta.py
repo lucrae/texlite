@@ -8,6 +8,13 @@ from texlite import messages as msg
 from texlite.utils import read_file_as_list
 
 
+DEFAULT_PACKAGES = [
+    'hyperref',
+    'amsmath',
+    'amssymb',
+]
+
+
 class Meta:
     '''Handles the meta options and setup of the document'''
 
@@ -23,18 +30,13 @@ class Meta:
                  graphics_path: Optional[Path]=None):
 
         # set default packages
+        self.packages = DEFAULT_PACKAGES
+
+        # set default packages
         if package_config_path:
 
             # use custom list
-            self.packages = read_file_as_list(package_config_path)
-        else:
-
-            # default packages
-            self.packages = [
-                'hyperref',
-                'amsmath',
-                'amssymb',
-            ]
+            self.packages += read_file_as_list(package_config_path)
 
         # declare specifiable meta options
         # NOTE: validation of options handled in `Meta._validate_options`
@@ -111,19 +113,19 @@ class Meta:
 
             # show warning and enact default
             msg.warning(
-                'Option "fontsize" must be one of [8pt, 9pt, 10pt, 11pt, '
+                'Option \'fontsize\' must be one of [8pt, 9pt, 10pt, 11pt, '
                 '12pt, 14pt, 17pt, 20pt]. Defaulting to 10pt.'
             )
             self.fontsize = '10pt' # reset to default
 
-        # check margin
+        # # check margin
         if (not is_number(self.margin[:-2]) or
                 not self.margin[-2:] in ['mm', 'cm', 'pt', 'in']):
 
             # show warning and enact default
             msg.warning(
-                'Option "margin" must be a number followed by one of [mm, cm, '
-                'pt, in] (e.g. 0.8in). Defaulting to 1.6in.'
+                'Option \'margin\' must be a number followed by one of [mm, '
+                'cm, pt, in] (e.g. 0.8in). Defaulting to 1.6in.'
             )
             self.margin = '1.6in'
 
@@ -132,7 +134,7 @@ class Meta:
 
             # show warning and enact default
             msg.warning(
-                'Option "linespread" must be a float (e.g. 1.6). '
+                'Option \'linespread\' must be a float (e.g. 1.6). '
                 'Defaulting to 1.0.'
             )
             self.linespread = 1.0

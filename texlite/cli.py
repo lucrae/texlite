@@ -12,14 +12,14 @@ def _check_source(source_path: Path) -> (bool, str):
 
     # check if file exists
     if not source_path.exists():
-        return False, f'Source file "{source_path}" could not be found'
+        return False, f'Source file \'{source_path}\' not found'
 
     # check if file is markdown
     if not source_path.suffix == '.md':
         return False, 'Source file must be in markdown (.md) format'
 
     # return success and message
-    return True, f'Reading in "{source_path}"...'
+    return True, f'Reading in document \'{source_path}\'...'
 
 
 def run(args: Namespace) -> bool:

@@ -28,7 +28,7 @@ def read_json(path: Path) -> Union[dict, list]:
         with open(Path(path)) as f:
             return json.load(f)
     except FileNotFoundError:
-        msg.error(f'JSON file "{path}" could not be found', halt=True)
+        msg.error(f'JSON file \'{path}\' not found', halt=True)
 
 
 def read_file_as_list(path: Path) -> L[str]:
@@ -38,4 +38,4 @@ def read_file_as_list(path: Path) -> L[str]:
         with open(Path(path)) as f:
             return [line.strip('\n') for line in f.readlines()]
     except FileNotFoundError:
-        msg.error(f'File "{path}" could not be found', halt=True)
+        msg.error(f'File \'{path}\' not found', halt=True)
