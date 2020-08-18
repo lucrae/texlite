@@ -34,6 +34,8 @@ Versions of TeXLite in development.
 
 ### v1.1.5
 
-- Decreased distribution build size by removing unneeded files from MANIFEST.in.
-- Simplified the --help output.
+- Decreased distribution build size by removing unneeded files from `MANIFEST.in`.
+- Simplified the `--help` output.
 - Updated README with more details on usage.
+- Tweaked `--default-packages `F to append to (instead of overwrite) default packages, to prevent dependency issues.
+- Improved output messages.

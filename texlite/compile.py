@@ -14,6 +14,8 @@ def compile_tex_to_pdf(path: Path, save_tex: bool=False,
                        show_tex_output: bool=False) -> (bool, str):
     '''Compiles a PDF from a TeX (.tex) file'''
 
+    msg.message("Compiling...")
+
     # get base file path (tex file path without extension)
     base_path = Path(path).parents[0] / Path(path).stem
     file_stem = base_path.stem
@@ -56,7 +58,7 @@ def compile_tex_to_pdf(path: Path, save_tex: bool=False,
     #     if exit_code == 127:
     #         msg.error(f'Could not open "{base_path}.pdf" with "{open_with}"')
 
-    return True, f'Compiled document as "{base_path}.pdf"'
+    return True, f'Saving PDF \'{base_path}.pdf\'...'
 
 
 def _call_pdflatex(base_path: Path, show_tex_output: bool=False) -> int:
