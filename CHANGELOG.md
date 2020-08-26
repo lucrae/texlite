@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.1.6 (2020-08-26)
+
+- Fixed bug with using `---` as em-dashes causing errors.
+
 ### v1.1.5 (2020-08-18)
 
 - Decreased distribution build size by removing unneeded files from `MANIFEST.in`.
@@ -39,7 +43,3 @@
 ## [Unreleased]
 
 Versions of TeXLite in development.
-
-### v1.0.6 (2020-08-26)
-
-- Fix bug with using `---` as em-dashes causing errors.
