@@ -39,3 +39,7 @@
 ## [Unreleased]
 
 Versions of TeXLite in development.
+
+### v1.0.6 (2020-08-26)
+
+- Fix bug with using `---` as em-dashes causing errors.

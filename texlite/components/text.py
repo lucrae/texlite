@@ -63,7 +63,8 @@ class Text:
     def _format_replacements(self, text: str) -> str:
 
         # replace horizontal bars with medskips
-        text = text.replace('---', r'\medskip')
+        if text == '---':
+            return r'\medskip'
 
         return text
 
