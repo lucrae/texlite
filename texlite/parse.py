@@ -21,9 +21,9 @@ HEADINGS = {
     '#': 'section',
     '##': 'subsection',
     '###': 'subsubsection',
-    '#*': 'section',
-    '##*': 'subsection',
-    '###*': 'subsubsection',
+    '#*': 'section*',
+    '##*': 'subsection*',
+    '###*': 'subsubsection*',
 }
 
 # regex patterns

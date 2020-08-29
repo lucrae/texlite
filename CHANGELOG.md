@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.1.7 (2020-08-29)
+
+- Fixed parsing of unnumbered sections (e.g. `#* Section`).
+
 ### v1.1.6 (2020-08-26)
 
 - Fixed bug with using `---` as em-dashes causing errors.
