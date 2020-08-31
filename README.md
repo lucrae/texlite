@@ -37,7 +37,9 @@ You should now be able to run `$ texlite` (see [Usage](#usage)). If you have any
 
 ## Usage
 
-To compile your document to PDF, open the terminal and execute:
+Write your document in any editor and save as Markdown (`.md`). See [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md) for syntax.
+
+Compile your document to PDF by opening the terminal and using:
 
 ```
 $ texlite my_document.md
@@ -47,9 +49,9 @@ where `my_document.md` is the path to your document. *Note that on Windows you m
 
 Use `texlite --help` for options and information. 
 
-## Writing
+## Syntax Guide
 
-:blue_book: The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
+:closed_book: The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
 
 ## Advanced Usage
 
