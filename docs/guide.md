@@ -4,7 +4,8 @@ This is a concise guide to using TeXLite v1.1.0.
 
 - [Introduction](#introduction) provides an overview of TeXLite.
 - [Usage](#usage) provides information on how to run TeXLite.
-- [Features](#features) covers the features of TeXLite, with examples included with all components.
+- [Features](#features) covers the features of TeXLite (e.g.: text, images, headings, etc.), with examples included with all components.
+- [Document Setup](#document-setup) provides a listing of document setup options in TeXLite and how to use them.
 
 ## Introduction
 
@@ -61,7 +62,15 @@ Here is some text that will be in another paragraph.
 Text can be formatted using [basic Markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet), using asterisks for italics and double asterisks for bold. You can even do in-line code (monospace font) with backticks.
 
 ```
-Here is a word in *italics*, a word in **bold**, and some `in-line code`.
+Here is a word in *italics*.
+Here is a word in **bold**.
+Here is some `in-line code`.
+```
+
+Characters that have special syntax meaning can be written without that meaning by placing a `\` before the character, for example:
+
+```
+Here is a dollar sign: \$. Isn't that \#awesome?
 ```
 
 ### Lists
