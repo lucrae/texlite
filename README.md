@@ -1,10 +1,11 @@
 
 <p align="center">
   <img src="docs/images/texlite.png" />
+ 
 </p>
 
 [![PyPI version](https://img.shields.io/pypi/v/texlite.svg)](https://pypi.org/project/texlite) ![build](https://github.com/lucrae/texlite/workflows/build/badge.svg) ![GNU/Linux](https://img.shields.io/badge/GNU/Linux-tested-32c954) ![macOS](https://img.shields.io/badge/macOS-tested-32c954) ![Windows](https://img.shields.io/badge/Windows-tested-32c954)
-
+ 
 > TeXLite is a lightweight, open-source tool for writing standard LaTeX documents cleanly using Markdown-style syntax. **It's all about writing your LaTeX documents without distractions or overhead.**
 
 # Example
@@ -13,7 +14,7 @@
 |:--:|:--:|
 | Document | PDF |
 
-:smile: Note that **all LaTeX commands can be used seamlessly as valid TeXLite**, even from [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
+Note that **all LaTeX commands can be used seamlessly as valid TeXLite**, even from [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
 
 # Get Started
 
@@ -51,7 +52,7 @@ Use `texlite --help` for options and information.
 
 ## Syntax Guide
 
-:closed_book: The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
+The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
 
 ## Advanced Usage
 
