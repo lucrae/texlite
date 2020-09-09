@@ -12,7 +12,7 @@
 
 | <img width="100%" src="docs/images/demo_md.png" />  | <img width="100%" src="docs/images/demo_pdf.png" />  |
 |:--:|:--:|
-| Document | PDF |
+| Input: Document | Output: PDF |
 
 TeXLite processes all LaTeX commands seamlessly and directly, even when using [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup)!
 
