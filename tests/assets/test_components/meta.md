@@ -4,6 +4,8 @@
 :fontsize: 12pt
 :margin: 2.0in
 :linespread: 1.3
+:pagesize: a4paper
+:nopagenumbers:
 :usepackages: xcolor
 
 \color{blue}

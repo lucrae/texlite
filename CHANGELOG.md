@@ -47,3 +47,9 @@
 ## [Unreleased]
 
 Versions of TeXLite in development.
+
+### v1.1.8 (2020-09-09)
+
+- Made both $$$ and $$ valid for equation enclosure.
+- Made equations ignore empty lines.
+- Added boolean `:nopagenumbers:` option to remove page numbers.

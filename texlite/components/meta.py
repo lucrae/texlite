@@ -26,6 +26,8 @@ class Meta:
                  margin: str='1.6in',
                  linespread: int=1.0,
                  usepackages: Optional[str]=None,
+                 pagesize: Optional[str]=None,
+                 nopagenumbers: bool=False,
                  package_config_path: Optional[Path]=None,
                  graphics_path: Optional[Path]=None):
 
@@ -50,6 +52,8 @@ class Meta:
             'margin', # default: 1.6in
             'linespread', # default: 1.0
             'usepackages',
+            'pagesize',
+            'nopagenumbers',
         ]
 
         # document detail options
@@ -62,9 +66,13 @@ class Meta:
         self.fontsize = fontsize
         self.margin = margin
         self.linespread = linespread
+        self.pagesize = pagesize
 
         # other
         self.usepackages = usepackages
+
+        # boolean
+        self.nopagenumbers = nopagenumbers
 
         # graphics setup
         self.graphics_path = graphics_path
@@ -75,11 +83,18 @@ class Meta:
         # validate options
         self._validate_options()
 
-        # add meta preface
-        lines = [
-            r'% meta',
-            f'{BACKSLASH}documentclass[{self.fontsize}]{{extarticle}}',
-        ]
+        lines = [r'% meta']
+
+        if self.pagesize:
+            # add meta preface
+            lines += [
+                f'{BACKSLASH}documentclass[{self.pagesize}, {self.fontsize}]{{extarticle}}',
+            ]
+        else:
+            # add meta preface
+            lines += [
+                f'{BACKSLASH}documentclass[{self.fontsize}]{{extarticle}}',
+            ]
 
         # add packages
         lines += [
@@ -139,6 +154,16 @@ class Meta:
             )
             self.linespread = 1.0
 
+        # check nopagestyle
+        if type(self.nopagenumbers) is not bool:
+
+            # show warning and enact default
+            msg.warning(
+                'Option \'nopagenumbers\' takes no parameters. '
+                'Simply use :nopagenumbers:'
+            )
+            self.nopagenumbers = False
+
     def _packages(self) -> L[str]:
         '''Returns list of TeX import commands for packages'''
 
@@ -180,6 +205,12 @@ class Meta:
             lines.append(f'{BACKSLASH}usepackage{{graphicx}}')
             lines.append(f'{BACKSLASH}graphicspath'
                          f'{{{{{self.graphics_path}/}}}}')
+
+        # turn off page numbers if specified
+        if self.nopagenumbers:
+
+            # turn off page numbers
+            lines.append(f'{BACKSLASH}pagestyle{{empty}}')
 
         return lines
 
@@ -236,6 +267,7 @@ class MakeTitle:
     '''Creates the title from the meta document details'''
 
     def __init__(self, meta: Meta):
+        self.meta = meta
         self.title = meta.title
         self.author = meta.author
         self.date = meta.date
@@ -248,6 +280,11 @@ class MakeTitle:
 
         if self.title:
             lines.append(f'{BACKSLASH}maketitle{{}}')
+
+        if self.meta.nopagenumbers:
+
+            # turn off page numbers
+            lines.append(f'{BACKSLASH}thispagestyle{{empty}}')
 
         if self.abstract:
             lines += [
