@@ -14,7 +14,7 @@
 |:--:|:--:|
 | Document | PDF |
 
-Note that **all LaTeX commands can be used seamlessly as valid TeXLite**, even from [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
+TeXLite processes all LaTeX commands seamlessly and directly, even when using [external packages](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup)!
 
 # Get Started
 
