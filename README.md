@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="docs/images/texlite.png" />
+  <a href="https://lucienrae.com/texlite"><img src="docs/images/texlite.png" /></a>
  
 </p>
 
