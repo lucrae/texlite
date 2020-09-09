@@ -50,13 +50,13 @@ where `my_document.md` is the path to your document. *Note that on Windows you m
 
 Use `texlite --help` for options and information. 
 
-## Syntax Guide
+# Syntax
 
-The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
+:closed_book: The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
 
-## Advanced Usage
+# Advanced Usage
 
-### Document Setup
+## Document Setup
 
 Document setup options can be specified with tags at the start of the document. For example:
 
@@ -69,7 +69,7 @@ The lines above will set the document title to "My Document" and allow the docum
 
 All the meta specification tags can be found in the guide [here](https://github.com/lucrae/texlite/blob/master/docs/guide.md#document-setup).
 
-### Saving as LaTeX/TeX
+## Saving as LaTeX/TeX
 
 TeXLite "transpiles" to TeX, so it's very easy to save the `.tex` with:
 
