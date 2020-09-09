@@ -179,7 +179,7 @@ The following are document setup tags that require a parameter (e.g.: `:fontsize
 - `:fontsize:`. Sets the size of the font. Default is `10pt`. Options are: `8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt`. Remember to include the `pt`.
 - `:margin:`. Sets the size of the margins. Default is `1.6in`. Unit must be included, and can be any one of `mm, cm, pt, in`.
 - `:linespread:`. Sets the proportional spacing between lines. Default is `1.0`. One-and-a-half spacing is `1.3` and double spacing is `1.6`.
-- `:pagesize:`. Sets the size of the pages (e.g: `letter`, `a4paper`).
+- `:pagesize:`. Sets the size of the document pages (e.g: `letter`, `a4paper`).
 - `:usepackages:`. Includes specified packages to be used in the document. Multiple packages seperated by commas, for example: `:usepackages: hyperref, xcolor`. Note that these packages must be installed in you TeX distribution; if they're not TeXLite will not be able to compile.
 
 ### Without parameters
@@ -187,6 +187,7 @@ The following are document setup tags that require a parameter (e.g.: `:fontsize
 The following are document setup tags with no parameters (e.g.: simply using `:nopagenumbers:` removes page numbers):
 
 - `:nopagenumbers:`. Removes page numbers.
+- `:twocolumn:`. Sets the document layout into two columns.
 
 ### LaTeX commands
 

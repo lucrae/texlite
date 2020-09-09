@@ -28,6 +28,7 @@ class Meta:
                  usepackages: Optional[str]=None,
                  pagesize: Optional[str]=None,
                  nopagenumbers: bool=False,
+                 twocolumn: bool=False,
                  package_config_path: Optional[Path]=None,
                  graphics_path: Optional[Path]=None):
 
@@ -53,7 +54,8 @@ class Meta:
             'linespread', # default: 1.0
             'usepackages',
             'pagesize',
-            'nopagenumbers',
+            'nopagenumbers', # bool
+            'twocolumn', # bool
         ]
 
         # document detail options
@@ -67,6 +69,7 @@ class Meta:
         self.margin = margin
         self.linespread = linespread
         self.pagesize = pagesize
+        self.twocolumn = twocolumn
 
         # other
         self.usepackages = usepackages
@@ -83,18 +86,11 @@ class Meta:
         # validate options
         self._validate_options()
 
-        lines = [r'% meta']
-
-        if self.pagesize:
-            # add meta preface
-            lines += [
-                f'{BACKSLASH}documentclass[{self.pagesize}, {self.fontsize}]{{extarticle}}',
-            ]
-        else:
-            # add meta preface
-            lines += [
-                f'{BACKSLASH}documentclass[{self.fontsize}]{{extarticle}}',
-            ]
+        # start document with documentclass header
+        lines = [
+            r'% meta',
+            *self._document_header(),
+        ]
 
         # add packages
         lines += [
@@ -160,9 +156,36 @@ class Meta:
             # show warning and enact default
             msg.warning(
                 'Option \'nopagenumbers\' takes no parameters. '
-                'Simply use :nopagenumbers:'
+                'Simply use :nopagenumbers: on its own.'
             )
             self.nopagenumbers = False
+
+        # check nopagestyle
+        if type(self.twocolumn) is not bool:
+
+            # show warning and enact default
+            msg.warning(
+                'Option \'twocolumn\' takes no parameters. '
+                'Simply use :twocolumn: on its own.'
+            )
+            self.twocolumn = False
+
+    def _document_header(self) -> L[str]:
+        '''Returns documentclass header'''
+
+        # get elements for documentclass
+        documentclass_elements = ''
+        if self.pagesize:
+            documentclass_elements += f'{self.pagesize}, '
+        if self.twocolumn:
+            documentclass_elements += f'twocolumn, '
+       
+        documentclass_elements += f'{self.fontsize}'
+
+        return [
+            f'{BACKSLASH}documentclass[{documentclass_elements}]'
+            f'{{extarticle}}',
+        ]
 
     def _packages(self) -> L[str]:
         '''Returns list of TeX import commands for packages'''

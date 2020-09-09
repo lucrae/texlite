@@ -6,6 +6,7 @@
 :linespread: 1.3
 :pagesize: a4paper
 :nopagenumbers:
+:twocolumn:
 :usepackages: xcolor
 
 \color{blue}
