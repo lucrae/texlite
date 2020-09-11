@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import List as L
 
-from texlite.components.common import BACKSLASH
+from texlite.components.common import BACKSLASH, EMPTY_LINES
 
 
 class Equation:
@@ -17,7 +17,7 @@ class Equation:
         # form equation section
         lines = [
             f'{BACKSLASH}begin{{align*}}',
-            *[f'{line} {BACKSLASH*2}' for line in self.equation_lines],
+            *[f'{line} {BACKSLASH*2}' for line in self.equation_lines if line not in EMPTY_LINES],
             f'{BACKSLASH}end{{align*}}'
         ]
 

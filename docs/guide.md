@@ -156,7 +156,7 @@ Although not as popular in most LaTeX documents, hyperlinks can be specified in 
 
 This will create a link labelled "TeXLite" that goes to the address `https://github.com/lucrae/texlite`.
 
-### Document Setup
+## Document Setup
 
 Specifiying document setup options can actually be done anywhere in the document, but makes the most sense to do at the top. Here is an example of specifying the document details for the heading:
 
@@ -168,16 +168,31 @@ Specifiying document setup options can actually be done anywhere in the document
 
 The lines above would set the document title to "Solution to the Riemann Hypothesis" with the author "Lucien Rae Gentil" and the date "July 11, 2038". Note that because in-line LaTeX commands can be used, you can write `\today{}` to automatically provide the current date.
 
-More specifications are planned to be added, but here is the list so far:
+### With parameters
 
-- `:title:` Sets the document title.
+The following are document setup tags that require a parameter (e.g.: `:fontsize:` requires that you specify a size):
+
+- `:title:`. Sets the document title.
 - `:author:`. Sets the document author.
 - `:date:`. Sets the document date, typically can be used with `\today{}`.
 - `:abstract:`. Adds an 'abstract' section to the start of the document comprising whatever text is specified.
 - `:fontsize:`. Sets the size of the font. Default is `10pt`. Options are: `8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt`. Remember to include the `pt`.
 - `:margin:`. Sets the size of the margins. Default is `1.6in`. Unit must be included, and can be any one of `mm, cm, pt, in`.
 - `:linespread:`. Sets the proportional spacing between lines. Default is `1.0`. One-and-a-half spacing is `1.3` and double spacing is `1.6`.
+- `:pagesize:`. Sets the size of the document pages (e.g: `letter`, `a4paper`).
 - `:usepackages:`. Includes specified packages to be used in the document. Multiple packages seperated by commas, for example: `:usepackages: hyperref, xcolor`. Note that these packages must be installed in you TeX distribution; if they're not TeXLite will not be able to compile.
+
+### Without parameters
+
+The following are document setup tags with no parameters (e.g.: simply using `:nopagenumbers:` removes page numbers):
+
+- `:nopagenumbers:`. Removes page numbers.
+- `:twocolumn:`. Sets the document layout into two columns.
+
+### LaTeX commands
+
+Document setup can also be done simply with LaTeX (e.g.: `\newcommand{}` or `\thispagestyle{empty}` can be used).
+
 
 ## Conclusion
 

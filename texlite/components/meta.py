@@ -26,6 +26,9 @@ class Meta:
                  margin: str='1.6in',
                  linespread: int=1.0,
                  usepackages: Optional[str]=None,
+                 pagesize: Optional[str]=None,
+                 nopagenumbers: bool=False,
+                 twocolumn: bool=False,
                  package_config_path: Optional[Path]=None,
                  graphics_path: Optional[Path]=None):
 
@@ -50,6 +53,9 @@ class Meta:
             'margin', # default: 1.6in
             'linespread', # default: 1.0
             'usepackages',
+            'pagesize',
+            'nopagenumbers', # bool
+            'twocolumn', # bool
         ]
 
         # document detail options
@@ -62,9 +68,14 @@ class Meta:
         self.fontsize = fontsize
         self.margin = margin
         self.linespread = linespread
+        self.pagesize = pagesize
+        self.twocolumn = twocolumn
 
         # other
         self.usepackages = usepackages
+
+        # boolean
+        self.nopagenumbers = nopagenumbers
 
         # graphics setup
         self.graphics_path = graphics_path
@@ -75,10 +86,10 @@ class Meta:
         # validate options
         self._validate_options()
 
-        # add meta preface
+        # start document with documentclass header
         lines = [
             r'% meta',
-            f'{BACKSLASH}documentclass[{self.fontsize}]{{extarticle}}',
+            *self._document_header(),
         ]
 
         # add packages
@@ -139,6 +150,43 @@ class Meta:
             )
             self.linespread = 1.0
 
+        # check nopagestyle
+        if type(self.nopagenumbers) is not bool:
+
+            # show warning and enact default
+            msg.warning(
+                'Option \'nopagenumbers\' takes no parameters. '
+                'Simply use :nopagenumbers: on its own.'
+            )
+            self.nopagenumbers = False
+
+        # check nopagestyle
+        if type(self.twocolumn) is not bool:
+
+            # show warning and enact default
+            msg.warning(
+                'Option \'twocolumn\' takes no parameters. '
+                'Simply use :twocolumn: on its own.'
+            )
+            self.twocolumn = False
+
+    def _document_header(self) -> L[str]:
+        '''Returns documentclass header'''
+
+        # get elements for documentclass
+        documentclass_elements = ''
+        if self.pagesize:
+            documentclass_elements += f'{self.pagesize}, '
+        if self.twocolumn:
+            documentclass_elements += f'twocolumn, '
+       
+        documentclass_elements += f'{self.fontsize}'
+
+        return [
+            f'{BACKSLASH}documentclass[{documentclass_elements}]'
+            f'{{extarticle}}',
+        ]
+
     def _packages(self) -> L[str]:
         '''Returns list of TeX import commands for packages'''
 
@@ -180,6 +228,12 @@ class Meta:
             lines.append(f'{BACKSLASH}usepackage{{graphicx}}')
             lines.append(f'{BACKSLASH}graphicspath'
                          f'{{{{{self.graphics_path}/}}}}')
+
+        # turn off page numbers if specified
+        if self.nopagenumbers:
+
+            # turn off page numbers
+            lines.append(f'{BACKSLASH}pagestyle{{empty}}')
 
         return lines
 
@@ -236,6 +290,7 @@ class MakeTitle:
     '''Creates the title from the meta document details'''
 
     def __init__(self, meta: Meta):
+        self.meta = meta
         self.title = meta.title
         self.author = meta.author
         self.date = meta.date
@@ -248,6 +303,11 @@ class MakeTitle:
 
         if self.title:
             lines.append(f'{BACKSLASH}maketitle{{}}')
+
+        if self.meta.nopagenumbers:
+
+            # turn off page numbers
+            lines.append(f'{BACKSLASH}thispagestyle{{empty}}')
 
         if self.abstract:
             lines += [

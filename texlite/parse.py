@@ -15,6 +15,7 @@ UNORDERED_LIST_PREFIXES = ['-', '+', '*']
 ORDERED_LIST_PREFIXES = [f'{c}.' for c in NUMBERS + LETTERS]
 LIST_PREFIXES = UNORDERED_LIST_PREFIXES + ORDERED_LIST_PREFIXES
 TAB = r' ' * 4 # tabs are four spaces
+EQUATION_ENCLOSURE = ['$$$', '$$']
 
 # set section heading codes
 HEADINGS = {
@@ -54,7 +55,10 @@ def parse(md_lines: L[str], graphics_path: Path=None,
 
             # set meta attribute to specified value
             option_name = prefix[1:-1]
-            setattr(meta, option_name, body)
+            if body:
+                setattr(meta, option_name, body)
+            else:
+                setattr(meta, option_name, True)
 
         # handle heading/section
         elif prefix in HEADINGS.keys():
@@ -87,7 +91,7 @@ def parse(md_lines: L[str], graphics_path: Path=None,
             components.append(Figure(graphics_path, image_path, caption_text))
 
         # handle equation
-        elif prefix == '$$$':
+        elif prefix in EQUATION_ENCLOSURE:
 
             # skip to next line and then iterate through until $$$ is reached
             equation_lines = []
@@ -95,7 +99,7 @@ def parse(md_lines: L[str], graphics_path: Path=None,
             while i < n_lines:
 
                 # break out at end
-                if md_lines[i] == '$$$':
+                if md_lines[i] in EQUATION_ENCLOSURE:
                     break
 
                 equation_lines.append(md_lines[i])
