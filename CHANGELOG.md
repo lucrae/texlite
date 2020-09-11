@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.0 (2020-09-09)
+
+- Made both `$$$` and `$$` valid for equation enclosure.
+- Made equations ignore empty lines.
+- Added boolean `:nopagenumbers:` option to remove page numbers.
+- Added `:pagesize:` option for page sizes (e.g.: `letter`, `a4paper`).
+- Added boolean `:twocolumn:` option for the document layout.
+
 ### v1.1.7 (2020-08-29)
 
 - Fixed parsing of unnumbered sections (e.g. `#* Section`).
@@ -47,11 +55,3 @@
 ## [Unreleased]
 
 Versions of TeXLite in development.
-
-### v1.2.0 (2020-09-09)
-
-- Made both $$$ and $$ valid for equation enclosure.
-- Made equations ignore empty lines.
-- Added boolean `:nopagenumbers:` option to remove page numbers.
-- Added `:pagesize:` option for page sizes (e.g.: `letter`, `a4paper`).
-- Added boolean `:twocolumn:` option for the document layout.

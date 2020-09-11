@@ -6,6 +6,7 @@ This is a concise guide to using TeXLite v1.1.0.
 - [Usage](#usage) provides information on how to run TeXLite.
 - [Features](#features) covers the features of TeXLite (e.g.: text, images, headings, etc.), with examples included with all components.
 - [Document Setup](#document-setup) provides a listing of document setup options in TeXLite and how to use them.
+- [LaTeX Commands](#latex-commands) provides some extra information on using LaTeX commands in-line.
 
 ## Introduction
 
@@ -172,27 +173,28 @@ The lines above would set the document title to "Solution to the Riemann Hypothe
 
 The following are document setup tags that require a parameter (e.g.: `:fontsize:` requires that you specify a size):
 
-- `:title:`. Sets the document title.
-- `:author:`. Sets the document author.
-- `:date:`. Sets the document date, typically can be used with `\today{}`.
-- `:abstract:`. Adds an 'abstract' section to the start of the document comprising whatever text is specified.
-- `:fontsize:`. Sets the size of the font. Default is `10pt`. Options are: `8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt`. Remember to include the `pt`.
-- `:margin:`. Sets the size of the margins. Default is `1.6in`. Unit must be included, and can be any one of `mm, cm, pt, in`.
-- `:linespread:`. Sets the proportional spacing between lines. Default is `1.0`. One-and-a-half spacing is `1.3` and double spacing is `1.6`.
-- `:pagesize:`. Sets the size of the document pages (e.g: `letter`, `a4paper`).
-- `:usepackages:`. Includes specified packages to be used in the document. Multiple packages seperated by commas, for example: `:usepackages: hyperref, xcolor`. Note that these packages must be installed in you TeX distribution; if they're not TeXLite will not be able to compile.
+- `:title:` Sets the document title.
+- `:author:` Sets the document author.
+- `:date:` Sets the document date, typically can be used with `\today{}`.
+- `:abstract:` Adds an 'abstract' section to the start of the document comprising whatever text is specified.
+- `:fontsize:` Sets the size of the font. Default is `10pt`. Options are: `8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt`. Remember to include the `pt`.
+- `:margin:` Sets the size of the margins. Default is `1.6in`. Unit must be included, and can be any one of `mm, cm, pt, in`.
+- `:linespread:` Sets the proportional spacing between lines. Default is `1.0`. One-and-a-half spacing is `1.3` and double spacing is `1.6`.
+- `:pagesize:` Sets the size of the document pages (e.g: `letter`, `a4paper`).
+- `:usepackages:` Includes specified packages to be used in the document. Multiple packages seperated by commas, for example: `:usepackages: hyperref, xcolor` Note that these packages must be installed in you TeX distribution; if they're not TeXLite will not be able to compile.
 
 ### Without parameters
 
 The following are document setup tags with no parameters (e.g.: simply using `:nopagenumbers:` removes page numbers):
 
-- `:nopagenumbers:`. Removes page numbers.
-- `:twocolumn:`. Sets the document layout into two columns.
+- `:nopagenumbers:` Removes page numbers.
+- `:twocolumn:` Sets the document layout into two columns.
 
-### LaTeX commands
+## LaTeX Commands
 
-Document setup can also be done simply with LaTeX (e.g.: `\newcommand{}` or `\thispagestyle{empty}` can be used).
+All in-line [LaTeX commands](https://www.ntg.nl/doc/biemesderfer/ltxcrib.pdf) can be used seamlessly. For example `\footnote{Hello}` and `\setlength{\parindent}{0pt}` can be used to add a footnote and remove paragraph indentation respectively.
 
+If you want to use commands from external packages, use the `:usepackages: my_package, another_package` tag to include them. Make sure that they are installed in your [TeX distribution](https://www.latex-project.org/get/).
 
 ## Conclusion
 
