@@ -52,7 +52,7 @@ Use `texlite --help` for options and information.
 
 # Syntax
 
-:closed_book: The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
+:orange_book: The [guide](https://github.com/lucrae/texlite/blob/master/docs/guide.md) provides a concise but comprehensive run-down on all you need to know, with examples included.
 
 # Advanced Usage
 

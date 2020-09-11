@@ -12,7 +12,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         usage='texlite [options] <source>',
         description=description,
-        epilog='For more information go to https://github.com/lucrae/texlite.'
+        epilog='For more information go to https://lucienrae.com/texlite/.'
     )
     parser.add_argument('source', type=str,
                         help='path to source markdown (.md) file to parse and '

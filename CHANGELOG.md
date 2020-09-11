@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.2.1 (2020-09-11)
+
+- Added official website to `--help` info.
+
 ### v1.2.0 (2020-09-09)
 
 - Made both `$$$` and `$$` valid for equation enclosure.
